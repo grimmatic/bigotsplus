@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+
+<item
+    android:id="@+id/arama"
+    android:title="Arama"
+    android:icon="@android:drawable/ic_menu_search"
+    android:iconTint="@color/Aqua"
+    app:actionViewClass="androidx.appcompat.widget.SearchView"
+    app:showAsAction="ifRoom|collapseActionView"
+
+    />
+
+    <group
+        android:checkableBehavior="all"
+android:id="@+id/group"
+        android:orderInCategory="1"
+        >
+
+
+        <item
+
+            android:id="@+id/checkboxhizliparibu"
+            android:title="Paribu"
+            android:checkable="true"
+            android:orderInCategory="1"
+
+            />
+        <item
+            android:id="@+id/checkboxhizlitl"
+            android:title="Binance (₺)"
+            android:checkable="true"
+            android:orderInCategory="1"
+
+
+            />
+        <item
+            android:id="@+id/checkboxhizlibinance"
+            android:title="Binance"
+            android:checkable="true"
+            android:orderInCategory="1"
+
+
+            />
+
+    </group>
+
+    <group
+        android:checkableBehavior="single"
+        android:id="@+id/group2"
+        android:orderInCategory="0"
+
+        >
+        <item
+            android:id="@+id/hacim"
+            android:title=""
+            app:showAsAction="always"
+            android:checkable="true"
+            android:checkableBehavior="single"
+            android:orderInCategory="0"
+            android:icon="@drawable/hacim"
+            android:iconTint="@color/Red"
+
+            />
+
+
+    </group>
+
+</menu>

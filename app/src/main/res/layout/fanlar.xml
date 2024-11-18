@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    tools:context="com.codinginflow.bigots.FanCoins"
+
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/ekran7"
+        >
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+            <EditText
+                android:id="@+id/DOTT"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="350dp"
+                android:hint="%"
+                android:gravity="center"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimaryDark"
+                android:singleLine="true"
+
+                />
+
+            <TextView
+                android:id="@+id/baslikparibufan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="PARİBU"
+                android:textColor="#11FF00"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                />
+
+            <ListView
+                android:id="@+id/listview0fan"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:divider="@drawable/divider"
+                android:dividerHeight="1dp"
+                android:nestedScrollingEnabled="true"
+                android:visibility="gone"
+
+
+
+                />
+
+            <TextView
+                android:id="@+id/baslikbinancetlfan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="BINANCE(₺)"
+                android:textColor="#FFE500"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                />
+            <ListView
+                android:id="@+id/listview1fan"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:divider="@drawable/divider"
+                android:dividerHeight="1dp"
+                android:nestedScrollingEnabled="true"
+                android:visibility="gone" />
+
+
+
+
+
+            <TextView
+                android:id="@+id/baslikbinancefan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="BINANCE"
+                android:textColor="#BF2157"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+            <ListView
+                android:id="@+id/listview2fan"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:divider="@drawable/divider"
+                android:dividerHeight="1dp"
+                android:nestedScrollingEnabled="true"
+                android:visibility="gone" />
+
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:id="@+id/appbarfan"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#3780f4"
+                android:id="@+id/toolbarfan"
+                />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_barfan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/colorAccent"
+            app:fabAnimationMode="slide"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="32dp"
+            app:fabAlignmentMode="end"
+            app:navigationIcon="@drawable/fenerbahce"
+
+
+            />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ayarlarfan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:backgroundTint="@color/design_default_color_primary_variant"
+            app:elevation="6dp"
+            app:srcCompat="@drawable/ayarlar"
+            app:layout_anchor="@id/bottom_app_barfan"
+
+            />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/yukarifan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#3780f4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ekran7"
+        android:layout_marginBottom="245dp"
+        app:srcCompat="@drawable/yukari" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/asagifan"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="170dp"
+        android:background="@drawable/buttoneffect2"
+        android:elevation="6dp"
+        app:backgroundTint="#3780f4"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ekran7"
+        app:srcCompat="@drawable/asagi"
+        tools:ignore="MissingConstraints"
+
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/baslatfan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        app:backgroundTint="#378000"
+        app:elevation="6dp"
+        app:srcCompat="@drawable/start"
+        tools:ignore="MissingConstraints"
+        android:visibility="gone"
+        android:onClick="startService"
+
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/durdurfan"
+        android:onClick="stopService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        app:backgroundTint="#FF0000"
+        app:elevation="6dp"
+        app:srcCompat="@drawable/stop"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="@+id/ekran7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="95dp"
+        android:visibility="gone"
+
+
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/duzenlefan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        app:backgroundTint="#1049F5"
+        app:elevation="6dp"
+        app:srcCompat="@drawable/edit"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="@+id/ekran7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="320dp"
+        android:visibility="gone"
+
+
+
+        />
+    
+    
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

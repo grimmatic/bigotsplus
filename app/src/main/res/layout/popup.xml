@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/Gray"
+    >
+
+    <TextView
+        android:id="@+id/textView665"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text=""
+        android:textColor="@color/DarkBlue"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <EditText
+        android:id="@+id/edittext"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginHorizontal="80dp"
+        android:layout_gravity="center"
+        android:background="@color/cardview_dark_background"
+        android:hint="%"
+        android:textColorHint="@color/white"
+        android:layout_marginBottom="20dp"
+        />
+    <TextView
+        android:id="@+id/textView6650"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text=""
+        android:textColor="@color/DarkBlue"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <SeekBar
+        android:id="@+id/seekbar665"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:thumb="@drawable/daire0"
+/>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="190dp"
+        app:srcCompat="@drawable/volume" />
+    <SeekBar
+        android:id="@+id/seekbar666"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:thumb="@drawable/daire0"
+        />
+    <Button
+        android:id="@+id/button665"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttoneffect"
+        android:text="Ayarla"
+        app:icon="@android:drawable/ic_menu_edit"
+
+        />
+    <Button
+        android:id="@+id/button6650"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginHorizontal="100dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/buttoneffect"
+        android:text="Geri"
+        app:icon="@android:drawable/ic_menu_revert"
+
+        />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:background="@color/black"
+    tools:context="com.codinginflow.bigots.Sesler"
+    tools:ignore="ExtraText">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="33dp"
+        tools:layout_editor_absoluteY="192dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="Uygulama Sesi"
+                android:textColor="@color/design_default_color_on_primary"
+                android:textSize="20dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/daire0"
+
+                />
+
+            <CheckBox
+                android:id="@+id/artı"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sadece +"
+                android:textColor="@color/white"
+
+
+                />
+
+            <CheckBox
+                android:id="@+id/eksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sadece -"
+                android:textColor="@color/white"
+
+
+                />
+
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="Veri yenileme hızı (sn)"
+                android:textColor="@color/design_default_color_on_primary"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/saniye"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/design_default_color_on_primary"
+                android:textSize="20dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/daire0"
+
+                />
+
+
+
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatactiongeri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        app:backgroundTint="#3780f4"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        tools:ignore="MissingConstraints"
+        app:srcCompat="@drawable/home"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatactionasagi"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        app:backgroundTint="#3780f4"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        tools:ignore="MissingConstraints"
+        android:layout_marginBottom="75dp"
+        android:background="@drawable/buttoneffect2"
+        app:srcCompat="@drawable/asagi"
+
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatactionyukari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="6dp"
+        android:stateListAnimator="@null"
+        app:backgroundTint="#3780f4"
+        app:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        tools:ignore="MissingConstraints"
+        android:layout_marginBottom="150dp"
+        app:srcCompat="@drawable/yukari"
+        android:background="@drawable/buttoneffect1"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
