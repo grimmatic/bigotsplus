@@ -1,12 +1,16 @@
 package com.codinginflow.bigots;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -15,6 +19,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -57,6 +62,7 @@ import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -602,6 +608,8 @@ public class MainActivity extends AppCompatActivity {
                 updateUI(true);
             }
         }
+
+
         paribuL = findViewById(R.id.listview);
         binanceL =  findViewById(R.id.listview2);
         binanceTlL =  findViewById(R.id.listview3);
@@ -1304,6 +1312,30 @@ public class MainActivity extends AppCompatActivity {
         paribuL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    String coinName = MainActivity.paribuisim[position];
+                    String formattedCoin = coinName.toLowerCase()
+                            .replace("_tl", "")
+                            .replace("_", "") +
+                            "usdt";
+
+                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(binanceUrl));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=com.binance.dev")));
+                }
+            }
+        });
+
+
+        paribuL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (MainActivity.this.calistiMi) {
                     MainActivity.this.dialog.show();
                     if (!MainActivity.girdi) {
@@ -1333,7 +1365,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-                        return;
+                        return true;
                     }
                     MainActivity.tiklanansira = MainActivity.aramaindexler.get(position).intValue();
                     MainActivity.this.isim = MainActivity.paribuisim[MainActivity.tiklanansira];
@@ -1362,8 +1394,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+                return true;
             }
         });
+
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels;
@@ -1580,11 +1615,6 @@ public class MainActivity extends AppCompatActivity {
         Dot();
     }
 
-    public void updateVolume(int soundResourceId, float volume) {
-        if (mediaPlayerManager != null) {
-            mediaPlayerManager.updateVolume(soundResourceId, volume);
-        }
-    }
 
     public static MainActivity getInstance() {
         return instance;
@@ -1737,56 +1767,58 @@ public class MainActivity extends AppCompatActivity {
             float f2 = btcturk[i2];
             fArr2[i2] = ((f2 - (huobibtcturk[i2] * tsatisb)) * 100.0f) / f2;
         }
-
-        JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            // USDT/TRY paritesini bul
-                            JSONArray data = response.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject pair = data.getJSONObject(i);
-                                if (pair.getString("pair").equals("USDTTRY")) {
-                                    tsatisb = (float) pair.getDouble("ask");
-                                    break;
-                                }
-                            }
-
-                            // Her bir btcturkisim için eşleşen pair'i bul
-                            for (int i = 0; i < btctotal; i++) {
-                                String targetPair = btcturkisim[i];
-                                boolean found = false;
-
-                                for (int j = 0; j < data.length(); j++) {
-                                    JSONObject pair = data.getJSONObject(j);
-                                    if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
-                                        btcturk[i] = (float) pair.getDouble("bid");
-                                        found = true;
+        if (BtcTurk.calistiMi) {
+            JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                // USDT/TRY paritesini bul
+                                JSONArray data = response.getJSONArray("data");
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject pair = data.getJSONObject(i);
+                                    if (pair.getString("pair").equals("USDTTRY")) {
+                                        tsatisb = (float) pair.getDouble("ask");
                                         break;
                                     }
                                 }
 
-                                if (!found) {
-                                    // Eğer pair bulunamadıysa 0 ata veya hata işle
-                                    btcturk[i] = 0f;
-                                    System.out.println("Pair not found: " + targetPair);
-                                }
-                            }
+                                // Her bir btcturkisim için eşleşen pair'i bul
+                                for (int i = 0; i < btctotal; i++) {
+                                    String targetPair = btcturkisim[i];
+                                    boolean found = false;
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                    for (int j = 0; j < data.length(); j++) {
+                                        JSONObject pair = data.getJSONObject(j);
+                                        if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
+                                            btcturk[i] = (float) pair.getDouble("bid");
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!found) {
+                                        // Eğer pair bulunamadıysa 0 ata veya hata işle
+                                        btcturk[i] = 0f;
+                                        System.out.println("Pair not found: " + targetPair);
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                }
-        );
-        mQueue.add(request2);
+            );
+            mQueue.add(request2);
+        }
+
         setTitle(btc + " | " + tsatis);
         aramaindexler.clear();
         hizli2 = 0;
@@ -1853,9 +1885,10 @@ public class MainActivity extends AppCompatActivity {
             a++;
             request0 = request02;
         }
-        mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
+        if(BtcTurk.calistiMi){     mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
                 btcturkisim, isimlerBtcTurk, sesSeviyesiBtcTurk, indexlerbtcturk, siralamaBtcTurk,
-                oranlarbtcturk, seslerBtcTurk);
+                oranlarbtcturk, seslerBtcTurk);}
+
         if (calistiMi) {
 
             if (hizli2 == 0) {
@@ -1881,7 +1914,7 @@ public class MainActivity extends AppCompatActivity {
                 while (a3 < hizli2) {
                     int index = aramaindexler.get(a3).intValue();
                     otuyorMuArama = false;
-                    JsonObjectRequest request22 = request2;
+
                     metinlerParibuarama[a3] = new SpannableString(isimler[index] + paribu[index] + " %" + df.format(farklar[index]));
                     metinlerBinancearama[a3] = new SpannableString(isimler[index] + huobi[index]);
                     metinlerBinanceTlarama[a3] = new SpannableString(isimler[index] + (huobi[index] * tsatis));
@@ -1923,7 +1956,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     a3++;
                     request32 = request3;
-                    request2 = request22;
+
 
                 }
                 arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibuarama);

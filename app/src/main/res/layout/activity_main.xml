@@ -25,6 +25,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
+
             <EditText
                 android:id="@+id/DOT"
                 android:layout_width="match_parent"
@@ -51,6 +54,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
+
 
 
             <ListView
