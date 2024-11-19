@@ -72,145 +72,7 @@ import static com.codinginflow.bigots.R.menu.search;
 
 public class MainActivity extends AppCompatActivity {
     public static MediaPlayer saniye;
-    public static MediaPlayer aave;
-    public static MediaPlayer acm;
-    public static MediaPlayer ada;
-    public static MediaPlayer algo;
-    public static MediaPlayer alice;
-    public static MediaPlayer amp;
-    public static MediaPlayer ankr;
-    public static MediaPlayer ape;
-    public static MediaPlayer api3;
-    public static MediaPlayer apt;
-    public static MediaPlayer arb;
-    public static MediaPlayer arkm;
-    public static MediaPlayer arpa;
-    public static MediaPlayer asr;
-    public static MediaPlayer atm;
-    public static MediaPlayer atom;
-    public static MediaPlayer audio;
-    public static MediaPlayer avax;
-    public static MediaPlayer axl;
-    public static MediaPlayer axs;
-    public static MediaPlayer bal;
-    public static MediaPlayer band;
-    public static MediaPlayer bar;
-    public static MediaPlayer bat;
-    public static MediaPlayer bch;
-    public static MediaPlayer beam;
-    public static MediaPlayer blur;
-    public static MediaPlayer bnt;
-    public static MediaPlayer bonk;
-    public static MediaPlayer btt;
-    public static MediaPlayer chz;
-    public static MediaPlayer city;
-    public static MediaPlayer clv;
-    public static MediaPlayer comp;
-    public static MediaPlayer crv;
-    public static MediaPlayer ctsi;
-    public static MediaPlayer cvc;
-    public static MediaPlayer dash;
-    public static MediaPlayer dogem;
-    public static MediaPlayer dots;
-    public static MediaPlayer dydx;
-    public static MediaPlayer dym;
-    public static MediaPlayer enj;
-    public static MediaPlayer ens;
-    public static MediaPlayer eos;
-    public static MediaPlayer etc;
-    public static MediaPlayer etherfi;
-    public static MediaPlayer fet;
-    public static MediaPlayer fil;
-    public static MediaPlayer floki;
-    public static MediaPlayer flow;
-    public static MediaPlayer ftm;
-    public static MediaPlayer gala;
-    public static MediaPlayer glm;
-    public static MediaPlayer grt;
-    public static MediaPlayer hot;
-    public static MediaPlayer icp;
-    public static MediaPlayer imx;
-    public static MediaPlayer inch;
-    public static MediaPlayer inj;
-    public static MediaPlayer iota;
-    public static MediaPlayer jasmy;
-    public static MediaPlayer joe;
-    public static MediaPlayer jto;
-    public static MediaPlayer jup;
-    public static MediaPlayer juv;
-    public static MediaPlayer ldo;
-    public static MediaPlayer link;
-    public static MediaPlayer lpt;
-    public static MediaPlayer lrc;
-    public static MediaPlayer ltc;
-    public static MediaPlayer luna;
-    public static MediaPlayer magic;
-    public static MediaPlayer maker;
-    public static MediaPlayer mana;
-    public static MediaPlayer manta;
-    public static MediaPlayer mask;
-    public static MediaPlayer matic;
-    public static MediaPlayer meme;
-    public static MediaPlayer mina;
-    public static MediaPlayer neo;
-    public static MediaPlayer nmr;
-    public static MediaPlayer ogn;
-    public static MediaPlayer ont;
-    public static MediaPlayer op;
-    public static MediaPlayer oxt;
-    public static MediaPlayer paxg;
-    public static MediaPlayer pendle;
-    public static MediaPlayer pepe;
-    public static MediaPlayer psg;
-    public static MediaPlayer pyth;
-    public static MediaPlayer qnt;
-    public static MediaPlayer rad;
-    public static MediaPlayer rdnt;
-    public static MediaPlayer rlc;
-    public static MediaPlayer rndr;
-    public static MediaPlayer rvn;
-    public static MediaPlayer sand;
-    public static MediaPlayer sei;
-    public static MediaPlayer shib;
-    public static MediaPlayer skl;
-    public static MediaPlayer snx;
-    public static MediaPlayer sol;
-    public static MediaPlayer spell;
-    public static MediaPlayer stg;
-    public static MediaPlayer storj;
-    public static MediaPlayer strk;
-    public static MediaPlayer stx;
-    public static MediaPlayer sui;
-    public static MediaPlayer sushi;
-    public static MediaPlayer t;
-    public static MediaPlayer theta;
-    public static MediaPlayer tia;
-    public static MediaPlayer tlm;
-    public static MediaPlayer pla;
-    public static MediaPlayer tnsr;
-    public static MediaPlayer tron;
-    public static MediaPlayer uma;
-    public static MediaPlayer uni;
-    public static MediaPlayer vanry;
-    public static MediaPlayer vet;
-    public static MediaPlayer w;
-    public static MediaPlayer xlm;
-    public static MediaPlayer xrp;
-    public static MediaPlayer xtz;
-    public static MediaPlayer zil;
-    public static MediaPlayer zrx;
-    public static MediaPlayer eigen;
-    public static MediaPlayer ray;
-    public static MediaPlayer wif;
-    public static MediaPlayer io;
-    public static MediaPlayer aevo;
-    public static MediaPlayer ena;
-    public static MediaPlayer zk;
-    public static MediaPlayer alt;
-    public static MediaPlayer syn;
-    public static MediaPlayer pda;
-    public static MediaPlayer zro;
-    public static MediaPlayer super0;
+
     public static EditText dot;
     public static int MainservisSayac;
     static ArrayList<Integer> aramaindexler;
@@ -246,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
     public static int[] sesSeviyesiBtcTurk;
     static int[] siralama;
     static int[] siralamaBtcTurk;
-    static MediaPlayer[] sesler;
-    public static MediaPlayer[] seslerBtcTurk;
+    static int[] sesler;
+    public static int[] seslerBtcTurk;
     private TextView BinanceAnaText;
     private TextView BinanceTlAnaText;
     ArrayAdapter<SpannableString> arrayAdapter;
@@ -307,13 +169,13 @@ public class MainActivity extends AppCompatActivity {
         paribuisim = new String[hizli];
         farklar = new float[hizli];
         farklarBtcTurk = new float[btctotal];
-        sesler = new MediaPlayer[hizli];
+        sesler = new int[hizli];
         isimler = new String[hizli];
         isimlerBtcTurk = new String[btctotal];
         siralama = new int[hizli];
         siralamaBtcTurk = new int[btctotal];
         sesSeviyesi = new int[hizli];
-        seslerBtcTurk = new MediaPlayer[btctotal];
+        seslerBtcTurk = new int[btctotal];
         sesSeviyesiBtcTurk = new int[btctotal];
         metinlerParibu = new SpannableString[hizli];
         metinlerBinance = new SpannableString[hizli];
@@ -332,16 +194,157 @@ public class MainActivity extends AppCompatActivity {
         otuyorMu = false;
     }
 
-    public static void mergeSort(float[] arr, int left, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+
+    public static final int SOUND_DOT = R.raw.dot;
+    public static final int SOUND_AVAX = R.raw.avax;
+    public static final int SOUND_TRON = R.raw.tron;
+    public static final int SOUND_EOS = R.raw.eos;
+    public static final int SOUND_BTT = R.raw.btt;
+    public static final int SOUND_RIPPLE = R.raw.ripple;
+    public static final int SOUND_SITELLAR = R.raw.sitellar;
+    public static final int SOUND_ONT = R.raw.ont;
+    public static final int SOUND_ATOM = R.raw.atom;
+    public static final int SOUND_HOT = R.raw.hot;
+    public static final int SOUND_NEO = R.raw.neo;
+    public static final int SOUND_BAT = R.raw.bat;
+    public static final int SOUND_CHZ = R.raw.chz;
+    public static final int SOUND_UNI = R.raw.uni;
+    public static final int SOUND_BAL = R.raw.bal;
+    public static final int SOUND_AAVE = R.raw.aave;
+    public static final int SOUND_LINK = R.raw.link;
+    public static final int SOUND_MAKER = R.raw.maker;
+    public static final int SOUND_W = R.raw.w;
+    public static final int SOUND_RAY = R.raw.ray;
+    public static final int SOUND_LRC = R.raw.lrc;
+    public static final int SOUND_BAND = R.raw.band;
+    public static final int SOUND_ALGO = R.raw.algo;
+    public static final int SOUND_GRT = R.raw.grt;
+    public static final int SOUND_ENJ = R.raw.enj;
+    public static final int SOUND_THETA = R.raw.theta;
+    public static final int SOUND_MATIC = R.raw.matic;
+    public static final int SOUND_OXT = R.raw.oxt;
+    public static final int SOUND_CRV = R.raw.crv;
+    public static final int SOUND_OGN = R.raw.ogn;
+    public static final int SOUND_MANA = R.raw.mana;
+    public static final int SOUND_IOTA = R.raw.iota;
+    public static final int SOUND_SOL = R.raw.sol;
+    public static final int SOUND_APE = R.raw.ape;
+    public static final int SOUND_VET = R.raw.vet;
+    public static final int SOUND_ANKR = R.raw.ankr;
+    public static final int SOUND_SHIB = R.raw.shib;
+    public static final int SOUND_LPT = R.raw.lpt;
+    public static final int SOUND_INJ = R.raw.inj;
+    public static final int SOUND_ICP = R.raw.icp;
+    public static final int SOUND_FTM = R.raw.ftm;
+    public static final int SOUND_AXS = R.raw.axs;
+    public static final int SOUND_ENS = R.raw.ens;
+    public static final int SOUND_SAND = R.raw.sand;
+    public static final int SOUND_AUDIO = R.raw.audio;
+    public static final int SOUND_CLV = R.raw.clv;
+    public static final int SOUND_UMA = R.raw.uma;
+    public static final int SOUND_STORJ = R.raw.storj;
+    public static final int SOUND_RAD = R.raw.rad;
+    public static final int SOUND_INCH = R.raw.inch;
+    public static final int SOUND_COMP = R.raw.comp;
+    public static final int SOUND_SNX = R.raw.snx;
+    public static final int SOUND_FET = R.raw.fet;
+    public static final int SOUND_STG = R.raw.stg;
+    public static final int SOUND_QNT = R.raw.qnt;
+    public static final int SOUND_APT = R.raw.apt;
+    public static final int SOUND_RNDR = R.raw.rndr;
+    public static final int SOUND_ARB = R.raw.arb;
+    public static final int SOUND_SUI = R.raw.sui;
+    public static final int SOUND_CTSI = R.raw.ctsi;
+    public static final int SOUND_OP = R.raw.op;
+    public static final int SOUND_EIGEN = R.raw.eigen;
+    public static final int SOUND_RLC = R.raw.rlc;
+    public static final int SOUND_SKL = R.raw.skl;
+    public static final int SOUND_WIF = R.raw.wif;
+    public static final int SOUND_T = R.raw.t;
+    public static final int SOUND_SEI = R.raw.sei;
+    public static final int SOUND_RDNT = R.raw.rdnt;
+    public static final int SOUND_FLOKI = R.raw.floki;
+    public static final int SOUND_DYDX = R.raw.dydx;
+    public static final int SOUND_TIA = R.raw.tia;
+    public static final int SOUND_ALICE = R.raw.alice;
+    public static final int SOUND_TLM = R.raw.tlm;
+    public static final int SOUND_GALA = R.raw.gala;
+    public static final int SOUND_VANRY = R.raw.vanry;
+    public static final int SOUND_SPELL = R.raw.spell;
+    public static final int SOUND_PEPE = R.raw.pepe;
+    public static final int SOUND_API3 = R.raw.api3;
+    public static final int SOUND_MASK = R.raw.mask;
+    public static final int SOUND_GLM = R.raw.glm;
+    public static final int SOUND_IMX = R.raw.imx;
+    public static final int SOUND_BLUR = R.raw.blur;
+    public static final int SOUND_BONK = R.raw.bonk;
+    public static final int SOUND_ADA = R.raw.ada;
+    public static final int SOUND_DOGE = R.raw.doge;
+    public static final int SOUND_LITE = R.raw.lite;
+    public static final int SOUND_RVN = R.raw.rvn;
+    public static final int SOUND_ETHERFI = R.raw.etherfi;
+    public static final int SOUND_XTZ = R.raw.xtz;
+    public static final int SOUND_ZIL = R.raw.zil;
+    public static final int SOUND_MINA = R.raw.mina;
+    public static final int SOUND_BCH = R.raw.bch;
+    public static final int SOUND_PSG = R.raw.psg;
+    public static final int SOUND_ATM = R.raw.atm;
+    public static final int SOUND_ASR = R.raw.asr;
+    public static final int SOUND_BAR = R.raw.bar;
+    public static final int SOUND_JUV = R.raw.juv;
+    public static final int SOUND_ACM = R.raw.acm;
+    public static final int SOUND_CITY = R.raw.city;
+    public static final int SOUND_BEAM = R.raw.beam;
+    public static final int SOUND_PYTH = R.raw.pyth;
+    public static final int SOUND_JOE = R.raw.joe;
+    public static final int SOUND_JTO = R.raw.jto;
+    public static final int SOUND_MEME = R.raw.meme;
+    public static final int SOUND_STRK = R.raw.strk;
+    public static final int SOUND_DYM = R.raw.dym;
+    public static final int SOUND_JUP = R.raw.jup;
+    public static final int SOUND_MAGIC = R.raw.magic;
+    public static final int SOUND_ZRX = R.raw.zrx;
+    public static final int SOUND_NMR = R.raw.nmr;
+    public static final int SOUND_PENDLE = R.raw.pendle;
+    public static final int SOUND_MANTA = R.raw.manta;
+    public static final int SOUND_TNSR = R.raw.tnsr;
+    public static final int SOUND_ARKM = R.raw.arkm;
+    public static final int SOUND_AXL = R.raw.axl;
+    public static final int SOUND_IO = R.raw.io;
+    public static final int SOUND_LDO = R.raw.ldo;
+    public static final int SOUND_AEVO = R.raw.aevo;
+    public static final int SOUND_ENA = R.raw.ena;
+    public static final int SOUND_ZK = R.raw.zk;
+    public static final int SOUND_ALT = R.raw.alt;
+    public static final int SOUND_SYN = R.raw.syn;
+    public static final int SOUND_FIL = R.raw.fil;
+    public static final int SOUND_PDA = R.raw.pda;
+    public static final int SOUND_ZRO = R.raw.zro;
+    public static final int SOUND_DASH = R.raw.dash;
+    public static final int SOUND_STX = R.raw.stx;
+    public static final int SOUND_AMP = R.raw.amp;
+    public static final int SOUND_BNT = R.raw.bnt;
+    public static final int SOUND_LUNA = R.raw.luna;
+    public static final int SOUND_PAXG = R.raw.paxg;
+    public static final int SOUND_CVC = R.raw.cvc;
+    public static final int SOUND_ETC = R.raw.etc;
+    public static final int SOUND_FLOW = R.raw.flow;
+    public static final int SOUND_SUPER0 = R.raw.super0;
+    public static final int SOUND_ARPA = R.raw.arpa;
+    public static final int SOUND_SUSHI = R.raw.sushi;
+    public static final int SOUND_JASMY = R.raw.jasmy;
+
+
+    public static void mergeSort(float[] arr, int left, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, int[] soundIds) {
         if (left < right) {
             int middle = (left + right) / 2;
-            mergeSort(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeSort(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, mP);
-            merge(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, mP);
+            mergeSort(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeSort(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            merge(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
         }
     }
 
-    public static void merge(float[] arr, int left, int middle, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+    public static void merge(float[] arr, int left, int middle, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, int[] soundIds) {
         int n1 = (middle - left) + 1;
         int n2 = right - middle;
         float[] L = new float[n1];
@@ -362,8 +365,8 @@ public class MainActivity extends AppCompatActivity {
         int[] intR02 = new int[n2];
         double[] doubleL = new double[n1];
         double[] doubleR = new double[n2];
-        MediaPlayer[] mPL = new MediaPlayer[n1];
-        MediaPlayer[] mPR = new MediaPlayer[n2];
+        int[] soundL = new int[n1];
+        int[] soundR = new int[n2];
         for (int i = 0; i < n1; i++) {
             L[i] = arr[left + i];
             floatL1[i] = f1[left + i];
@@ -374,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
             intL1[i] = i1[left + i];
             intR12[i] = i2[left + i];
             doubleL[i] = d[left + i].doubleValue();
-            mPL[i] = mP[left + i];
+            soundL[i] = soundIds[left + i];
         }
         for (int j = 0; j < n2; j++) {
             R[j] = arr[middle + 1 + j];
@@ -386,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
             intR1[j] = i1[middle + 1 + j];
             intR02[j] = i2[middle + 1 + j];
             doubleR[j] = d[middle + 1 + j].doubleValue();
-            mPR[j] = mP[middle + 1 + j];
+            soundR[j] = soundIds[middle + 1 + j];
         }
         int i3 = 0;
         int k = left;
@@ -402,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intL1[i3];
                 i2[k] = intR12[i3];
                 d[k] = Double.valueOf(doubleL[i3]);
-                mP[k] = mPL[i3];
+                soundIds[k] = soundL[i3];
                 i3++;
             } else {
                 arr[k] = R[j2];
@@ -414,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intR1[j2];
                 i2[k] = intR02[j2];
                 d[k] = Double.valueOf(doubleR[j2]);
-                mP[k] = mPR[j2];
+                soundIds[k] = soundR[j2];
                 j2++;
             }
             k++;
@@ -429,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intL1[i3];
             i2[k] = intR12[i3];
             d[k] = Double.valueOf(doubleL[i3]);
-            mP[k] = mPL[i3];
+            soundIds[k] = soundL[i3];
             i3++;
             k++;
         }
@@ -443,24 +446,24 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intR1[j2];
             i2[k] = intR02[j2];
             d[k] = Double.valueOf(doubleR[j2]);
-            mP[k] = mPR[j2];
+            soundIds[k] = soundR[j2];
             j2++;
             k++;
         }
     }
 
     public static void mergeSortBtcTurk(float[] arr, int left, int right, float[] f1, float[] f2,
-                                        String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+                                        String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d,int[] soundIds) {
         if (left < right) {
             int middle = (left + right) / 2;
-            mergeSortBtcTurk(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeSortBtcTurk(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeBtcTurk(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, mP);
+            mergeSortBtcTurk(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeSortBtcTurk(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeBtcTurk(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
         }
     }
 
     public static void mergeBtcTurk(float[] arr, int left, int middle, int right, float[] f1, float[] f2,
-                                    String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+                                    String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d,int[] soundIds) {
         int n1 = middle - left + 1;
         int n2 = right - middle;
 
@@ -482,8 +485,8 @@ public class MainActivity extends AppCompatActivity {
         int[] intR02 = new int[n2];
         double[] doubleL = new double[n1];
         double[] doubleR = new double[n2];
-        MediaPlayer[] mPL = new MediaPlayer[n1];
-        MediaPlayer[] mPR = new MediaPlayer[n2];
+        int[] soundL = new int[n1];
+        int[] soundR = new int[n2];
 
         // Sol ve sağ alt dizileri doldur
         for (int i = 0; i < n1; i++) {
@@ -496,7 +499,7 @@ public class MainActivity extends AppCompatActivity {
             intL1[i] = i1[left + i];
             intR12[i] = i2[left + i];
             doubleL[i] = d[left + i];
-            mPL[i] = mP[left + i];
+            soundL[i] = soundIds[left + i];
         }
         for (int j = 0; j < n2; j++) {
             R[j] = arr[middle + 1 + j];
@@ -508,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
             intR1[j] = i1[middle + 1 + j];
             intR02[j] = i2[middle + 1 + j];
             doubleR[j] = d[middle + 1 + j];
-            mPR[j] = mP[middle + 1 + j];
+            soundR[j] = soundIds[middle + 1 + j];
         }
 
         // Birleştirme işlemi
@@ -524,7 +527,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intL1[i];
                 i2[k] = intR12[i];
                 d[k] = doubleL[i];
-                mP[k] = mPL[i];
+                soundIds[k] = soundL[i];
                 i++;
             } else {
                 arr[k] = R[j];
@@ -536,7 +539,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intR1[j];
                 i2[k] = intR02[j];
                 d[k] = doubleR[j];
-                mP[k] = mPR[j];
+                soundIds[k] = soundR[j];
                 j++;
             }
             k++;
@@ -553,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intL1[i];
             i2[k] = intR12[i];
             d[k] = doubleL[i];
-            mP[k] = mPL[i];
+            soundIds[k] = soundL[i];
             i++;
             k++;
         }
@@ -567,12 +570,13 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intR1[j];
             i2[k] = intR02[j];
             d[k] = doubleR[j];
-            mP[k] = mPR[j];
+            soundIds[k] = soundR[j];
             j++;
             k++;
         }
     }
     private static MainActivity instance;
+    private MediaPlayerManager mediaPlayerManager;
     protected void onCreate(Bundle savedInstanceState) {
         Sesler.arti = true;
         instance = this;
@@ -633,148 +637,135 @@ public class MainActivity extends AppCompatActivity {
         dialog = create;
         create.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        dots = MediaPlayer.create(this, R.raw.dot);
-        avax = MediaPlayer.create(this, R.raw.avax);
-        tron = MediaPlayer.create(this, R.raw.tron);
-        eos = MediaPlayer.create(this, R.raw.eos);
         saniye = MediaPlayer.create(this, R.raw.saniye);
-        xlm = MediaPlayer.create(this, R.raw.sitellar);
-        xrp = MediaPlayer.create(this, R.raw.ripple);
-        ont = MediaPlayer.create(this, R.raw.ont);
-        btt = MediaPlayer.create(this, R.raw.btt);
-        atom = MediaPlayer.create(this, R.raw.atom);
-        hot = MediaPlayer.create(this, R.raw.hot);
-        neo = MediaPlayer.create(this, R.raw.neo);
-        bat = MediaPlayer.create(this, R.raw.bat);
-        chz = MediaPlayer.create(this, R.raw.chz);
-        uni = MediaPlayer.create(this, R.raw.uni);
-        bal = MediaPlayer.create(this, R.raw.bal);
-        ada = MediaPlayer.create(this, R.raw.ada);
-        dogem = MediaPlayer.create(this, R.raw.doge);
-        ltc = MediaPlayer.create(this, R.raw.lite);
-        rvn = MediaPlayer.create(this, R.raw.rvn);
-        xtz = MediaPlayer.create(this, R.raw.xtz);
-        aave = MediaPlayer.create(this, R.raw.aave);
-        link = MediaPlayer.create(this, R.raw.link);
-        maker = MediaPlayer.create(this, R.raw.maker);
-        lrc = MediaPlayer.create(this, R.raw.lrc);
-        band= MediaPlayer.create(this, R.raw.band);
-        algo= MediaPlayer.create(this, R.raw.algo);
-        zil= MediaPlayer.create(this, R.raw.zil);
-        grt= MediaPlayer.create(this, R.raw.grt);
-        enj= MediaPlayer.create(this, R.raw.enj);
-        theta= MediaPlayer.create(this, R.raw.theta);
-        matic= MediaPlayer.create(this, R.raw.matic);
-        oxt= MediaPlayer.create(this, R.raw.oxt);
-        psg= MediaPlayer.create(this, R.raw.psg);
-        atm= MediaPlayer.create(this, R.raw.atm);
-        asr= MediaPlayer.create(this, R.raw.asr);
-        bar= MediaPlayer.create(this, R.raw.bar);
-        juv= MediaPlayer.create(this, R.raw.juv);
-        acm= MediaPlayer.create(this, R.raw.acm);
-        crv= MediaPlayer.create(this, R.raw.crv);
-        ogn= MediaPlayer.create(this, R.raw.ogn);
-        mana= MediaPlayer.create(this, R.raw.mana);
-        iota= MediaPlayer.create(this, R.raw.iota);
-        sol= MediaPlayer.create(this, R.raw.sol);
-        mina= MediaPlayer.create(this, R.raw.mina);
-        ape= MediaPlayer.create(this, R.raw.ape);
-        vet= MediaPlayer.create(this, R.raw.vet);
-        ankr= MediaPlayer.create(this, R.raw.ankr);
-        shib= MediaPlayer.create(this, R.raw.shib);
-        lpt=MediaPlayer.create(this, R.raw.lpt);
-        inj=MediaPlayer.create(this, R.raw.inj);
-        icp=MediaPlayer.create(this, R.raw.icp);
-        ftm=MediaPlayer.create(this, R.raw.ftm);
-        axs=MediaPlayer.create(this, R.raw.axs);
-        bch=MediaPlayer.create(this, R.raw.bch);
-        ens=MediaPlayer.create(this, R.raw.ens);
-        alice=MediaPlayer.create(this, R.raw.alice);
-        tlm=MediaPlayer.create(this, R.raw.tlm);
-        sand=MediaPlayer.create(this, R.raw.sand);
-        audio=MediaPlayer.create(this, R.raw.audio);
-        clv=MediaPlayer.create(this, R.raw.clv);
-        gala=MediaPlayer.create(this, R.raw.gala);
-        vanry=MediaPlayer.create(this, R.raw.vanry);
-        uma=MediaPlayer.create(this, R.raw.uma);
-        storj=MediaPlayer.create(this, R.raw.storj);
-        city=MediaPlayer.create(this, R.raw.city);
-        rad=MediaPlayer.create(this, R.raw.rad);
-        inch=MediaPlayer.create(this, R.raw.inch);
-        comp=MediaPlayer.create(this, R.raw.comp);
-        snx=MediaPlayer.create(this, R.raw.snx);
-        fet=MediaPlayer.create(this, R.raw.fet);
-        spell=MediaPlayer.create(this, R.raw.spell);
-        stg=MediaPlayer.create(this, R.raw.stg);
-        qnt=MediaPlayer.create(this, R.raw.qnt);
-        apt=MediaPlayer.create(this, R.raw.apt);
-        rndr=MediaPlayer.create(this, R.raw.rndr);
-        arb=MediaPlayer.create(this, R.raw.arb);
-        sui=MediaPlayer.create(this, R.raw.sui);
-        ctsi=MediaPlayer.create(this, R.raw.ctsi);
-        op=MediaPlayer.create(this, R.raw.op);
-        pepe=MediaPlayer.create(this, R.raw.pepe);
-        rlc=MediaPlayer.create(this, R.raw.rlc);
-        skl=MediaPlayer.create(this, R.raw.skl);
-        t=MediaPlayer.create(this, R.raw.t);
-        dash=MediaPlayer.create(this, R.raw.dash);
-        fil=MediaPlayer.create(this, R.raw.fil);
-        stx=MediaPlayer.create(this, R.raw.stx);
-        amp=MediaPlayer.create(this, R.raw.amp);
-        bnt=MediaPlayer.create(this, R.raw.bnt);
-        glm=MediaPlayer.create(this, R.raw.glm);
-        luna=MediaPlayer.create(this, R.raw.luna);
-        paxg=MediaPlayer.create(this, R.raw.paxg);
-        imx=MediaPlayer.create(this, R.raw.imx);
-        pla=MediaPlayer.create(this, R.raw.pla);
-        cvc=MediaPlayer.create(this, R.raw.cvc);
-        etc=MediaPlayer.create(this, R.raw.etc);
-        flow=MediaPlayer.create(this, R.raw.flow);
-        mask=MediaPlayer.create(this, R.raw.mask);
-        api3=MediaPlayer.create(this, R.raw.api3);
-        t=MediaPlayer.create(this, R.raw.t);
-        arpa=MediaPlayer.create(this, R.raw.arpa);
-        ldo=MediaPlayer.create(this, R.raw.ldo);
-        sushi=MediaPlayer.create(this, R.raw.sushi);
-        magic=MediaPlayer.create(this, R.raw.magic);
-        sei=MediaPlayer.create(this, R.raw.sei);
-        rdnt=MediaPlayer.create(this, R.raw.rdnt);
-        floki=MediaPlayer.create(this, R.raw.floki);
-        dydx=MediaPlayer.create(this, R.raw.dydx);
-        jasmy=MediaPlayer.create(this, R.raw.jasmy);
-        zrx=MediaPlayer.create(this, R.raw.zrx);
-        nmr=MediaPlayer.create(this, R.raw.nmr);
-        tia=MediaPlayer.create(this, R.raw.tia);
-        blur=MediaPlayer.create(this, R.raw.blur);
-        bonk=MediaPlayer.create(this, R.raw.bonk);
-        beam=MediaPlayer.create(this, R.raw.beam);
-        pyth=MediaPlayer.create(this, R.raw.pyth);
-        joe=MediaPlayer.create(this, R.raw.joe);
-        jto=MediaPlayer.create(this, R.raw.jto);
-        meme=MediaPlayer.create(this, R.raw.meme);
-        strk=MediaPlayer.create(this, R.raw.strk);
-        dym=MediaPlayer.create(this, R.raw.dym);
-        jup=MediaPlayer.create(this, R.raw.jup);
-        pendle=MediaPlayer.create(this, R.raw.pendle);
-        manta=MediaPlayer.create(this, R.raw.manta);
-        w = MediaPlayer.create(this, R.raw.w);
-        etherfi = MediaPlayer.create(this, R.raw.etherfi);
-        tnsr = MediaPlayer.create(this, R.raw.tnsr);
-        arkm = MediaPlayer.create( this, R.raw.arkm);
-        axl = MediaPlayer.create( this, R.raw.axl);
-        ray = MediaPlayer.create( this, R.raw.ray);
-        eigen = MediaPlayer.create( this, R.raw.eigen);
-        wif = MediaPlayer.create( this, R.raw.wif);
-        io = MediaPlayer.create( this, R.raw.io);
-        aevo = MediaPlayer.create( this, R.raw.aevo);
-        ena = MediaPlayer.create( this, R.raw.ena);
-        zk = MediaPlayer.create( this, R.raw.zk);
-        alt = MediaPlayer.create( this, R.raw.alt);
-        syn = MediaPlayer.create( this, R.raw.syn);
-        pda = MediaPlayer.create( this, R.raw.pda);
-        zro = MediaPlayer.create( this, R.raw.zro);
-        super0 = MediaPlayer.create( this, R.raw.super0);
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
 
+
+        sesler[0] = SOUND_DOT;
+        sesler[1] =SOUND_AVAX;
+        sesler[2] = SOUND_TRON;
+        sesler[3] = SOUND_EOS;
+        sesler[4] = SOUND_BTT;
+        sesler[5] = SOUND_RIPPLE;
+        sesler[6] = SOUND_SITELLAR;
+        sesler[7] = SOUND_ONT;
+        sesler[8] = SOUND_ATOM;
+        sesler[9] = SOUND_HOT;
+        sesler[10] = SOUND_NEO;
+        sesler[11] = SOUND_BAT;
+        sesler[12] = SOUND_CHZ;
+        sesler[13] = SOUND_UNI;
+        sesler[14] = SOUND_BAL;
+        sesler[15] = SOUND_AAVE;
+        sesler[16] = SOUND_LINK;
+        sesler[17] = SOUND_MAKER;
+        sesler[18] = SOUND_W;
+        sesler[19] = SOUND_RAY;
+        sesler[20] = SOUND_LRC;
+        sesler[21] = SOUND_BAND;
+        sesler[22] = SOUND_ALGO;
+        sesler[23] = SOUND_GRT;
+        sesler[24] = SOUND_ENJ;
+        sesler[25] = SOUND_THETA;
+        sesler[26] = SOUND_MATIC;
+        sesler[27] = SOUND_OXT;
+        sesler[28] = SOUND_CRV;
+        sesler[29] = SOUND_OGN;
+        sesler[30] = SOUND_MANA;
+        sesler[31] = SOUND_IOTA;
+        sesler[32] = SOUND_SOL;
+        sesler[33] = SOUND_APE;
+        sesler[34] = SOUND_VET;
+        sesler[35] = SOUND_ANKR;
+        sesler[36] = SOUND_SHIB;
+        sesler[37] = SOUND_LPT;
+        sesler[38] = SOUND_INJ;
+        sesler[39] = SOUND_ICP;
+        sesler[40] = SOUND_FTM;
+        sesler[41] = SOUND_AXS;
+        sesler[42] = SOUND_ENS;
+        sesler[43] = SOUND_SAND;
+        sesler[44] = SOUND_AUDIO;
+        sesler[45] = SOUND_CLV;
+        sesler[46] = SOUND_UMA;
+        sesler[47] = SOUND_STORJ;
+        sesler[48] = SOUND_RAD;
+        sesler[49] = SOUND_INCH;
+        sesler[50] = SOUND_COMP;
+        sesler[51] = SOUND_SNX;
+        sesler[52] = SOUND_FET;
+        sesler[53] = SOUND_STG;
+        sesler[54] = SOUND_QNT;
+        sesler[55] = SOUND_APT;
+        sesler[56] = SOUND_RNDR;
+        sesler[57] = SOUND_ARB;
+        sesler[58] = SOUND_SUI;
+        sesler[59] = SOUND_CTSI;
+        sesler[60] = SOUND_OP;
+        sesler[61] = SOUND_EIGEN;
+        sesler[62] = SOUND_RLC;
+        sesler[63] = SOUND_SKL;
+        sesler[64] = SOUND_WIF;
+        sesler[65] = SOUND_T;
+        sesler[66] = SOUND_SEI;
+        sesler[67] = SOUND_RDNT;
+        sesler[68] = SOUND_FLOKI;
+        sesler[69] = SOUND_DYDX;
+        sesler[70] = SOUND_TIA;
+        sesler[71] = SOUND_ALICE;
+        sesler[72] = SOUND_TLM;
+        sesler[73] = SOUND_GALA;
+        sesler[74] = SOUND_VANRY;
+        sesler[75] = SOUND_SPELL;
+        sesler[76] = SOUND_PEPE;
+        sesler[77] = SOUND_API3;
+        sesler[78] = SOUND_MASK;
+        sesler[79] = SOUND_GLM;
+        sesler[80] = SOUND_IMX;
+        sesler[81] = SOUND_BLUR;
+        sesler[82] = SOUND_BONK;
+        sesler[83] = SOUND_ADA;
+        sesler[84] = SOUND_DOGE;
+        sesler[85] = SOUND_LITE;
+        sesler[86] = SOUND_RVN;
+        sesler[87] = SOUND_ETHERFI;
+        sesler[88] = SOUND_XTZ;
+        sesler[89] = SOUND_ZIL;
+        sesler[90] = SOUND_MINA;
+        sesler[91] = SOUND_BCH;
+        sesler[92] = SOUND_PSG;
+        sesler[93] = SOUND_ATM;
+        sesler[94] = SOUND_ASR;
+        sesler[95] = SOUND_BAR;
+        sesler[96] = SOUND_JUV;
+        sesler[97] = SOUND_ACM;
+        sesler[98] = SOUND_CITY;
+        sesler[99] = SOUND_BEAM;
+        sesler[100] = SOUND_PYTH;
+        sesler[101] = SOUND_JOE;
+        sesler[102] = SOUND_JTO;
+        sesler[103] = SOUND_MEME;
+        sesler[104] = SOUND_STRK;
+        sesler[105] = SOUND_DYM;
+        sesler[106] = SOUND_JUP;
+        sesler[107] = SOUND_MAGIC;
+        sesler[108] = SOUND_ZRX;
+        sesler[109] = SOUND_NMR;
+        sesler[110] = SOUND_PENDLE;
+        sesler[111] = SOUND_MANTA;
+        sesler[112] = SOUND_TNSR;
+        sesler[113] = SOUND_ARKM;
+        sesler[114] = SOUND_AXL;
+        sesler[115] = SOUND_IO;
+        sesler[116] = SOUND_LDO;
+        sesler[117] = SOUND_AEVO;
+        sesler[118] = SOUND_ENA;
+        sesler[119] = SOUND_ZK;
+        sesler[120] = SOUND_ALT;
+        sesler[121] = SOUND_SYN;
+        sesler[122] = SOUND_FIL;
+        sesler[123] = SOUND_PDA;
+        sesler[124] = SOUND_ZRO;
 
         indexler[0] = 954;
         indexler[1] = 1052;
@@ -1028,131 +1019,7 @@ public class MainActivity extends AppCompatActivity {
         paribuisim[123] = "PDA_TL";
         paribuisim[124] = "ZRO_TL";
 
-        sesler[0] = dots;
-        sesler[1] = avax;
-        sesler[2] = tron;
-        sesler[3] = eos;
-        sesler[4] = btt;
-        sesler[5] = xrp;
-        sesler[6] = xlm;
-        sesler[7] = ont;
-        sesler[8] = atom;
-        sesler[9] = hot;
-        sesler[10] = neo;
-        sesler[11] = bat;
-        sesler[12] = chz;
-        sesler[13] = uni;
-        sesler[14] = bal;
-        sesler[15] = aave;
-        sesler[16] = link;
-        sesler[17] = maker;
-        sesler[18] = w;
-        sesler[19] = ray;
-        sesler[20] = lrc;
-        sesler[21] = band;
-        sesler[22] = algo;
-        sesler[23] = grt;
-        sesler[24] = enj;
-        sesler[25] = theta;
-        sesler[26] = matic;
-        sesler[27] = oxt;
-        sesler[28] = crv;
-        sesler[29] = ogn;
-        sesler[30] = mana;
-        sesler[31] = iota;
-        sesler[32] = sol;
-        sesler[33] = ape;
-        sesler[34] = vet;
-        sesler[35] = ankr;
-        sesler[36] = shib;
-        sesler[37] = lpt;
-        sesler[38] = inj;
-        sesler[39] = icp;
-        sesler[40] = ftm;
-        sesler[41] = axs;
-        sesler[42] = ens;
-        sesler[43] = sand;
-        sesler[44] = audio;
-        sesler[45] = clv;
-        sesler[46] = uma;
-        sesler[47] = storj;
-        sesler[48] = rad;
-        sesler[49] = inch;
-        sesler[50] = comp;
-        sesler[51] = snx;
-        sesler[52] = fet;
-        sesler[53] = stg;
-        sesler[54] = qnt;
-        sesler[55] = apt;
-        sesler[56] = rndr;
-        sesler[57] = arb;
-        sesler[58] = sui;
-        sesler[59] = ctsi;
-        sesler[60] = op;
-        sesler[61] = eigen;
-        sesler[62] = rlc;
-        sesler[63] = skl;
-        sesler[64] = wif;
-        sesler[65] = t;
-        sesler[66] = sei;
-        sesler[67] = rdnt;
-        sesler[68] = floki;
-        sesler[69] = dydx;
-        sesler[70] = tia;
-        sesler[71] = alice;
-        sesler[72] = tlm;
-        sesler[73] = gala;
-        sesler[74] = vanry;
-        sesler[75] = spell;
-        sesler[76] = pepe;
-        sesler[77] = api3;
-        sesler[78] = mask;
-        sesler[79] = glm;
-        sesler[80] = imx;
-        sesler[81] = blur;
-        sesler[82] = bonk;
-        sesler[83] = ada;
-        sesler[84] = dogem;
-        sesler[85] = ltc;
-        sesler[86] = rvn;
-        sesler[87] = etherfi;
-        sesler[88] = xtz;
-        sesler[89] = zil;
-        sesler[90] = mina;
-        sesler[91] = bch;
-        sesler[92] = psg;
-        sesler[93] = atm;
-        sesler[94] = asr;
-        sesler[95] = bar;
-        sesler[96] = juv;
-        sesler[97] = acm;
-        sesler[98] = city;
-        sesler[99] = beam;
-        sesler[100] = pyth;
-        sesler[101] = joe;
-        sesler[102] = jto;
-        sesler[103] = meme;
-        sesler[104] = strk;
-        sesler[105] = dym;
-        sesler[106] = jup;
-        sesler[107] = magic;
-        sesler[108] = zrx;
-        sesler[109] = nmr;
-        sesler[110] = pendle;
-        sesler[111] = manta;
-        sesler[112] = tnsr;
-        sesler[113] = arkm;
-        sesler[114] = axl;
-        sesler[115] = io;
-        sesler[116] = ldo;
-        sesler[117] = aevo;
-        sesler[118] = ena;
-        sesler[119] = zk;
-        sesler[120] = alt;
-        sesler[121] = syn;
-        sesler[122] = fil;
-        sesler[123] = pda;
-        sesler[124] = zro;
+
 
         btcturkisim[0] = "XRP_TRY";
         btcturkisim[1] = "LTC_TRY";
@@ -1316,86 +1183,86 @@ public class MainActivity extends AppCompatActivity {
         indexlerbtcturk[78] = 950;
         indexlerbtcturk[79] = 2215;
 
-        seslerBtcTurk[0] = xrp;
-        seslerBtcTurk[1] = ltc;
-        seslerBtcTurk[2] = xlm;
-        seslerBtcTurk[3] = neo;
-        seslerBtcTurk[4] = eos;
-        seslerBtcTurk[5] = dash;
-        seslerBtcTurk[6] = link;
-        seslerBtcTurk[7] = atom;
-        seslerBtcTurk[8] = xtz;
-        seslerBtcTurk[9] = tron;
-        seslerBtcTurk[10] = ada;
-        seslerBtcTurk[11] = dots;
-        seslerBtcTurk[12] = uni;
-        seslerBtcTurk[13] = ankr;
-        seslerBtcTurk[14] = maker;
-        seslerBtcTurk[15] = enj;
-        seslerBtcTurk[16] = comp;
-        seslerBtcTurk[17] = grt;
-        seslerBtcTurk[18] = mana;
-        seslerBtcTurk[19] = matic;
-        seslerBtcTurk[20] = snx;
-        seslerBtcTurk[21] = bat;
-        seslerBtcTurk[22] = avax;
-        seslerBtcTurk[23] = fil;
-        seslerBtcTurk[24] = dogem;
-        seslerBtcTurk[25] = chz;
-        seslerBtcTurk[26] = sol;
-        seslerBtcTurk[27] = stx;
-        seslerBtcTurk[28] = axs;
-        seslerBtcTurk[29] = shib;
-        seslerBtcTurk[30] = ftm;
-        seslerBtcTurk[31] = lrc;
-        seslerBtcTurk[32] = uma;
-        seslerBtcTurk[33] = fet;
-        seslerBtcTurk[34] = storj;
-        seslerBtcTurk[35] = uni;
-        seslerBtcTurk[36] = gala;
-        seslerBtcTurk[37] = vet;
-        seslerBtcTurk[38] = amp;
-        seslerBtcTurk[39] = audio;
-        seslerBtcTurk[40] = spell;
-        seslerBtcTurk[41] = algo;
-        seslerBtcTurk[42] = ape;
-        seslerBtcTurk[43] = bnt;
-        seslerBtcTurk[44] = crv;
-        seslerBtcTurk[45] = qnt;
-        seslerBtcTurk[46] = skl;
-        seslerBtcTurk[47] = glm;
-        seslerBtcTurk[48] = luna;
-        seslerBtcTurk[49] = paxg;
-        seslerBtcTurk[50] = ens;
-        seslerBtcTurk[51] = imx;
-        seslerBtcTurk[52] = lpt;
-        seslerBtcTurk[53] = rndr;
-        seslerBtcTurk[54] = cvc;
-        seslerBtcTurk[55] = rad;
-        seslerBtcTurk[56] = etc;
-        seslerBtcTurk[57] = hot;
-        seslerBtcTurk[58] = sand;
-        seslerBtcTurk[59] = flow;
-        seslerBtcTurk[60] = ctsi;
-        seslerBtcTurk[61] = mask;
-        seslerBtcTurk[62] = api3;
-        seslerBtcTurk[63] = band;
-        seslerBtcTurk[64] = t;
-        seslerBtcTurk[65] = arb;
-        seslerBtcTurk[66] = strk;
-        seslerBtcTurk[67] = super0;
-        seslerBtcTurk[68] = inj;
-        seslerBtcTurk[69] = ogn;
-        seslerBtcTurk[70] = rlc;
-        seslerBtcTurk[71] = arpa;
-        seslerBtcTurk[72] = ldo;
-        seslerBtcTurk[73] = sushi;
-        seslerBtcTurk[74] = magic;
-        seslerBtcTurk[75] = jasmy;
-        seslerBtcTurk[76] = zrx;
-        seslerBtcTurk[77] = pepe;
-        seslerBtcTurk[78] = nmr;
-        seslerBtcTurk[79] = floki;
+        seslerBtcTurk[0] = SOUND_RIPPLE;
+        seslerBtcTurk[1] = SOUND_LITE;
+        seslerBtcTurk[2] = SOUND_SITELLAR;
+        seslerBtcTurk[3] = SOUND_NEO;
+        seslerBtcTurk[4] = SOUND_EOS;
+        seslerBtcTurk[5] = SOUND_DASH;
+        seslerBtcTurk[6] = SOUND_LINK;
+        seslerBtcTurk[7] = SOUND_ATOM;
+        seslerBtcTurk[8] = SOUND_XTZ;
+        seslerBtcTurk[9] = SOUND_TRON;
+        seslerBtcTurk[10] = SOUND_ADA;
+        seslerBtcTurk[11] = SOUND_DOT;
+        seslerBtcTurk[12] = SOUND_UNI;
+        seslerBtcTurk[13] = SOUND_ANKR;
+        seslerBtcTurk[14] = SOUND_MAKER;
+        seslerBtcTurk[15] = SOUND_ENJ;
+        seslerBtcTurk[16] = SOUND_COMP;
+        seslerBtcTurk[17] = SOUND_GRT;
+        seslerBtcTurk[18] = SOUND_MANA;
+        seslerBtcTurk[19] = SOUND_MATIC;
+        seslerBtcTurk[20] = SOUND_SNX;
+        seslerBtcTurk[21] = SOUND_BAT;
+        seslerBtcTurk[22] = SOUND_AVAX;
+        seslerBtcTurk[23] = SOUND_FIL;
+        seslerBtcTurk[24] = SOUND_DOGE;
+        seslerBtcTurk[25] = SOUND_CHZ;
+        seslerBtcTurk[26] = SOUND_SOL;
+        seslerBtcTurk[27] = SOUND_STX;
+        seslerBtcTurk[28] = SOUND_AXS;
+        seslerBtcTurk[29] = SOUND_SHIB;
+        seslerBtcTurk[30] = SOUND_FTM;
+        seslerBtcTurk[31] = SOUND_LRC;
+        seslerBtcTurk[32] = SOUND_UMA;
+        seslerBtcTurk[33] = SOUND_FET;
+        seslerBtcTurk[34] = SOUND_STORJ;
+        seslerBtcTurk[35] = SOUND_UNI;
+        seslerBtcTurk[36] = SOUND_GALA;
+        seslerBtcTurk[37] = SOUND_VET;
+        seslerBtcTurk[38] = SOUND_AMP;
+        seslerBtcTurk[39] = SOUND_AUDIO;
+        seslerBtcTurk[40] = SOUND_SPELL;
+        seslerBtcTurk[41] = SOUND_ALGO;
+        seslerBtcTurk[42] = SOUND_APE;
+        seslerBtcTurk[43] = SOUND_BNT;
+        seslerBtcTurk[44] = SOUND_CRV;
+        seslerBtcTurk[45] = SOUND_QNT;
+        seslerBtcTurk[46] = SOUND_SKL;
+        seslerBtcTurk[47] = SOUND_GLM;
+        seslerBtcTurk[48] = SOUND_LUNA;
+        seslerBtcTurk[49] = SOUND_PAXG;
+        seslerBtcTurk[50] = SOUND_ENS;
+        seslerBtcTurk[51] = SOUND_IMX;
+        seslerBtcTurk[52] = SOUND_LPT;
+        seslerBtcTurk[53] = SOUND_RNDR;
+        seslerBtcTurk[54] = SOUND_CVC;
+        seslerBtcTurk[55] = SOUND_RAD;
+        seslerBtcTurk[56] = SOUND_ETC;
+        seslerBtcTurk[57] = SOUND_HOT;
+        seslerBtcTurk[58] = SOUND_SAND;
+        seslerBtcTurk[59] = SOUND_FLOW;
+        seslerBtcTurk[60] = SOUND_CTSI;
+        seslerBtcTurk[61] = SOUND_MASK;
+        seslerBtcTurk[62] = SOUND_API3;
+        seslerBtcTurk[63] = SOUND_BAND;
+        seslerBtcTurk[64] = SOUND_T;
+        seslerBtcTurk[65] = SOUND_ARB;
+        seslerBtcTurk[66] = SOUND_STRK;
+        seslerBtcTurk[67] = SOUND_SUPER0;
+        seslerBtcTurk[68] = SOUND_INJ;
+        seslerBtcTurk[69] = SOUND_OGN;
+        seslerBtcTurk[70] = SOUND_RLC;
+        seslerBtcTurk[71] = SOUND_ARPA;
+        seslerBtcTurk[72] = SOUND_LDO;
+        seslerBtcTurk[73] = SOUND_SUSHI;
+        seslerBtcTurk[74] = SOUND_MAGIC;
+        seslerBtcTurk[75] = SOUND_JASMY;
+        seslerBtcTurk[76] = SOUND_ZRX;
+        seslerBtcTurk[77] = SOUND_PEPE;
+        seslerBtcTurk[78] = SOUND_NMR;
+        seslerBtcTurk[79] = SOUND_FLOKI;
         for (int i = 0; i < hizli; i++) {
             String[] strArr3 = isimler;
             StringBuilder sb = new StringBuilder();
@@ -1452,7 +1319,7 @@ public class MainActivity extends AppCompatActivity {
                                 for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
                                     if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
                                         MainActivity.sesSeviyesi[i3] = progress;
-                                        MainActivity.sesler[i3].setVolume(progress / 15.0f, progress / 15.0f);
+                                        mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
                                         return;
                                     }
                                 }
@@ -1480,7 +1347,7 @@ public class MainActivity extends AppCompatActivity {
                             for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
                                 if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
                                     MainActivity.sesSeviyesi[i3] = progress;
-                                    MainActivity.sesler[i3].setVolume(progress / 15.0f, progress / 15.0f);
+                                    mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
                                     return;
                                 }
                             }
@@ -1712,10 +1579,18 @@ public class MainActivity extends AppCompatActivity {
         });
         Dot();
     }
+
+    public void updateVolume(int soundResourceId, float volume) {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.updateVolume(soundResourceId, volume);
+        }
+    }
+
     public static MainActivity getInstance() {
         return instance;
     }
     public void startService(View v) {
+        saniye.start();
         start.setVisibility(View.GONE);
         updateUI(true);
         paribuAnaText.setVisibility(View.VISIBLE);
@@ -1801,7 +1676,13 @@ public class MainActivity extends AppCompatActivity {
         onDestroy();
         System.exit(0);
     }
-
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        super.onDestroy();
+    }
 
     public String Dot() {
         JsonObjectRequest request3;
@@ -1925,8 +1806,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString2.setSpan(yellow, 0, spannableString2.length(), 33);
                     SpannableString spannableString3 = metinlerBinanceTl[a];
                     spannableString3.setSpan(red, 0, spannableString3.length(), 33);
-                    saniye.start();
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
                     SpannableString spannableString4 = metinlerParibu[a];
@@ -1935,8 +1815,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString5.setSpan(yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a];
                     spannableString6.setSpan(red, 0, spannableString6.length(), 33);
-                    saniye.start();
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
                     SpannableString spannableString7 = metinlerParibu[a];
@@ -1945,8 +1824,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString8.setSpan(yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a];
                     spannableString9.setSpan(red, 0, spannableString9.length(), 33);
-                    saniye.start();
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else {
                     SpannableString spannableString10 = metinlerParibu[a];

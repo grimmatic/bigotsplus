@@ -43,7 +43,7 @@
                 />
 
             <CheckBox
-                android:id="@+id/artı"
+                android:id="@+id/arti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sadece +"

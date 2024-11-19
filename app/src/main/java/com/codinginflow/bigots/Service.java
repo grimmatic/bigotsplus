@@ -1,14 +1,17 @@
 package com.codinginflow.bigots;
 
 import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.PowerManager;
 
 import androidx.core.app.NotificationCompat;
 
 public class Service extends android.app.Service {
+    private MediaPlayerManager mediaPlayerManager;
     private Handler handler;
     private Runnable updateRunnable;
     private MainActivity mainActivity;
@@ -18,6 +21,7 @@ public class Service extends android.app.Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
         handler = new Handler(Looper.getMainLooper());
         createInitialNotification();
         isServiceRunning = true;
@@ -26,6 +30,7 @@ public class Service extends android.app.Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (!isRunning) {
+            acquireWakeLock();
             startPeriodicUpdates();
             isRunning = true;
         }
@@ -88,10 +93,30 @@ public class Service extends android.app.Service {
         if (handler != null && updateRunnable != null) {
             handler.removeCallbacks(updateRunnable);
         }
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
 
         stopForeground(true);
         stopSelf();
         super.onDestroy();
+    }
+    private PowerManager.WakeLock wakeLock;
+
+    private void acquireWakeLock() {
+        if (wakeLock == null) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                    "BigotsPlus:WakeLock");
+            wakeLock.acquire();
+        }
+    }
+
+    private void releaseWakeLock() {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+            wakeLock = null;
+        }
     }
 
     public void setMainActivity(MainActivity activity) {
