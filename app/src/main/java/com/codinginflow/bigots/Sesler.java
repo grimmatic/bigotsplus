@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/* loaded from: classes3.dex */
+
 public class Sesler extends AppCompatActivity {
     FloatingActionButton asagi;
     AudioManager audiomanager;
@@ -32,14 +32,14 @@ public class Sesler extends AppCompatActivity {
     FloatingActionButton yukari;
     public static float saniyed = 2000.0f;
 
-    /* renamed from: artı, reason: contains not printable characters */
+
     public static boolean arti = false;
     public static boolean eksi = false;
-    static int toplamsesler = 120;
-    static SeekBar[] seeks = new SeekBar[120];
-    static MediaPlayer[] sesler = new MediaPlayer[120];
+    static int toplamsesler = 140;
+    static SeekBar[] seeks = new SeekBar[toplamsesler];
+    static MediaPlayer[] sesler = new MediaPlayer[toplamsesler];
 
-    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Ayarlar");
         super.onCreate(savedInstanceState);
@@ -82,7 +82,7 @@ public class Sesler extends AppCompatActivity {
         sesler[22] = MainActivity.link;
         sesler[23] = MainActivity.maker;
         sesler[24] = MainActivity.w;
-        sesler[25] = MainActivity.reef;
+        sesler[25] = MainActivity.beam;
         sesler[26] = MainActivity.lrc;
         sesler[27] = MainActivity.band;
         sesler[28] = MainActivity.algo;
@@ -140,16 +140,16 @@ public class Sesler extends AppCompatActivity {
         sesler[80] = MainActivity.ctsi;
         sesler[81] = MainActivity.op;
         sesler[82] = MainActivity.pepe;
-        sesler[83] = MainActivity.ocean;
+        sesler[83] = MainActivity.dym;
         sesler[84] = MainActivity.rlc;
         sesler[85] = MainActivity.skl;
-        sesler[86] = MainActivity.agix;
+        sesler[86] = MainActivity.joe;
         sesler[87] = MainActivity.tia;
         sesler[88] = MainActivity.dash;
         sesler[89] = MainActivity.fil;
         sesler[90] = MainActivity.stx;
         sesler[91] = MainActivity.amp;
-        sesler[92] = MainActivity.lunc;
+        sesler[92] = MainActivity.jto;
         sesler[93] = MainActivity.bnt;
         sesler[94] = MainActivity.glm;
         sesler[95] = MainActivity.luna;
@@ -176,7 +176,26 @@ public class Sesler extends AppCompatActivity {
         sesler[116] = MainActivity.bonk;
         sesler[117] = MainActivity.arkm;
         sesler[118] = MainActivity.tnsr;
-        sesler[119] = MainActivity.axl;
+        sesler[120] = MainActivity.axl;
+        sesler[121] = MainActivity.jup;
+        sesler[122] = MainActivity.manta;
+        sesler[123] = MainActivity.meme;
+        sesler[124] = MainActivity.pendle;
+        sesler[125] = MainActivity.pyth;
+        sesler[126] = MainActivity.strk;
+        sesler[127] = MainActivity.pla;
+        sesler[128] = MainActivity.eigen;
+        sesler[129] = MainActivity.ray;
+        sesler[130] = MainActivity.wif;
+        sesler[131] = MainActivity.io;
+        sesler[132] = MainActivity.aevo;
+        sesler[133] = MainActivity.ena;
+        sesler[134] = MainActivity.zk;
+        sesler[135] = MainActivity.alt;
+        sesler[136] = MainActivity.syn;
+        sesler[137] = MainActivity.pda;
+        sesler[138] = MainActivity.zro;
+        sesler[139] = MainActivity.super0;
         this.seektum.setMax(max);
         this.seekveri.setMax(15);
         this.seektum.setProgress(max);
