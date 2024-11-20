@@ -1,15 +1,12 @@
 package com.codinginflow.bigots;
 
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,7 +16,6 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -42,37 +38,22 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import static com.codinginflow.bigots.BtcTurk.btctotal;
 import static com.codinginflow.bigots.R.menu.search;
 
@@ -156,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
     Double dotusd = Double.valueOf(2.5d);
     private String isim = "";
     private int sayac = 0;
+    static String coinName;
     ForegroundColorSpan fscgreen= new ForegroundColorSpan(Color.GREEN);
     ForegroundColorSpan fsccyan= new ForegroundColorSpan(0XFF6A9C1E);
     ForegroundColorSpan fscdarkyellow= new ForegroundColorSpan(0XFFEBA65F);
@@ -608,7 +590,12 @@ public class MainActivity extends AppCompatActivity {
                 updateUI(true);
             }
         }
-
+        if (!DeviceAuth.isDeviceAuthorized(this)) {
+            Toast.makeText(this, "Bu uygulama yalnızca yetkili cihazlarda çalışır",
+                    Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
 
         paribuL = findViewById(R.id.listview);
         binanceL =  findViewById(R.id.listview2);
@@ -1246,7 +1233,7 @@ public class MainActivity extends AppCompatActivity {
         seslerBtcTurk[52] = SOUND_LPT;
         seslerBtcTurk[53] = SOUND_RNDR;
         seslerBtcTurk[54] = SOUND_CVC;
-        seslerBtcTurk[55] = SOUND_RAD;
+        seslerBtcTurk[55] = SOUND_RLC;
         seslerBtcTurk[56] = SOUND_ETC;
         seslerBtcTurk[57] = SOUND_HOT;
         seslerBtcTurk[58] = SOUND_SAND;
@@ -1261,7 +1248,7 @@ public class MainActivity extends AppCompatActivity {
         seslerBtcTurk[67] = SOUND_SUPER0;
         seslerBtcTurk[68] = SOUND_INJ;
         seslerBtcTurk[69] = SOUND_OGN;
-        seslerBtcTurk[70] = SOUND_RLC;
+        seslerBtcTurk[70] = SOUND_RAD;
         seslerBtcTurk[71] = SOUND_ARPA;
         seslerBtcTurk[72] = SOUND_LDO;
         seslerBtcTurk[73] = SOUND_SUSHI;
@@ -1313,7 +1300,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 try {
-                    String coinName = MainActivity.paribuisim[position];
+                    if (!girdi) {
+                        coinName = MainActivity.paribuisim[position];
+                    } else {
+                        tiklanansira = aramaindexler.get(position).intValue();
+                        coinName = MainActivity.paribuisim[tiklanansira];
+                    }
+
                     String formattedCoin = coinName.toLowerCase()
                             .replace("_tl", "")
                             .replace("_", "") +
@@ -1331,6 +1324,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
 
 
         paribuL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -1666,10 +1660,11 @@ public class MainActivity extends AppCompatActivity {
     public void setMainActivity(MainActivity activity) {
         mainActivityRef = new WeakReference<>(activity);
     }
+    private boolean isVisible = true;
     private void updateUI(boolean show) {
         SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
         prefs.edit().putBoolean("isVisible", show).apply();
-
+        isVisible = show;
         if (show) {
             paribuAnaText.setVisibility(View.VISIBLE);
             BinanceTlAnaText.setVisibility(View.VISIBLE);
@@ -1680,7 +1675,9 @@ public class MainActivity extends AppCompatActivity {
             if (paribucheck != null) paribucheck.setChecked(true);
             if (tlcheck != null) tlcheck.setChecked(true);
             if (binancecheck != null) binancecheck.setChecked(true);
+
         } else {
+
             paribuAnaText.setVisibility(View.GONE);
             BinanceTlAnaText.setVisibility(View.GONE);
             BinanceAnaText.setVisibility(View.GONE);
@@ -1819,10 +1816,13 @@ public class MainActivity extends AppCompatActivity {
             mQueue.add(request2);
         }
 
-        setTitle(btc + " | " + tsatis);
+        if (isVisible) {
+            setTitle(btc + " | " + tsatis);
+        }
         aramaindexler.clear();
         hizli2 = 0;
-        mergeSort(farklar, 0, farklar.length - 1, paribu, huobi, paribuisim, isimler, sesSeviyesi, indexler, siralama, oranlar, sesler);
+        if(isVisible){
+        mergeSort(farklar, 0, farklar.length - 1, paribu, huobi, paribuisim, isimler, sesSeviyesi, indexler, siralama, oranlar, sesler);}
         int a = 0;
         while (a < hizli) {
             otuyorMu = false;
@@ -1832,42 +1832,50 @@ public class MainActivity extends AppCompatActivity {
             metinlerBinanceTl[a] = new SpannableString(isimler[a] + (huobi[a] * tsatis));
             if (calistiMi) {
                 if (Sesler.arti && !Sesler.eksi && farklar[a] > oranlar[a].doubleValue()) {
-                    SpannableString spannableString = metinlerParibu[a];
-                    spannableString.setSpan(fscgreen, 0, spannableString.length(), 33);
-                    SpannableString spannableString2 = metinlerBinance[a];
-                    spannableString2.setSpan(yellow, 0, spannableString2.length(), 33);
-                    SpannableString spannableString3 = metinlerBinanceTl[a];
-                    spannableString3.setSpan(red, 0, spannableString3.length(), 33);
+                    if (isVisible) {
+                        SpannableString spannableString = metinlerParibu[a];
+                        spannableString.setSpan(fscgreen, 0, spannableString.length(), 33);
+                        SpannableString spannableString2 = metinlerBinance[a];
+                        spannableString2.setSpan(yellow, 0, spannableString2.length(), 33);
+                        SpannableString spannableString3 = metinlerBinanceTl[a];
+                        spannableString3.setSpan(red, 0, spannableString3.length(), 33);
+                    }
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
+                    if (isVisible) {
                     SpannableString spannableString4 = metinlerParibu[a];
                     spannableString4.setSpan(fscgreen, 0, spannableString4.length(), 33);
                     SpannableString spannableString5 = metinlerBinance[a];
                     spannableString5.setSpan(yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a];
                     spannableString6.setSpan(red, 0, spannableString6.length(), 33);
+                    }
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
+                    if (isVisible) {
                     SpannableString spannableString7 = metinlerParibu[a];
                     spannableString7.setSpan(fscgreen, 0, spannableString7.length(), 33);
                     SpannableString spannableString8 = metinlerBinance[a];
                     spannableString8.setSpan(yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a];
                     spannableString9.setSpan(red, 0, spannableString9.length(), 33);
+                    }
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else {
+                    if (isVisible) {
                     SpannableString spannableString10 = metinlerParibu[a];
                     spannableString10.setSpan(fsccyan, 0, spannableString10.length(), 33);
                     SpannableString spannableString11 = metinlerBinance[a];
                     spannableString11.setSpan(fscdarkyellow, 0, spannableString11.length(), 33);
                     SpannableString spannableString12 = metinlerBinanceTl[a];
                     spannableString12.setSpan(darkred, 0, spannableString12.length(), 33);
+                    }
                     otuyorMu = false;
                 }
-                if (otuyorMu) {
+                if (otuyorMu&&isVisible) {
                     String sayac = paribu[a] + "";
                     int sayac0 = sayac.length();
                     int sayi = isimler[a].length() + df.format(farklar[a]).length() + sayac0 + " %".length();
@@ -1885,11 +1893,11 @@ public class MainActivity extends AppCompatActivity {
             a++;
             request0 = request02;
         }
-        if(BtcTurk.calistiMi){     mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
+        if(BtcTurk.calistiMi&&BtcTurk.isVisible){     mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
                 btcturkisim, isimlerBtcTurk, sesSeviyesiBtcTurk, indexlerbtcturk, siralamaBtcTurk,
                 oranlarbtcturk, seslerBtcTurk);}
 
-        if (calistiMi) {
+        if (calistiMi&&isVisible) {
 
             if (hizli2 == 0) {
                 arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
@@ -2071,7 +2079,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.aramaindexler.clear();
                 MainActivity.hizli2 = 0;
                 for (int a = 0; a < MainActivity.hizli; a++) {
-                    if (MainActivity.this.aramaMetni.length() > 0 && MainActivity.isimler[a].matches(MainActivity.this.aramaMetni.toUpperCase() + "(.*)")) {
+                    if (MainActivity.this.aramaMetni.length() > 0 && MainActivity.isimler[a].toLowerCase().contains(MainActivity.this.aramaMetni.toLowerCase())) {
                         MainActivity.aramaindexler.add(Integer.valueOf(a));
                         MainActivity.hizli2++;
                     }
@@ -2099,4 +2107,5 @@ public class MainActivity extends AppCompatActivity {
         });
         return true;
     }
+
 }

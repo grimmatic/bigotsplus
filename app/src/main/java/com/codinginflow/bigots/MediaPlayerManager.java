@@ -1,5 +1,6 @@
 package com.codinginflow.bigots;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.media.AudioAttributes;
@@ -34,37 +35,34 @@ public class MediaPlayerManager {
             }
         }
     }
+    @SuppressLint("NewApi")
     public MediaPlayer getPlayer(int rawResourceId) {
         try {
             MediaPlayer player = playerPool.get(rawResourceId);
 
             if (player == null || !player.isPlaying()) {
-                // Eğer player null ise veya çalmıyorsa yeni bir player oluştur
                 if (player != null) {
                     player.release();
                 }
 
-                player = MediaPlayer.create(context, rawResourceId);
+                // Set audio attributes before creating the player
+                AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                        .setUsage(AudioAttributes.USAGE_ALARM)
+                        .build();
 
-                if (player != null) {
-                    player.setAudioAttributes(
-                            new AudioAttributes.Builder()
-                                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                                    .setUsage(AudioAttributes.USAGE_ALARM)
-                                    .build()
-                    );
+                player = new MediaPlayer();
+                player.setAudioAttributes(audioAttributes);
+                player.setDataSource(context.getResources().openRawResourceFd(rawResourceId));
+                player.prepare();
 
-                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            mp.reset();
-                            mp.release();
-                            playerPool.remove(rawResourceId);
-                        }
-                    });
+                player.setOnCompletionListener(mp -> {
+                    mp.reset();
+                    mp.release();
+                    playerPool.remove(rawResourceId);
+                });
 
-                    playerPool.put(rawResourceId, player);
-                }
+                playerPool.put(rawResourceId, player);
             }
             return player;
         } catch (Exception e) {

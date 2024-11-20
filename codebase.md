@@ -382,6 +382,14 @@ local.properties
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-11-19T12:46:15.370884600Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=R5CR92B3GXJ" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
       </SelectionState>
     </selectionStates>
   </component>
@@ -511,6 +519,17 @@ local.properties
 </project>
 ```
 
+# .idea\vcs.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+  </component>
+</project>
+```
+
 # .idea\workspace.xml
 
 ```xml
@@ -531,6 +550,16 @@ local.properties
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/digerleri.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/fanlar.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
       <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/listview.xml">
         <config>
           <theme>@style/AppTheme</theme>
@@ -541,13 +570,20 @@ local.properties
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
+      <layout url="file://$PROJECT_DIR$/app/src/main/res/layout/sesler.xml">
+        <config>
+          <theme>@style/AppTheme</theme>
+        </config>
+      </layout>
     </layouts>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e00a4dbe-aa28-42c9-82c6-087cfe2b1887" name="Changes" comment="" />
+    <list default="true" id="e00a4dbe-aa28-42c9-82c6-087cfe2b1887" name="Changes" comment="Listview'a click ile binance app parametre sayfası">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/codinginflow/bigots/BtcTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/codinginflow/bigots/BtcTurk.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -603,10 +639,26 @@ local.properties
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;grimmatic&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/grimmatic/bigotsplus.git&quot;,
+    &quot;accountId&quot;: &quot;dea2a42c-ac8e-44f3-9de4-3839e2cbb621&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -614,33 +666,35 @@ local.properties
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2ojq0OhipAtMkn4CectCWS7ZkvD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Android App.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.codeium.enabled": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/semad/Downloads/bigotsplus",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/semad/Downloads/bigotsplus&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "C:\\Users\\semad\\.gradle"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\semad\\.gradle&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\semad\AndroidStudioProjects\bigotsplus\app\src\main\res\drawable-mdpi" />
@@ -737,7 +791,37 @@ local.properties
       <option name="presentableId" value="Default" />
       <updated>1731393108992</updated>
     </task>
+    <task id="LOCAL-00001" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1732001440440</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1732001440440</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Commit">
+      <option name="closed" value="true" />
+      <created>1732009858118</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1732009858118</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Listview'a click ile binance app parametre sayfası">
+      <option name="closed" value="true" />
+      <created>1732051631839</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732051631839</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit" />
+    <MESSAGE value="Listview'a click ile binance app parametre sayfası" />
+    <option name="LAST_COMMIT_MESSAGE" value="Listview'a click ile binance app parametre sayfası" />
   </component>
 </project>
 ```
@@ -753,7 +837,6 @@ local.properties
 ```gradle
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services'
 }
 
 android {
@@ -768,8 +851,6 @@ android {
         versionName "1.0"
         archivesBaseName = "bigotsplus"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resourceConfigurations.clear()
-        resourceConfigurations.addAll(["en", "tr"])
     }
 
     buildTypes {
@@ -784,7 +865,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    // BuildConfig uyarısını çözmek için
     buildFeatures {
         buildConfig true
     }
@@ -796,88 +876,11 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.2.0'
     implementation 'org.jsoup:jsoup:1.12.1'
     implementation 'com.android.volley:volley:1.2.1'
-
-    // Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.7.2')
-    implementation 'com.google.firebase:firebase-analytics'
-
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
     // Testing
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-}
-```
-
-# app\google-services.json
-
-```json
-{
-  "project_info": {
-    "project_number": "182812830265",
-    "project_id": "yobazfirebase",
-    "storage_bucket": "yobazfirebase.firebasestorage.app"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:182812830265:android:7100f2e58921a63fbfbbe8",
-        "android_client_info": {
-          "package_name": "com.codinginflow.bigots"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "182812830265-oufh0gakh28nblbjcd47gq8p6r9qvao6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC83rH4CXvkzKJBMEsplGYEHXSQ6QH3CoU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "182812830265-oufh0gakh28nblbjcd47gq8p6r9qvao6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:182812830265:android:7d20c5f1c95edce8bfbbe8",
-        "android_client_info": {
-          "package_name": "com.codinginflow.yobazlar"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "182812830265-oufh0gakh28nblbjcd47gq8p6r9qvao6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC83rH4CXvkzKJBMEsplGYEHXSQ6QH3CoU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "182812830265-oufh0gakh28nblbjcd47gq8p6r9qvao6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
 }
 ```
 
@@ -947,6 +950,7 @@ class ExampleInstrumentedTest {
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application android:allowBackup="true" android:appComponentFactory="androidx.core.app.CoreComponentFactory" android:debuggable="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:name="com.codinginflow.bigots.App" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
         <activity android:exported="true" android:label="@string/app_name" android:name="com.codinginflow.bigots.MainActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustNothing">
@@ -957,8 +961,8 @@ class ExampleInstrumentedTest {
         </activity>
         <activity android:label="" android:name="com.codinginflow.bigots.BtcTurk" android:windowSoftInputMode="adjustNothing"/>
         <activity android:label="" android:name="com.codinginflow.bigots.Sesler"/>
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service"/>
-        <service android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service2"/>
+        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service"/>
+        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service2"/>
     </application>
 </manifest>
 ```
@@ -973,20 +977,27 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
-/* loaded from: classes3.dex */
 public class App extends Application {
-    public static final String CHANNEL_ID = "exampleServiceChannel";
+    public static final String CHANNEL_ID = "bigotsServiceChannel";
 
-    @Override // android.app.Application
+    @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
     }
 
     private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= 26) {
-            NotificationChannel serviceChannel = new NotificationChannel("exampleServiceChannel", "Example Service Channel", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = (NotificationManager) getSystemService(NotificationManager.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    App.CHANNEL_ID,
+                    "Bigots Service Channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            serviceChannel.setDescription("Bigots bildirim kanalı");
+            serviceChannel.enableLights(true);
+            serviceChannel.enableVibration(true);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(serviceChannel);
         }
     }
@@ -1003,20 +1014,27 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
-/* loaded from: classes3.dex */
 public class App2 extends Application {
-    public static final String CHANNEL_ID = "exampleServiceChannel";
+    public static final String CHANNEL_ID = "bigotsServiceChannel";
 
-    @Override // android.app.Application
+    @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
     }
 
     private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= 26) {
-            NotificationChannel serviceChannel = new NotificationChannel("exampleServiceChannel", "Example Service Channel", NotificationManager.IMPORTANCE_DEFAULT);
-            NotificationManager manager = (NotificationManager) getSystemService(NotificationManager.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel serviceChannel = new NotificationChannel(
+                    App2.CHANNEL_ID,
+                    "Bigots Service Channel",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            serviceChannel.setDescription("Bigots bildirim kanalı");
+            serviceChannel.enableLights(true);
+            serviceChannel.enableVibration(true);
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
             manager.createNotificationChannel(serviceChannel);
         }
     }
@@ -1029,10 +1047,13 @@ public class App2 extends Application {
 package com.codinginflow.bigots;
 
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -1067,8 +1088,14 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+
+import static com.codinginflow.bigots.MainActivity.saniye;
+import static com.codinginflow.bigots.MainActivity.sesSeviyesiBtcTurk;
+import static com.codinginflow.bigots.MainActivity.seslerBtcTurk;
 import static com.codinginflow.bigots.R.menu.search;
 
 /* loaded from: C:\Users\semad\Downloads\classes3.dex */
@@ -1093,7 +1120,6 @@ public class BtcTurk extends AppCompatActivity {
     static SpannableString[] metinlerBtcTurkarama;
     public static TextView oran;
     public static TextView pop;
-    public static MediaPlayer saniye;
     static FloatingActionButton start;
     static FloatingActionButton stop;
     static FloatingActionButton yukari;
@@ -1145,9 +1171,13 @@ public class BtcTurk extends AppCompatActivity {
         metinlerBinanceTl = new SpannableString[r0];
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
+    private static BtcTurk instance;
+    private MediaPlayerManager mediaPlayerManager;
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         setContentView(R.layout.btcturk);
         btcturkL=findViewById(R.id.listview0btcturk);
         binanceL=findViewById(R.id.listview2btcturk);
@@ -1179,11 +1209,16 @@ public class BtcTurk extends AppCompatActivity {
         mbottomappbar=findViewById(R.id.bottom_app_barbtcturk);
         toolbar=findViewById(R.id.toolbarbtcturk);
         setSupportActionBar(toolbar);
+        if (Service.isRunning() && calistiMi) {
+            start.setVisibility(View.GONE);
+            updateUI(true);
+        }
         try {
             Double.parseDouble(dot.getText().toString());
             start.setVisibility(View.VISIBLE);
         } catch (NumberFormatException e) {
         }
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
@@ -1317,9 +1352,36 @@ public class BtcTurk extends AppCompatActivity {
                 }
             }
         });
-        btcturkL.setOnItemClickListener(new AdapterView.OnItemClickListener() { // from class: com.codinginflow.bigots.BtcTurk.11
-            @Override // android.widget.AdapterView.OnItemClickListener
+        btcturkL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    // Seçilen coin ismini al
+                    String coinName = MainActivity.btcturkisim[position];
+
+                    // İsmi düzenle: küçük harfe çevir, _TL'yi kaldır ve sonuna USDT ekle
+                    String formattedCoin = coinName.toLowerCase()      // Küçük harfe çevir
+                            .replace("_tl", "")   // _tl'yi kaldır
+                            .replace("_", "") +   // Varsa diğer _ işaretlerini kaldır
+                            "usdt";               // sonuna usdt ekle
+
+                    // Binance URL'ini oluştur
+                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(binanceUrl));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=com.binance.dev")));
+                }
+            }
+        });
+
+        btcturkL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (BtcTurk.calistiMi) {
                     BtcTurk.this.dialog.show();
                     if (!BtcTurk.girdi) {
@@ -1329,27 +1391,27 @@ public class BtcTurk extends AppCompatActivity {
                         BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[position]);
                         BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[position].doubleValue() * 10.0d));
                         BtcTurk.this.seekses.setProgress(MainActivity.sesSeviyesiBtcTurk[position]);
-                        BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.BtcTurk.11.1
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 for (int i = 0; i < BtcTurk.btctotal; i++) {
                                     if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
                                         MainActivity.sesSeviyesiBtcTurk[i] = progress;
-                                        MainActivity.seslerBtcTurk[i].setVolume(progress / 15.0f, progress / 15.0f);
+                                        mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
                                         return;
                                     }
                                 }
                             }
 
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                            @Override
                             public void onStartTrackingTouch(SeekBar seekBar) {
                             }
 
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                            @Override
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-                        return;
+                        return true;
                     }
                     BtcTurk.tiklanansira = BtcTurk.aramaindexler.get(position).intValue();
                     BtcTurk.this.isim = MainActivity.btcturkisim[BtcTurk.tiklanansira];
@@ -1357,27 +1419,28 @@ public class BtcTurk extends AppCompatActivity {
                     BtcTurk.this.edit.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
                     BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
                     BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[BtcTurk.tiklanansira].doubleValue() * 10.0d));
-                    BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.BtcTurk.11.2
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                    BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        @Override
                         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                             for (int i = 0; i < BtcTurk.btctotal; i++) {
                                 if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
                                     MainActivity.sesSeviyesiBtcTurk[i] = progress;
-                                    MainActivity.seslerBtcTurk[i].setVolume(progress / 15.0f, progress / 15.0f);
+                                    mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
                                     return;
                                 }
                             }
                         }
 
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        @Override
                         public void onStartTrackingTouch(SeekBar seekBar) {
                         }
 
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        @Override
                         public void onStopTrackingTouch(SeekBar seekBar) {
                         }
                     });
                 }
+                return true;
             }
         });
         btcturkL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.12
@@ -1472,13 +1535,24 @@ public class BtcTurk extends AppCompatActivity {
             }
         });
     }
-
+    public static BtcTurk getInstance() {
+        return instance;
+    }
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        super.onDestroy();
+    }
     public void startService(View v) {
         if (MainActivity.MainservisSayac == 0) {
             Toast.makeText(getApplicationContext(), "Önce hızlı servisini başlatmanız gerekir!", Toast.LENGTH_SHORT).show();
             return;
         }
+        saniye.start();
         calistiMi = true;
+        updateUI(true);
         start.setVisibility(View.GONE);
         btcturkAnaText.setVisibility(View.VISIBLE);
         BinanceAnaText.setVisibility(View.VISIBLE);
@@ -1501,34 +1575,70 @@ public class BtcTurk extends AppCompatActivity {
         }
         this.dotusd = Double.valueOf(dot.getText().toString());
         Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
-        Dot();
-        Thread t = new Thread() { // from class: com.codinginflow.bigots.BtcTurk.16
-            @Override // java.lang.Thread, java.lang.Runnable
-            public void run() {
-                while (!isInterrupted()) {
-                    try {
-                        Thread.sleep((long) Sesler.saniyed);
-                        BtcTurk.this.runOnUiThread(new Runnable() { // from class: com.codinginflow.bigots.BtcTurk.16.1
-                            @Override // java.lang.Runnable
-                            public void run() {
-                                Intent serviceIntent = new Intent((Context) BtcTurk.this, (Class<?>) Service2.class);
-                                serviceIntent.putExtra("inputExtra", BtcTurk.this.Dot());
-                                ContextCompat.startForegroundService(BtcTurk.this, serviceIntent);
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        t.start();
+        Intent serviceIntent = new Intent(this, Service2.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Service2.isRunning() && calistiMi) {
+            updateUI(true);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Activity arka planda iken gereksiz UI güncellemelerini durdur
+        if (!isFinishing() && calistiMi) {
+            updateUI(false);
+        }
+    }
+
+    // UI güncellemelerini yönetmek için yardımcı metod
+    private void updateUI(boolean show) {
+        SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
+        prefs.edit().putBoolean("isVisible", show).apply();
+
+        if (show) {
+            btcturkAnaText.setVisibility(View.VISIBLE);
+            BinanceAnaText.setVisibility(View.VISIBLE);
+            BinanceTlAnaText.setVisibility(View.VISIBLE);
+            btcturkL.setVisibility(View.VISIBLE);
+            binanceTlL.setVisibility(View.VISIBLE);
+            binanceL.setVisibility(View.VISIBLE);
+
+            if (paribucheck != null) paribucheck.setChecked(true);
+            if (tlcheck != null) tlcheck.setChecked(true);
+            if (binancecheck != null) binancecheck.setChecked(true);
+        } else {
+            btcturkAnaText.setVisibility(View.GONE);
+            BinanceTlAnaText.setVisibility(View.GONE);
+            BinanceAnaText.setVisibility(View.GONE);
+            btcturkL.setVisibility(View.GONE);
+            binanceL.setVisibility(View.GONE);
+            binanceTlL.setVisibility(View.GONE);
+        }
+    }
+
+    private WeakReference<MainActivity> mainActivityRef;
+
+    public void setMainActivity(MainActivity activity) {
+        mainActivityRef = new WeakReference<>(activity);
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("calistiMi", calistiMi);
+    }
     public void stopService(View v) {
-        Intent serviceIntent = new Intent((Context) this, (Class<?>) Service2.class);
+        calistiMi = false; // Flag'i false yap
+        updateUI(false); // UI'ı gizle
+        Intent serviceIntent = new Intent( this, Service2.class);
         stopService(serviceIntent);
+        Intent serviceIntent0 = new Intent( this,  Service.class);
+        stopService(serviceIntent0);
         onDestroy();
         finishAffinity();
         System.exit(0);
@@ -1570,7 +1680,7 @@ public class BtcTurk extends AppCompatActivity {
                     spannableString2.setSpan(this.yellow, 0, spannableString2.length(), 33);
                     SpannableString spannableString3 = metinlerBinanceTl[a2];
                     spannableString3.setSpan(this.red, 0, spannableString3.length(), 33);
-                    MainActivity.seslerBtcTurk[a2].start();
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
                     SpannableString spannableString4 = metinlerBtcTurk[a2];
@@ -1579,7 +1689,8 @@ public class BtcTurk extends AppCompatActivity {
                     spannableString5.setSpan(this.yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a2];
                     spannableString6.setSpan(this.red, 0, spannableString6.length(), 33);
-                    MainActivity.seslerBtcTurk[a2].start();
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
                     SpannableString spannableString7 = metinlerBtcTurk[a2];
@@ -1588,7 +1699,914 @@ public class BtcTurk extends AppCompatActivity {
                     spannableString8.setSpan(this.yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a2];
                     spannableString9.setSpan(this.red, 0, spannableString9.length(), 33);
-                    MainActivity.seslerBtcTurk[a2].start();
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+                    otuyorMu = true;
+                } else {
+                    SpannableString spannableString10 = metinlerBtcTurk[a2];
+                    spannableString10.setSpan(this.fsccyan, 0, spannableString10.length(), 33);
+                    SpannableString spannableString11 = metinlerBinance[a2];
+                    spannableString11.setSpan(this.fscdarkyellow, 0, spannableString11.length(), 33);
+                    SpannableString spannableString12 = metinlerBinanceTl[a2];
+                    spannableString12.setSpan(this.darkred, 0, spannableString12.length(), 33);
+                    otuyorMu = false;
+                }
+                if (otuyorMu) {
+                    String sayac = btcturk[a2] + "";
+                    int sayac0 = sayac.length();
+                    int sayi = MainActivity.isimlerBtcTurk[a2].length() + this.df.format(MainActivity.farklarBtcTurk[a2]).length() + sayac0 + " %".length();
+                    metinlerBtcTurk[a2] = new SpannableString(MainActivity.isimlerBtcTurk[a2] + btcturk[a2] + " %" + this.df.format(MainActivity.farklarBtcTurk[a2]) + " || " + (huobibtcturk[a2] * MainActivity.tsatisb));
+                    metinlerBtcTurk[a2].setSpan(this.fscgreen, 0, sayi, 33);
+                    SpannableString spannableString13 = metinlerBtcTurk[a2];
+                    spannableString13.setSpan(this.darkred, sayi + 1, spannableString13.length(), 33);
+                }
+                String sayac2 = this.aramaMetni;
+                if (sayac2.length() > 0 && MainActivity.isimlerBtcTurk[a2].matches(this.aramaMetni.toUpperCase() + "(.*)")) {
+                    aramaindexler.add(Integer.valueOf(a2));
+                    btctotal2++;
+                }
+            }
+            a2++;
+        }
+        if (calistiMi) {
+
+            if (btctotal2 == 0) {
+                arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurk);
+                arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinance);
+                arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTl);
+                ViewGroup.MarginLayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) btcturkL.getLayoutParams();
+                layoutParams.setMargins(0, 0, 0, -190);
+                binanceL.setLayoutParams(layoutParams);
+                binanceTlL.setLayoutParams(layoutParams);
+                btcturkL.setLayoutParams(layoutParams);
+                btcturkL.setAdapter((ListAdapter) this.arrayAdapter);
+                Helper.getListViewSize(btcturkL, false);
+                binanceL.setAdapter((ListAdapter) this.arrayAdapter2);
+                Helper.getListViewSize(binanceL, false);
+                binanceTlL.setAdapter((ListAdapter) this.arrayAdapter1);
+                Helper.getListViewSize(binanceTlL, false);
+            } else {
+                metinlerBtcTurkarama = new SpannableString[btctotal2];
+                metinlerBinancearama = new SpannableString[btctotal2];
+                metinlerBinanceTlarama = new SpannableString[btctotal2];
+                int a3 = 0;
+                while (a3 < btctotal2) {
+                    int index = aramaindexler.get(a3).intValue();
+                    this.otuyorMuArama = false;
+                    metinlerBtcTurkarama[a3] = new SpannableString(MainActivity.isimlerBtcTurk[index] + btcturk[index] + " %" + this.df.format(MainActivity.farklarBtcTurk[index]));
+                    metinlerBinancearama[a3] = new SpannableString(MainActivity.isimlerBtcTurk[index] + huobibtcturk[index]);
+                    metinlerBinanceTlarama[a3] = new SpannableString(MainActivity.isimlerBtcTurk[index] + (huobibtcturk[index] * MainActivity.tsatisb));
+                    if (Sesler.arti && !Sesler.eksi && MainActivity.farklarBtcTurk[index] > MainActivity.oranlarbtcturk[index].doubleValue()) {
+                        SpannableString spannableString14 = metinlerBtcTurkarama[a3];
+                        spannableString14.setSpan(this.fscgreen, 0, spannableString14.length(), 33);
+                        SpannableString spannableString15 = metinlerBinancearama[a3];
+                        spannableString15.setSpan(this.yellow, 0, spannableString15.length(), 33);
+                        SpannableString spannableString16 = metinlerBinanceTlarama[a3];
+                        spannableString16.setSpan(this.red, 0, spannableString16.length(), 33);
+                        this.otuyorMuArama = z;
+                    } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[index] < MainActivity.oranlarbtcturk[index].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[index] > MainActivity.oranlarbtcturk[index].doubleValue())) {
+                        SpannableString spannableString17 = metinlerBtcTurkarama[a3];
+                        spannableString17.setSpan(this.fscgreen, 0, spannableString17.length(), 33);
+                        SpannableString spannableString18 = metinlerBinancearama[a3];
+                        spannableString18.setSpan(this.yellow, 0, spannableString18.length(), 33);
+                        SpannableString spannableString19 = metinlerBinanceTlarama[a3];
+                        spannableString19.setSpan(this.red, 0, spannableString19.length(), 33);
+                        this.otuyorMuArama = z;
+                    } else {
+                        if (!Sesler.arti && Sesler.eksi) {
+                            if (MainActivity.farklarBtcTurk[index] < MainActivity.oranlarbtcturk[index].doubleValue() * (-1.0d)) {
+                                SpannableString spannableString20 = metinlerBtcTurkarama[a3];
+                                spannableString20.setSpan(this.fscgreen, 0, spannableString20.length(), 33);
+                                SpannableString spannableString21 = metinlerBinancearama[a3];
+                                spannableString21.setSpan(this.yellow, 0, spannableString21.length(), 33);
+                                SpannableString spannableString22 = metinlerBinanceTlarama[a3];
+                                spannableString22.setSpan(this.red, 0, spannableString22.length(), 33);
+                                this.otuyorMuArama = z;
+                            }
+                        }
+                        SpannableString spannableString23 = metinlerBtcTurkarama[a3];
+                        spannableString23.setSpan(this.fsccyan, 0, spannableString23.length(), 33);
+                        SpannableString spannableString24 = metinlerBinancearama[a3];
+                        spannableString24.setSpan(this.fscdarkyellow, 0, spannableString24.length(), 33);
+                        SpannableString spannableString25 = metinlerBinanceTlarama[a3];
+                        spannableString25.setSpan(this.darkred, 0, spannableString25.length(), 33);
+                        this.otuyorMuArama = false;
+                    }
+                    if (!this.otuyorMuArama) {
+                        a = a3;
+                    } else {
+                        String sayac3 = btcturk[index] + "";
+                        int sayac02 = sayac3.length();
+                        int sayi2 = MainActivity.isimlerBtcTurk[index].length() + this.df.format(MainActivity.farklarBtcTurk[index]).length() + sayac02 + " %".length();
+                        a = a3;
+                        metinlerBtcTurkarama[a] = new SpannableString(MainActivity.isimlerBtcTurk[index] + btcturk[index] + " %" + this.df.format(MainActivity.farklarBtcTurk[index]) + " || " + (huobibtcturk[index] * MainActivity.tsatisb));
+                        metinlerBtcTurkarama[a].setSpan(this.fscgreen, 0, sayi2, 33);
+                        SpannableString spannableString26 = metinlerBtcTurkarama[a];
+                        spannableString26.setSpan(this.darkred, sayi2 + 1, spannableString26.length(), 33);
+                    }
+                    a3 = a + 1;
+
+                    z = true;
+                }
+                arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurkarama);
+                arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinancearama);
+                arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTlarama);
+                ViewGroup.MarginLayoutParams layoutParams2 = (LinearLayoutCompat.LayoutParams) binanceL.getLayoutParams();
+                layoutParams2.setMargins(0, 0, 0, 45);
+                binanceL.setLayoutParams(layoutParams2);
+                btcturkL.setLayoutParams(layoutParams2);
+                binanceTlL.setLayoutParams(layoutParams2);
+                btcturkL.setAdapter((ListAdapter) this.arrayAdapter);
+                Helper.getListViewSize(btcturkL, false);
+                binanceL.setAdapter((ListAdapter) this.arrayAdapter2);
+                Helper.getListViewSize(binanceL, false);
+                binanceTlL.setAdapter((ListAdapter) this.arrayAdapter1);
+                Helper.getListViewSize(binanceTlL, false);
+                this.arrayAdapter.getFilter().filter(this.aramaMetni);
+                this.arrayAdapter2.getFilter().filter(this.aramaMetni);
+                this.arrayAdapter1.getFilter().filter(this.aramaMetni);
+            }
+        }
+        return "";
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.checkboxhizliparibu:
+                if (calistiMi) {
+                    if (!item.isChecked()) {
+                        BinanceAnaText.setVisibility(View.VISIBLE);
+                        binanceL.setVisibility(View.VISIBLE);
+                        if (calistiMi) {
+                            binanceL.setVisibility(View.VISIBLE);
+                            BinanceAnaText.setVisibility(View.VISIBLE);
+                        }
+                        item.setChecked(true);
+                    } else {
+                        if (calistiMi) {
+                            binanceL.setVisibility(View.GONE);
+                            BinanceAnaText.setVisibility(View.GONE);
+                        }
+                        binanceL.setVisibility(View.GONE);
+                        BinanceAnaText.setVisibility(View.GONE);
+                        item.setChecked(false);
+                    }
+                }
+                return true;
+            case R.id.checkboxhizlibinance:
+                if (calistiMi) {
+                    if (!item.isChecked()) {
+                        btcturkAnaText.setVisibility(View.VISIBLE);
+                        btcturkL.setVisibility(View.VISIBLE);
+                        if (calistiMi) {
+                            btcturkAnaText.setVisibility(View.VISIBLE);
+                            btcturkL.setVisibility(View.VISIBLE);
+                        }
+                        item.setChecked(true);
+                    } else {
+                        btcturkAnaText.setVisibility(View.GONE);
+                        btcturkL.setVisibility(View.GONE);
+                        if (calistiMi) {
+                            btcturkAnaText.setVisibility(View.GONE);
+                            btcturkL.setVisibility(View.GONE);
+                        }
+                        item.setChecked(false);
+                    }
+                }
+                return true;
+            case R.id.checkboxhizlitl:
+                if (calistiMi) {
+                    if (!item.isChecked()) {
+                        BinanceTlAnaText.setVisibility(View.VISIBLE);
+                        binanceTlL.setVisibility(View.VISIBLE);
+                        if (calistiMi) {
+                            binanceTlL.setVisibility(View.VISIBLE);
+                            BinanceTlAnaText.setVisibility(View.VISIBLE);
+                        }
+                        item.setChecked(true);
+                    } else {
+                        binanceTlL.setVisibility(View.GONE);
+                        BinanceTlAnaText.setVisibility(View.GONE);
+                        if (calistiMi) {
+                            binanceTlL.setVisibility(View.GONE);
+                            BinanceTlAnaText.setVisibility(View.GONE);
+                        }
+                        item.setChecked(false);
+                    }
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater ().inflate (search,menu);
+        MenuItem menuItem = menu.findItem(R.id.arama);
+        paribucheck = menu.findItem(R.id.checkboxhizliparibu);
+        tlcheck = menu.findItem(R.id.checkboxhizlitl);
+        binancecheck = menu.findItem(R.id.checkboxhizlibinance);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Arama yapmak için yazın");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() { // from class: com.codinginflow.bigots.BtcTurk.17
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            public boolean onQueryTextChange(String newText) {
+                BtcTurk.girdi = false;
+                BtcTurk.this.aramaMetni = newText;
+                BtcTurk.aramaindexler.clear();
+                BtcTurk.btctotal2 = 0;
+                for (int a = 0; a < BtcTurk.btctotal; a++) {
+                    if (BtcTurk.this.aramaMetni.length() > 0 && MainActivity.isimlerBtcTurk[a].matches(BtcTurk.this.aramaMetni.toUpperCase() + "(.*)")) {
+                        BtcTurk.aramaindexler.add(Integer.valueOf(a));
+                        BtcTurk.btctotal2++;
+                    }
+                }
+                if (BtcTurk.calistiMi && newText.length() > 0) {
+                    BtcTurk.girdi = true;
+                    BtcTurk.this.Dot();
+                } else {
+                    BtcTurk.aramaindexler.clear();
+                    BtcTurk.btctotal2 = 0;
+                }
+                if (BtcTurk.this.aramaMetni.length() == 0 && BtcTurk.btctotal2 == 0 && BtcTurk.calistiMi) {
+                    arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurk);
+                    arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinance);
+                    arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTl);
+                    BtcTurk.btcturkL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter);
+                    Helper.getListViewSize(BtcTurk.btcturkL, false);
+                    BtcTurk.binanceL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter2);
+                    Helper.getListViewSize(BtcTurk.binanceL, false);
+                    BtcTurk.binanceTlL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter1);
+                    Helper.getListViewSize(BtcTurk.binanceTlL, false);
+                }
+                return false;
+            }
+        });
+        return true;
+    }
+}
+```
+
+# app\src\main\java\com\codinginflow\bigots\BtcTurk.java~
+
+```java~
+package com.codinginflow.bigots;
+
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.SpannableString;
+import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.lang.ref.WeakReference;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+
+import static com.codinginflow.bigots.MainActivity.saniye;
+import static com.codinginflow.bigots.MainActivity.sesSeviyesiBtcTurk;
+import static com.codinginflow.bigots.MainActivity.seslerBtcTurk;
+import static com.codinginflow.bigots.R.menu.search;
+
+/* loaded from: C:\Users\semad\Downloads\classes3.dex */
+public class BtcTurk extends AppCompatActivity {
+    public static TextView BinanceAnaText;
+    public static TextView BinanceTlAnaText;
+    static FloatingActionButton asagi;
+    static FloatingActionButton ayarlar;
+    static ListView binanceL;
+    static ListView binanceTlL;
+    static float[] btcturk;
+    public static TextView btcturkAnaText;
+    static ListView btcturkL;
+    public static EditText dot;
+    static FloatingActionButton duzenle;
+    static float[] huobibtcturk;
+    static SpannableString[] metinlerBinance;
+    static SpannableString[] metinlerBinanceTl;
+    static SpannableString[] metinlerBinanceTlarama;
+    static SpannableString[] metinlerBinancearama;
+    static SpannableString[] metinlerBtcTurk;
+    static SpannableString[] metinlerBtcTurkarama;
+    public static TextView oran;
+    public static TextView pop;
+    static FloatingActionButton start;
+    static FloatingActionButton stop;
+    static FloatingActionButton yukari;
+    ArrayAdapter<SpannableString> arrayAdapter;
+    ArrayAdapter<SpannableString> arrayAdapter1;
+    ArrayAdapter<SpannableString> arrayAdapter2;
+    MenuItem binancecheck;
+    private AlertDialog dialog;
+    private AlertDialog.Builder dialogBuilder;
+    float downX;
+    private EditText edit;
+    NestedScrollView ekran6;
+    private Button geributton;
+    private RequestQueue mQueue;
+    private BottomAppBar mbottomappbar;
+    MenuItem paribucheck;
+    private Button popupButon;
+    private SeekBar seek;
+    private SeekBar seekses;
+    MenuItem tlcheck;
+    Toolbar toolbar;
+    float upX;
+    static int btctotal = 80;
+    static int btctotal2 = 0;
+    static int p = 0;
+    static boolean calistiMi = false;
+    static boolean otuyorMu = false;
+    static boolean girdi = false;
+    static ArrayList<Integer> aramaindexler = new ArrayList<>();
+    static int tiklanansira = 0;
+    Double dotusd = Double.valueOf(2.5d);
+    private String isim = "";
+    String aramaMetni="";
+    ForegroundColorSpan fscgreen= new ForegroundColorSpan(0XFF005EFF);
+    ForegroundColorSpan fsccyan= new ForegroundColorSpan(0XFF0090FF);
+    ForegroundColorSpan fscdarkyellow= new ForegroundColorSpan(0XFFEBA65F);
+    ForegroundColorSpan yellow= new ForegroundColorSpan(Color.YELLOW);
+    ForegroundColorSpan red= new ForegroundColorSpan(0xFFF83E3A);
+    ForegroundColorSpan darkred= new ForegroundColorSpan(0xFFDC743C);
+    boolean otuyorMuArama=false;
+    DecimalFormat df = new DecimalFormat("#.###");
+
+    static {
+        int r0 = btctotal;
+        huobibtcturk = new float[r0];
+        btcturk = new float[r0];
+        metinlerBtcTurk = new SpannableString[r0];
+        metinlerBinance = new SpannableString[r0];
+        metinlerBinanceTl = new SpannableString[r0];
+    }
+
+    private static BtcTurk instance;
+    private MediaPlayerManager mediaPlayerManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        instance = this;
+        setContentView(R.layout.btcturk);
+        btcturkL=findViewById(R.id.listview0btcturk);
+        binanceL=findViewById(R.id.listview2btcturk);
+        binanceTlL=findViewById(R.id.listview1btcturk);
+        ayarlar = findViewById(R.id.ayarlarbtcturk);
+        yukari=findViewById(R.id.yukaribtcturk);
+        asagi=findViewById(R.id.asagibtcturk);
+        start=findViewById(R.id.baslatbtcturk);
+        stop=findViewById(R.id.durdurbtcturk);
+        duzenle=findViewById(R.id.duzenlebtcturk);
+        btcturkAnaText=findViewById(R.id.baslikbtcturk);
+        BinanceTlAnaText=findViewById(R.id.baslikbinancetlbtcturk);
+        BinanceAnaText=findViewById(R.id.baslikbinancebtcturk);
+        dialogBuilder = new AlertDialog.Builder(BtcTurk.this);
+        View popupView = getLayoutInflater().inflate(R.layout.popup, (ViewGroup) null);
+        pop=popupView.findViewById(R.id.textView665);
+        edit=popupView.findViewById(R.id.edittext);
+        seek=popupView.findViewById(R.id.seekbar665);
+        seekses=popupView.findViewById(R.id.seekbar666);
+        popupButon=popupView.findViewById(R.id.button665);
+        geributton=popupView.findViewById(R.id.button6650);
+        oran=popupView.findViewById(R.id.textView6650);
+        dialogBuilder.setView(popupView);
+        dialog=dialogBuilder.create();
+        mQueue = Volley.newRequestQueue(this);
+        dot = findViewById(R.id.DOTT);
+        ekran6=findViewById(R.id.ekran6);
+        dot.setText(MainActivity.dot.getText().toString(),TextView.BufferType.EDITABLE);
+        mbottomappbar=findViewById(R.id.bottom_app_barbtcturk);
+        toolbar=findViewById(R.id.toolbarbtcturk);
+        setSupportActionBar(toolbar);
+        if (Service.isRunning() && calistiMi) {
+            start.setVisibility(View.GONE);
+            updateUI(true);
+        }
+        try {
+            Double.parseDouble(dot.getText().toString());
+            start.setVisibility(View.VISIBLE);
+        } catch (NumberFormatException e) {
+        }
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        start.setX((width - 178) / 2);
+        start.setY((height - 800) / 2);
+        ayarlar.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.1
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) Sesler.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                BtcTurk.this.startActivityIfNeeded(openMainActivity, 2);
+            }
+        });
+        yukari.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.2
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                BtcTurk.this.ekran6.scrollTo(0, 0);
+            }
+        });
+        asagi.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.3
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                BtcTurk.this.ekran6.scrollTo(99000, 99000);
+            }
+        });
+        TextWatcher tt = new TextWatcher() { // from class: com.codinginflow.bigots.BtcTurk.4
+            @Override // android.text.TextWatcher
+            public void afterTextChanged(Editable s) {
+                if (BtcTurk.calistiMi) {
+                    try {
+                        Double.parseDouble(BtcTurk.dot.getText().toString());
+                        if (Double.parseDouble(BtcTurk.dot.getText().toString()) >= 0.0d) {
+                            BtcTurk.duzenle.setVisibility(View.VISIBLE);
+                            return;
+                        }
+                        return;
+                    } catch (NumberFormatException e2) {
+                        BtcTurk.duzenle.setVisibility(View.GONE);
+                        return;
+                    }
+                }
+                try {
+                    Double.parseDouble(BtcTurk.dot.getText().toString());
+                    if (Double.parseDouble(BtcTurk.dot.getText().toString()) >= 0.0d) {
+                        BtcTurk.start.setVisibility(View.VISIBLE);
+                    }
+                } catch (NumberFormatException e3) {
+                    BtcTurk.start.setVisibility(View.GONE);
+                }
+            }
+
+            @Override // android.text.TextWatcher
+            public void beforeTextChanged(CharSequence s, int start2, int count, int after) {
+            }
+
+            @Override // android.text.TextWatcher
+            public void onTextChanged(CharSequence s, int start2, int before, int count) {
+            }
+        };
+        dot.addTextChangedListener(tt);
+        dot.setOnFocusChangeListener(new View.OnFocusChangeListener() { // from class: com.codinginflow.bigots.BtcTurk.5
+            @Override // android.view.View.OnFocusChangeListener
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    BtcTurk.duzenle.setVisibility(View.GONE);
+                }
+            }
+        });
+        duzenle.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.6
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                BtcTurk.this.dotusd = Double.valueOf(BtcTurk.dot.getText().toString());
+                for (int i = 0; i < BtcTurk.btctotal; i++) {
+                    MainActivity.oranlarbtcturk[i] = BtcTurk.this.dotusd;
+                }
+                Snackbar snackbar = Snackbar.make(v, "Tüm oranlar " + BtcTurk.this.dotusd + "'a ayarlandı", 0);
+                snackbar.show();
+            }
+        });
+        this.geributton.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.7
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                BtcTurk.this.dialog.cancel();
+                BtcTurk.this.dialog.dismiss();
+            }
+        });
+        this.seek.setMax(100);
+        this.seekses.setMax(15);
+        this.seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.BtcTurk.8
+            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                BtcTurk.this.edit.setText("" + (progress / 10.0d));
+            }
+
+            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
+        this.popupButon.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.9
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                try {
+                    Double.parseDouble(BtcTurk.this.edit.getText().toString());
+                    for (int x = 0; x < BtcTurk.btctotal; x++) {
+                        if (!BtcTurk.girdi && MainActivity.siralamaBtcTurk[x] == BtcTurk.tiklanansira) {
+                            MainActivity.oranlarbtcturk[x] = Double.valueOf(BtcTurk.this.edit.getText().toString());
+                            BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[x]);
+                        } else if (BtcTurk.girdi && MainActivity.btcturkisim[x] == BtcTurk.this.isim) {
+                            MainActivity.oranlarbtcturk[x] = Double.valueOf(BtcTurk.this.edit.getText().toString());
+                            BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[x]);
+                        }
+                    }
+                } catch (NumberFormatException e2) {
+                    Toast.makeText(BtcTurk.this.getApplicationContext(), "Lütfen değer gir", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        this.mbottomappbar.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.10
+            @Override // android.view.View.OnClickListener
+            public void onClick(View v) {
+                BtcTurk.p++;
+                if (BtcTurk.p % 2 == 1) {
+                    BtcTurk.this.mbottomappbar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_CENTER);
+                } else {
+                    BtcTurk.this.mbottomappbar.setFabAlignmentMode(BottomAppBar.FAB_ALIGNMENT_MODE_END);
+                }
+            }
+        });
+        btcturkL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    // Seçilen coin ismini al
+                    String coinName = MainActivity.btcturkisim[position];
+
+                    // İsmi düzenle: küçük harfe çevir, _TL'yi kaldır ve sonuna USDT ekle
+                    String formattedCoin = coinName.toLowerCase()      // Küçük harfe çevir
+                            .replace("_tl", "")   // _tl'yi kaldır
+                            .replace("_", "") +   // Varsa diğer _ işaretlerini kaldır
+                            "usdt";               // sonuna usdt ekle
+
+                    // Binance URL'ini oluştur
+                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(binanceUrl));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=com.binance.dev")));
+                }
+            }
+        });
+
+        btcturkL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (BtcTurk.calistiMi) {
+                    BtcTurk.this.dialog.show();
+                    if (!BtcTurk.girdi) {
+                        BtcTurk.tiklanansira = MainActivity.siralamaBtcTurk[position];
+                        BtcTurk.pop.setText(MainActivity.btcturkisim[position]);
+                        BtcTurk.this.edit.setText("" + MainActivity.oranlarbtcturk[position]);
+                        BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[position]);
+                        BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[position].doubleValue() * 10.0d));
+                        BtcTurk.this.seekses.setProgress(MainActivity.sesSeviyesiBtcTurk[position]);
+                        BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
+                            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                                for (int i = 0; i < BtcTurk.btctotal; i++) {
+                                    if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
+                                        MainActivity.sesSeviyesiBtcTurk[i] = progress;
+                                        mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
+                                        return;
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onStartTrackingTouch(SeekBar seekBar) {
+                            }
+
+                            @Override
+                            public void onStopTrackingTouch(SeekBar seekBar) {
+                            }
+                        });
+                        return true;
+                    }
+                    BtcTurk.tiklanansira = BtcTurk.aramaindexler.get(position).intValue();
+                    BtcTurk.this.isim = MainActivity.btcturkisim[BtcTurk.tiklanansira];
+                    BtcTurk.pop.setText(MainActivity.btcturkisim[BtcTurk.tiklanansira]);
+                    BtcTurk.this.edit.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
+                    BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
+                    BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[BtcTurk.tiklanansira].doubleValue() * 10.0d));
+                    BtcTurk.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        @Override
+                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            for (int i = 0; i < BtcTurk.btctotal; i++) {
+                                if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
+                                    MainActivity.sesSeviyesiBtcTurk[i] = progress;
+                                    mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
+                                    return;
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+                        }
+
+                        @Override
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+                        }
+                    });
+                }
+                return true;
+            }
+        });
+        btcturkL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.12
+            @Override // android.view.View.OnTouchListener
+            public boolean onTouch(View v, MotionEvent event) {
+                BtcTurk.dot.clearFocus();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        BtcTurk.this.downX = event.getX();
+                    case MotionEvent.ACTION_UP /* 1 */:
+                        BtcTurk.this.upX = event.getX();
+                        float deltaX = BtcTurk.this.downX - BtcTurk.this.upX;
+                        if (Math.abs(deltaX) > 0.0f && deltaX < -300.0f) {
+                            Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) MainActivity.class);
+                            openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            BtcTurk.this.startActivityIfNeeded(openMainActivity, 0);
+                            return true;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+        binanceL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.13
+            @Override // android.view.View.OnTouchListener
+            public boolean onTouch(View v, MotionEvent event) {
+                BtcTurk.dot.clearFocus();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        BtcTurk.this.downX = event.getX();
+                    case MotionEvent.ACTION_UP /* 1 */:
+                        BtcTurk.this.upX = event.getX();
+                        float deltaX = BtcTurk.this.downX - BtcTurk.this.upX;
+                        if (Math.abs(deltaX) > 0.0f && deltaX < -300.0f) {
+                            Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) MainActivity.class);
+                            openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            BtcTurk.this.startActivityIfNeeded(openMainActivity, 0);
+                            return true;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+        binanceTlL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.14
+            @Override // android.view.View.OnTouchListener
+            public boolean onTouch(View v, MotionEvent event) {
+                BtcTurk.dot.clearFocus();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        BtcTurk.this.downX = event.getX();
+                    case MotionEvent.ACTION_UP /* 1 */:
+                        BtcTurk.this.upX = event.getX();
+                        float deltaX = BtcTurk.this.downX - BtcTurk.this.upX;
+                        if (Math.abs(deltaX) > 0.0f && deltaX < -300.0f) {
+                            Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) MainActivity.class);
+                            openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            BtcTurk.this.startActivityIfNeeded(openMainActivity, 0);
+                            return true;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+        this.ekran6.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.15
+            @Override // android.view.View.OnTouchListener
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        BtcTurk.this.downX = event.getX();
+                    case MotionEvent.ACTION_UP /* 1 */:
+                        BtcTurk.this.upX = event.getX();
+                        float deltaX = BtcTurk.this.downX - BtcTurk.this.upX;
+                        if (Math.abs(deltaX) > 0.0f && deltaX < -300.0f) {
+                            Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) MainActivity.class);
+                            openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            BtcTurk.this.startActivityIfNeeded(openMainActivity, 0);
+                            return true;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+    }
+    public static BtcTurk getInstance() {
+        return instance;
+    }
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        super.onDestroy();
+    }
+    public void startService(View v) {
+        if (MainActivity.MainservisSayac == 0) {
+            Toast.makeText(getApplicationContext(), "Önce hızlı servisini başlatmanız gerekir!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        saniye.start();
+        calistiMi = true;
+        updateUI(true);
+        start.setVisibility(View.GONE);
+        btcturkAnaText.setVisibility(View.VISIBLE);
+        BinanceAnaText.setVisibility(View.VISIBLE);
+        BinanceTlAnaText.setVisibility(View.VISIBLE);
+        btcturkL.setVisibility(View.VISIBLE);
+        binanceTlL.setVisibility(View.VISIBLE);
+        binanceL.setVisibility(View.VISIBLE);
+        this.paribucheck.setChecked(true);
+        this.tlcheck.setChecked(true);
+        this.binancecheck.setChecked(true);
+        AppBarLayout.LayoutParams paramst = (AppBarLayout.LayoutParams) MainActivity.toolbar.getLayoutParams();
+
+        ViewGroup.MarginLayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) dot.getLayoutParams();
+        layoutParams.setMargins(40, paramst.height + 10, 40, 5);
+        dot.setLayoutParams(layoutParams);
+        stop.setVisibility(View.VISIBLE);
+        this.dotusd = Double.valueOf(dot.getText().toString());
+        for (int i = 0; i < btctotal; i++) {
+            MainActivity.oranlarbtcturk[i] = this.dotusd;
+        }
+        this.dotusd = Double.valueOf(dot.getText().toString());
+        Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
+        Intent serviceIntent = new Intent(this, Service2.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Service2.isRunning() && calistiMi) {
+            updateUI(true);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Activity arka planda iken gereksiz UI güncellemelerini durdur
+        if (!isFinishing() && calistiMi) {
+            updateUI(false);
+        }
+    }
+
+    // UI güncellemelerini yönetmek için yardımcı metod
+    private void updateUI(boolean show) {
+        SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
+        prefs.edit().putBoolean("isVisible", show).apply();
+
+        if (show) {
+            btcturkAnaText.setVisibility(View.VISIBLE);
+            BinanceAnaText.setVisibility(View.VISIBLE);
+            BinanceTlAnaText.setVisibility(View.VISIBLE);
+            btcturkL.setVisibility(View.VISIBLE);
+            binanceTlL.setVisibility(View.VISIBLE);
+            binanceL.setVisibility(View.VISIBLE);
+
+            if (paribucheck != null) paribucheck.setChecked(true);
+            if (tlcheck != null) tlcheck.setChecked(true);
+            if (binancecheck != null) binancecheck.setChecked(true);
+        } else {
+            btcturkAnaText.setVisibility(View.GONE);
+            BinanceTlAnaText.setVisibility(View.GONE);
+            BinanceAnaText.setVisibility(View.GONE);
+            btcturkL.setVisibility(View.GONE);
+            binanceL.setVisibility(View.GONE);
+            binanceTlL.setVisibility(View.GONE);
+        }
+    }
+
+    private WeakReference<MainActivity> mainActivityRef;
+
+    public void setMainActivity(MainActivity activity) {
+        mainActivityRef = new WeakReference<>(activity);
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("calistiMi", calistiMi);
+    }
+    public void stopService(View v) {
+        calistiMi = false; // Flag'i false yap
+        updateUI(false); // UI'ı gizle
+        Intent serviceIntent = new Intent( this, Service2.class);
+        stopService(serviceIntent);
+        Intent serviceIntent0 = new Intent( this,  Service.class);
+        stopService(serviceIntent0);
+        onDestroy();
+        finishAffinity();
+        System.exit(0);
+    }
+
+    /* JADX WARN: Multi-variable type inference failed */
+    /* JADX WARN: Type inference failed for: r1v1 */
+    /* JADX WARN: Type inference failed for: r1v2, types: [boolean, int] */
+    /* JADX WARN: Type inference failed for: r1v9 */
+    public String Dot() {
+
+
+        for (int i = 0; i < btctotal; i++) {
+            // Her SpannableString'i başlangıç değerleriyle oluştur
+            metinlerBtcTurk[i] = new SpannableString(MainActivity.isimlerBtcTurk[i] + btcturk[i] + " %" + df.format(MainActivity.farklarBtcTurk[i]));
+            metinlerBinance[i] = new SpannableString(MainActivity.isimlerBtcTurk[i] + huobibtcturk[i]);
+            metinlerBinanceTl[i] = new SpannableString(MainActivity.isimlerBtcTurk[i] + (huobibtcturk[i] * MainActivity.tsatisb));
+        }
+
+        boolean z;
+        int a;
+        aramaindexler.clear();
+        btctotal2 = 0;
+        otuyorMu = false;
+        btcturk = MainActivity.btcturk;
+        huobibtcturk = MainActivity.huobibtcturk;
+        this.df = new DecimalFormat("#.###");
+        int a2 = 0;
+        while (true) {
+            z = true;
+            if (a2 >= btctotal) {
+                break;
+            }
+            if (calistiMi) {
+                if (Sesler.arti && !Sesler.eksi && MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue()) {
+                    SpannableString spannableString = metinlerBtcTurk[a2];
+                    spannableString.setSpan(this.fscgreen, 0, spannableString.length(), 33);
+                    SpannableString spannableString2 = metinlerBinance[a2];
+                    spannableString2.setSpan(this.yellow, 0, spannableString2.length(), 33);
+                    SpannableString spannableString3 = metinlerBinanceTl[a2];
+                    spannableString3.setSpan(this.red, 0, spannableString3.length(), 33);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+                    otuyorMu = true;
+                } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
+                    SpannableString spannableString4 = metinlerBtcTurk[a2];
+                    spannableString4.setSpan(this.fscgreen, 0, spannableString4.length(), 33);
+                    SpannableString spannableString5 = metinlerBinance[a2];
+                    spannableString5.setSpan(this.yellow, 0, spannableString5.length(), 33);
+                    SpannableString spannableString6 = metinlerBinanceTl[a2];
+                    spannableString6.setSpan(this.red, 0, spannableString6.length(), 33);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+
+                    otuyorMu = true;
+                } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
+                    SpannableString spannableString7 = metinlerBtcTurk[a2];
+                    spannableString7.setSpan(this.fscgreen, 0, spannableString7.length(), 33);
+                    SpannableString spannableString8 = metinlerBinance[a2];
+                    spannableString8.setSpan(this.yellow, 0, spannableString8.length(), 33);
+                    SpannableString spannableString9 = metinlerBinanceTl[a2];
+                    spannableString9.setSpan(this.red, 0, spannableString9.length(), 33);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
                     otuyorMu = true;
                 } else {
                     SpannableString spannableString10 = metinlerBtcTurk[a2];
@@ -1886,7 +2904,7 @@ import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import java.util.Timer;
 
-/* loaded from: C:\Users\semad\Downloads\classes3.dex */
+
 public class ListBildirim extends android.app.Service {
     private NotificationCompat.Builder builder;
     String contentText = "";
@@ -1931,11 +2949,18 @@ public class ListBildirim extends android.app.Service {
 ```java
 package com.codinginflow.bigots;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -1943,6 +2968,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -1962,216 +2988,83 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import static com.codinginflow.bigots.BtcTurk.btctotal;
-import static com.codinginflow.bigots.BtcTurk.btcturkL;
 import static com.codinginflow.bigots.R.menu.search;
-import static com.codinginflow.bigots.Sesler.arti;
-import static com.codinginflow.bigots.Sesler.eksi;
 
 public class MainActivity extends AppCompatActivity {
+    public static MediaPlayer saniye;
+
+    public static EditText dot;
     public static int MainservisSayac;
-    public static MediaPlayer aave;
-    public static MediaPlayer acm;
-    public static MediaPlayer ada;
-    public static MediaPlayer agix;
-    public static MediaPlayer alarm;
-    public static MediaPlayer algo;
-    public static MediaPlayer alice;
-    public static MediaPlayer amp;
-    public static MediaPlayer ankr;
-    public static MediaPlayer ape;
-    public static MediaPlayer api3;
-    public static MediaPlayer apt;
     static ArrayList<Integer> aramaindexler;
-    public static MediaPlayer arb;
-    public static MediaPlayer arkm;
-    public static MediaPlayer arpa;
-    public static MediaPlayer asr;
-    public static MediaPlayer atm;
-    public static MediaPlayer atom;
-    public static MediaPlayer audio;
-    public static MediaPlayer avax;
-    public static MediaPlayer axl;
-    public static MediaPlayer axs;
-    public static MediaPlayer bal;
-    public static MediaPlayer band;
-    public static MediaPlayer bar;
-    public static MediaPlayer bat;
-    public static MediaPlayer bch;
-    public static MediaPlayer beam;
     static String binanceDuyuruText;
     static String binanceGeciciDuyuruText;
     static ListView binanceL;
     static ListView binanceTlL;
-    public static MediaPlayer blur;
-    public static MediaPlayer bnt;
-    public static MediaPlayer bonk;
     static float[] btcturk;
     static String[] btcturkisim;
-
-    public static MediaPlayer btt;
-    public static MediaPlayer chz;
-    public static MediaPlayer city;
-    public static MediaPlayer clv;
-    public static MediaPlayer comp;
-    public static MediaPlayer crv;
-    public static MediaPlayer ctsi;
-    public static MediaPlayer cvc;
-    public static MediaPlayer dash;
-    public static MediaPlayer dogem;
-    public static EditText dot;
-    public static MediaPlayer dots;
-    public static MediaPlayer dydx;
-    public static MediaPlayer dym;
-    public static MediaPlayer enj;
-    public static MediaPlayer ens;
-    public static MediaPlayer eos;
-    public static MediaPlayer etc;
-    public static MediaPlayer etherfi;
     static float[] farklar;
     static float[] farklarBtcTurk;
-    public static MediaPlayer fet;
-    public static MediaPlayer fil;
-    public static MediaPlayer floki;
-    public static MediaPlayer flow;
-    public static MediaPlayer ftm;
-    public static MediaPlayer gala;
     static boolean girdi;
-    public static MediaPlayer glm;
-    public static MediaPlayer grt;
-    public static MediaPlayer hot;
     static float[] huobi;
     static float[] huobibtcturk;
-    public static MediaPlayer icp;
-    public static MediaPlayer imx;
-    public static MediaPlayer inch;
     static int[] indexler;
     static int[] indexlerbtcturk;
-    public static MediaPlayer inj;
-    public static MediaPlayer iota;
     static String[] isimler;
     static String[] isimlerBtcTurk;
-    public static MediaPlayer jasmy;
-    public static MediaPlayer joe;
-    public static MediaPlayer jto;
-    public static MediaPlayer jup;
-    public static MediaPlayer juv;
-    public static MediaPlayer ldo;
-    public static MediaPlayer link;
     static boolean listGeldiMi;
-    public static MediaPlayer lpt;
-    public static MediaPlayer lrc;
-    public static MediaPlayer ltc;
-    public static MediaPlayer luna;
-    public static MediaPlayer lunc;
-    public static MediaPlayer magic;
-    public static MediaPlayer maker;
-    public static MediaPlayer mana;
-    public static MediaPlayer manta;
-    public static MediaPlayer mask;
-    public static MediaPlayer matic;
-    public static MediaPlayer meme;
     static SpannableString[] metinlerBinance;
     static SpannableString[] metinlerBinanceTl;
     static SpannableString[] metinlerBinanceTlarama;
     static SpannableString[] metinlerBinancearama;
     static SpannableString[] metinlerParibu;
     static SpannableString[] metinlerParibuarama;
-    public static MediaPlayer mina;
-    public static MediaPlayer neo;
-    public static MediaPlayer nmr;
-    public static MediaPlayer ocean;
-    public static MediaPlayer ogn;
-    public static MediaPlayer ont;
-    public static MediaPlayer op;
-    static boolean otuyorMu;
-    public static MediaPlayer oxt;
+    static Toolbar toolbar;
     static int p;
+    static boolean otuyorMu;
     static float[] paribu;
     static ListView paribuL;
     static String[] paribuisim;
-    public static MediaPlayer paxg;
-    public static MediaPlayer pendle;
-    public static MediaPlayer pepe;
-    public static MediaPlayer psg;
-    public static MediaPlayer pyth;
-    public static MediaPlayer qnt;
-    public static MediaPlayer rad;
-    public static MediaPlayer rdnt;
-    public static MediaPlayer reef;
-    public static MediaPlayer rlc;
-    public static MediaPlayer rndr;
-    public static MediaPlayer rvn;
-    public static MediaPlayer sand;
-    public static MediaPlayer saniye;
-    public static MediaPlayer sei;
     static int[] sesSeviyesi;
     public static int[] sesSeviyesiBtcTurk;
-    static MediaPlayer[] sesler;
-    public static MediaPlayer[] seslerBtcTurk;
-    public static MediaPlayer shib;
     static int[] siralama;
     static int[] siralamaBtcTurk;
-    public static MediaPlayer skl;
-    public static MediaPlayer snx;
-    public static MediaPlayer sol;
-    public static MediaPlayer spell;
-    public static MediaPlayer stg;
-    public static MediaPlayer storj;
-    public static MediaPlayer strk;
-    public static MediaPlayer stx;
-    public static MediaPlayer sui;
-    public static MediaPlayer sushi;
-    public static MediaPlayer t;
-    public static MediaPlayer theta;
-    public static MediaPlayer tia;
-    public static MediaPlayer tlm;
-    public static MediaPlayer waves;
-    public static MediaPlayer omg;
-    public static MediaPlayer pla;
-    public static MediaPlayer tnsr;
-    static Toolbar toolbar;
-    public static MediaPlayer tron;
-    public static MediaPlayer uma;
-    public static MediaPlayer uni;
-    static String url;
-    public static MediaPlayer vanry;
-    public static MediaPlayer vet;
-    public static MediaPlayer w;
-    public static MediaPlayer xlm;
-    public static MediaPlayer xrp;
-    public static MediaPlayer xtz;
-    public static MediaPlayer zil;
-    public static MediaPlayer zrx;
-    public static MediaPlayer eigen;
-    public static MediaPlayer ray;
-    public static MediaPlayer wif;
-    public static MediaPlayer io;
-    public static MediaPlayer aevo;
-    public static MediaPlayer ena;
-    public static MediaPlayer zk;
-    public static MediaPlayer alt;
-    public static MediaPlayer syn;
-    public static MediaPlayer pda;
-    public static MediaPlayer zro;
-    public static MediaPlayer super0;
+    static int[] sesler;
+    public static int[] seslerBtcTurk;
     private TextView BinanceAnaText;
     private TextView BinanceTlAnaText;
     ArrayAdapter<SpannableString> arrayAdapter;
@@ -2207,7 +3100,7 @@ public class MainActivity extends AppCompatActivity {
     static int hizli = 125;
     static int hizli2 = 0;
     static Double[] oranlar = new Double[hizli];
-    static Double[] oranlarbtcturk = new Double[BtcTurk.btctotal];
+    static Double[] oranlarbtcturk = new Double[btctotal];
     static int tiklanansira = 0;
     Double dotusd = Double.valueOf(2.5d);
     private String isim = "";
@@ -2230,15 +3123,15 @@ public class MainActivity extends AppCompatActivity {
         paribu = new float[hizli];
         paribuisim = new String[hizli];
         farklar = new float[hizli];
-        farklarBtcTurk = new float[BtcTurk.btctotal];
-        sesler = new MediaPlayer[hizli];
+        farklarBtcTurk = new float[btctotal];
+        sesler = new int[hizli];
         isimler = new String[hizli];
-        isimlerBtcTurk = new String[BtcTurk.btctotal];
+        isimlerBtcTurk = new String[btctotal];
         siralama = new int[hizli];
-        siralamaBtcTurk = new int[BtcTurk.btctotal];
+        siralamaBtcTurk = new int[btctotal];
         sesSeviyesi = new int[hizli];
-        seslerBtcTurk = new MediaPlayer[BtcTurk.btctotal];
-        sesSeviyesiBtcTurk = new int[BtcTurk.btctotal];
+        seslerBtcTurk = new int[btctotal];
+        sesSeviyesiBtcTurk = new int[btctotal];
         metinlerParibu = new SpannableString[hizli];
         metinlerBinance = new SpannableString[hizli];
         metinlerBinanceTl = new SpannableString[hizli];
@@ -2248,25 +3141,165 @@ public class MainActivity extends AppCompatActivity {
         binanceDuyuruText = "";
         binanceGeciciDuyuruText = "";
         p = 0;
-        btcturk = new float[BtcTurk.btctotal];
-        huobibtcturk = new float[BtcTurk.btctotal];
-        btcturkisim = new String[BtcTurk.btctotal];
-        indexlerbtcturk = new int[BtcTurk.btctotal];
-        url = "https://www.binance.com/bapi/composite/v1/public/cms/article/catalog/list/query?catalogId=48&pageNo=1&pageSize=1";
+        btcturk = new float[btctotal];
+        huobibtcturk = new float[btctotal];
+        btcturkisim = new String[btctotal];
+        indexlerbtcturk = new int[btctotal];
         MainservisSayac = 0;
         otuyorMu = false;
     }
 
-    public static void mergeSort(float[] arr, int left, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+
+    public static final int SOUND_DOT = R.raw.dot;
+    public static final int SOUND_AVAX = R.raw.avax;
+    public static final int SOUND_TRON = R.raw.tron;
+    public static final int SOUND_EOS = R.raw.eos;
+    public static final int SOUND_BTT = R.raw.btt;
+    public static final int SOUND_RIPPLE = R.raw.ripple;
+    public static final int SOUND_SITELLAR = R.raw.sitellar;
+    public static final int SOUND_ONT = R.raw.ont;
+    public static final int SOUND_ATOM = R.raw.atom;
+    public static final int SOUND_HOT = R.raw.hot;
+    public static final int SOUND_NEO = R.raw.neo;
+    public static final int SOUND_BAT = R.raw.bat;
+    public static final int SOUND_CHZ = R.raw.chz;
+    public static final int SOUND_UNI = R.raw.uni;
+    public static final int SOUND_BAL = R.raw.bal;
+    public static final int SOUND_AAVE = R.raw.aave;
+    public static final int SOUND_LINK = R.raw.link;
+    public static final int SOUND_MAKER = R.raw.maker;
+    public static final int SOUND_W = R.raw.w;
+    public static final int SOUND_RAY = R.raw.ray;
+    public static final int SOUND_LRC = R.raw.lrc;
+    public static final int SOUND_BAND = R.raw.band;
+    public static final int SOUND_ALGO = R.raw.algo;
+    public static final int SOUND_GRT = R.raw.grt;
+    public static final int SOUND_ENJ = R.raw.enj;
+    public static final int SOUND_THETA = R.raw.theta;
+    public static final int SOUND_MATIC = R.raw.matic;
+    public static final int SOUND_OXT = R.raw.oxt;
+    public static final int SOUND_CRV = R.raw.crv;
+    public static final int SOUND_OGN = R.raw.ogn;
+    public static final int SOUND_MANA = R.raw.mana;
+    public static final int SOUND_IOTA = R.raw.iota;
+    public static final int SOUND_SOL = R.raw.sol;
+    public static final int SOUND_APE = R.raw.ape;
+    public static final int SOUND_VET = R.raw.vet;
+    public static final int SOUND_ANKR = R.raw.ankr;
+    public static final int SOUND_SHIB = R.raw.shib;
+    public static final int SOUND_LPT = R.raw.lpt;
+    public static final int SOUND_INJ = R.raw.inj;
+    public static final int SOUND_ICP = R.raw.icp;
+    public static final int SOUND_FTM = R.raw.ftm;
+    public static final int SOUND_AXS = R.raw.axs;
+    public static final int SOUND_ENS = R.raw.ens;
+    public static final int SOUND_SAND = R.raw.sand;
+    public static final int SOUND_AUDIO = R.raw.audio;
+    public static final int SOUND_CLV = R.raw.clv;
+    public static final int SOUND_UMA = R.raw.uma;
+    public static final int SOUND_STORJ = R.raw.storj;
+    public static final int SOUND_RAD = R.raw.rad;
+    public static final int SOUND_INCH = R.raw.inch;
+    public static final int SOUND_COMP = R.raw.comp;
+    public static final int SOUND_SNX = R.raw.snx;
+    public static final int SOUND_FET = R.raw.fet;
+    public static final int SOUND_STG = R.raw.stg;
+    public static final int SOUND_QNT = R.raw.qnt;
+    public static final int SOUND_APT = R.raw.apt;
+    public static final int SOUND_RNDR = R.raw.rndr;
+    public static final int SOUND_ARB = R.raw.arb;
+    public static final int SOUND_SUI = R.raw.sui;
+    public static final int SOUND_CTSI = R.raw.ctsi;
+    public static final int SOUND_OP = R.raw.op;
+    public static final int SOUND_EIGEN = R.raw.eigen;
+    public static final int SOUND_RLC = R.raw.rlc;
+    public static final int SOUND_SKL = R.raw.skl;
+    public static final int SOUND_WIF = R.raw.wif;
+    public static final int SOUND_T = R.raw.t;
+    public static final int SOUND_SEI = R.raw.sei;
+    public static final int SOUND_RDNT = R.raw.rdnt;
+    public static final int SOUND_FLOKI = R.raw.floki;
+    public static final int SOUND_DYDX = R.raw.dydx;
+    public static final int SOUND_TIA = R.raw.tia;
+    public static final int SOUND_ALICE = R.raw.alice;
+    public static final int SOUND_TLM = R.raw.tlm;
+    public static final int SOUND_GALA = R.raw.gala;
+    public static final int SOUND_VANRY = R.raw.vanry;
+    public static final int SOUND_SPELL = R.raw.spell;
+    public static final int SOUND_PEPE = R.raw.pepe;
+    public static final int SOUND_API3 = R.raw.api3;
+    public static final int SOUND_MASK = R.raw.mask;
+    public static final int SOUND_GLM = R.raw.glm;
+    public static final int SOUND_IMX = R.raw.imx;
+    public static final int SOUND_BLUR = R.raw.blur;
+    public static final int SOUND_BONK = R.raw.bonk;
+    public static final int SOUND_ADA = R.raw.ada;
+    public static final int SOUND_DOGE = R.raw.doge;
+    public static final int SOUND_LITE = R.raw.lite;
+    public static final int SOUND_RVN = R.raw.rvn;
+    public static final int SOUND_ETHERFI = R.raw.etherfi;
+    public static final int SOUND_XTZ = R.raw.xtz;
+    public static final int SOUND_ZIL = R.raw.zil;
+    public static final int SOUND_MINA = R.raw.mina;
+    public static final int SOUND_BCH = R.raw.bch;
+    public static final int SOUND_PSG = R.raw.psg;
+    public static final int SOUND_ATM = R.raw.atm;
+    public static final int SOUND_ASR = R.raw.asr;
+    public static final int SOUND_BAR = R.raw.bar;
+    public static final int SOUND_JUV = R.raw.juv;
+    public static final int SOUND_ACM = R.raw.acm;
+    public static final int SOUND_CITY = R.raw.city;
+    public static final int SOUND_BEAM = R.raw.beam;
+    public static final int SOUND_PYTH = R.raw.pyth;
+    public static final int SOUND_JOE = R.raw.joe;
+    public static final int SOUND_JTO = R.raw.jto;
+    public static final int SOUND_MEME = R.raw.meme;
+    public static final int SOUND_STRK = R.raw.strk;
+    public static final int SOUND_DYM = R.raw.dym;
+    public static final int SOUND_JUP = R.raw.jup;
+    public static final int SOUND_MAGIC = R.raw.magic;
+    public static final int SOUND_ZRX = R.raw.zrx;
+    public static final int SOUND_NMR = R.raw.nmr;
+    public static final int SOUND_PENDLE = R.raw.pendle;
+    public static final int SOUND_MANTA = R.raw.manta;
+    public static final int SOUND_TNSR = R.raw.tnsr;
+    public static final int SOUND_ARKM = R.raw.arkm;
+    public static final int SOUND_AXL = R.raw.axl;
+    public static final int SOUND_IO = R.raw.io;
+    public static final int SOUND_LDO = R.raw.ldo;
+    public static final int SOUND_AEVO = R.raw.aevo;
+    public static final int SOUND_ENA = R.raw.ena;
+    public static final int SOUND_ZK = R.raw.zk;
+    public static final int SOUND_ALT = R.raw.alt;
+    public static final int SOUND_SYN = R.raw.syn;
+    public static final int SOUND_FIL = R.raw.fil;
+    public static final int SOUND_PDA = R.raw.pda;
+    public static final int SOUND_ZRO = R.raw.zro;
+    public static final int SOUND_DASH = R.raw.dash;
+    public static final int SOUND_STX = R.raw.stx;
+    public static final int SOUND_AMP = R.raw.amp;
+    public static final int SOUND_BNT = R.raw.bnt;
+    public static final int SOUND_LUNA = R.raw.luna;
+    public static final int SOUND_PAXG = R.raw.paxg;
+    public static final int SOUND_CVC = R.raw.cvc;
+    public static final int SOUND_ETC = R.raw.etc;
+    public static final int SOUND_FLOW = R.raw.flow;
+    public static final int SOUND_SUPER0 = R.raw.super0;
+    public static final int SOUND_ARPA = R.raw.arpa;
+    public static final int SOUND_SUSHI = R.raw.sushi;
+    public static final int SOUND_JASMY = R.raw.jasmy;
+
+
+    public static void mergeSort(float[] arr, int left, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, int[] soundIds) {
         if (left < right) {
             int middle = (left + right) / 2;
-            mergeSort(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeSort(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, mP);
-            merge(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, mP);
+            mergeSort(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeSort(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            merge(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
         }
     }
 
-    public static void merge(float[] arr, int left, int middle, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+    public static void merge(float[] arr, int left, int middle, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, int[] soundIds) {
         int n1 = (middle - left) + 1;
         int n2 = right - middle;
         float[] L = new float[n1];
@@ -2287,8 +3320,8 @@ public class MainActivity extends AppCompatActivity {
         int[] intR02 = new int[n2];
         double[] doubleL = new double[n1];
         double[] doubleR = new double[n2];
-        MediaPlayer[] mPL = new MediaPlayer[n1];
-        MediaPlayer[] mPR = new MediaPlayer[n2];
+        int[] soundL = new int[n1];
+        int[] soundR = new int[n2];
         for (int i = 0; i < n1; i++) {
             L[i] = arr[left + i];
             floatL1[i] = f1[left + i];
@@ -2299,7 +3332,7 @@ public class MainActivity extends AppCompatActivity {
             intL1[i] = i1[left + i];
             intR12[i] = i2[left + i];
             doubleL[i] = d[left + i].doubleValue();
-            mPL[i] = mP[left + i];
+            soundL[i] = soundIds[left + i];
         }
         for (int j = 0; j < n2; j++) {
             R[j] = arr[middle + 1 + j];
@@ -2311,7 +3344,7 @@ public class MainActivity extends AppCompatActivity {
             intR1[j] = i1[middle + 1 + j];
             intR02[j] = i2[middle + 1 + j];
             doubleR[j] = d[middle + 1 + j].doubleValue();
-            mPR[j] = mP[middle + 1 + j];
+            soundR[j] = soundIds[middle + 1 + j];
         }
         int i3 = 0;
         int k = left;
@@ -2327,7 +3360,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intL1[i3];
                 i2[k] = intR12[i3];
                 d[k] = Double.valueOf(doubleL[i3]);
-                mP[k] = mPL[i3];
+                soundIds[k] = soundL[i3];
                 i3++;
             } else {
                 arr[k] = R[j2];
@@ -2339,7 +3372,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intR1[j2];
                 i2[k] = intR02[j2];
                 d[k] = Double.valueOf(doubleR[j2]);
-                mP[k] = mPR[j2];
+                soundIds[k] = soundR[j2];
                 j2++;
             }
             k++;
@@ -2354,7 +3387,7 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intL1[i3];
             i2[k] = intR12[i3];
             d[k] = Double.valueOf(doubleL[i3]);
-            mP[k] = mPL[i3];
+            soundIds[k] = soundL[i3];
             i3++;
             k++;
         }
@@ -2368,24 +3401,24 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intR1[j2];
             i2[k] = intR02[j2];
             d[k] = Double.valueOf(doubleR[j2]);
-            mP[k] = mPR[j2];
+            soundIds[k] = soundR[j2];
             j2++;
             k++;
         }
     }
 
     public static void mergeSortBtcTurk(float[] arr, int left, int right, float[] f1, float[] f2,
-                                        String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+                                        String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d,int[] soundIds) {
         if (left < right) {
             int middle = (left + right) / 2;
-            mergeSortBtcTurk(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeSortBtcTurk(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, mP);
-            mergeBtcTurk(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, mP);
+            mergeSortBtcTurk(arr, left, middle, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeSortBtcTurk(arr, middle + 1, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
+            mergeBtcTurk(arr, left, middle, right, f1, f2, s, s1, i0, i1, i2, d, soundIds);
         }
     }
 
     public static void mergeBtcTurk(float[] arr, int left, int middle, int right, float[] f1, float[] f2,
-                                    String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, MediaPlayer[] mP) {
+                                    String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d,int[] soundIds) {
         int n1 = middle - left + 1;
         int n2 = right - middle;
 
@@ -2407,8 +3440,8 @@ public class MainActivity extends AppCompatActivity {
         int[] intR02 = new int[n2];
         double[] doubleL = new double[n1];
         double[] doubleR = new double[n2];
-        MediaPlayer[] mPL = new MediaPlayer[n1];
-        MediaPlayer[] mPR = new MediaPlayer[n2];
+        int[] soundL = new int[n1];
+        int[] soundR = new int[n2];
 
         // Sol ve sağ alt dizileri doldur
         for (int i = 0; i < n1; i++) {
@@ -2421,7 +3454,7 @@ public class MainActivity extends AppCompatActivity {
             intL1[i] = i1[left + i];
             intR12[i] = i2[left + i];
             doubleL[i] = d[left + i];
-            mPL[i] = mP[left + i];
+            soundL[i] = soundIds[left + i];
         }
         for (int j = 0; j < n2; j++) {
             R[j] = arr[middle + 1 + j];
@@ -2433,7 +3466,7 @@ public class MainActivity extends AppCompatActivity {
             intR1[j] = i1[middle + 1 + j];
             intR02[j] = i2[middle + 1 + j];
             doubleR[j] = d[middle + 1 + j];
-            mPR[j] = mP[middle + 1 + j];
+            soundR[j] = soundIds[middle + 1 + j];
         }
 
         // Birleştirme işlemi
@@ -2449,7 +3482,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intL1[i];
                 i2[k] = intR12[i];
                 d[k] = doubleL[i];
-                mP[k] = mPL[i];
+                soundIds[k] = soundL[i];
                 i++;
             } else {
                 arr[k] = R[j];
@@ -2461,7 +3494,7 @@ public class MainActivity extends AppCompatActivity {
                 i1[k] = intR1[j];
                 i2[k] = intR02[j];
                 d[k] = doubleR[j];
-                mP[k] = mPR[j];
+                soundIds[k] = soundR[j];
                 j++;
             }
             k++;
@@ -2478,7 +3511,7 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intL1[i];
             i2[k] = intR12[i];
             d[k] = doubleL[i];
-            mP[k] = mPL[i];
+            soundIds[k] = soundL[i];
             i++;
             k++;
         }
@@ -2492,31 +3525,54 @@ public class MainActivity extends AppCompatActivity {
             i1[k] = intR1[j];
             i2[k] = intR02[j];
             d[k] = doubleR[j];
-            mP[k] = mPR[j];
+            soundIds[k] = soundR[j];
             j++;
             k++;
         }
     }
-
-    /* JADX WARN: Multi-variable type inference failed */
+    private static MainActivity instance;
+    private MediaPlayerManager mediaPlayerManager;
     protected void onCreate(Bundle savedInstanceState) {
         Sesler.arti = true;
+        instance = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        paribuL = (ListView) findViewById(R.id.listview);
-        binanceL = (ListView) findViewById(R.id.listview2);
-        binanceTlL = (ListView) findViewById(R.id.listview3);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
+            }
+        }
+        if (Service.isRunning() && calistiMi) {
+            start.setVisibility(View.GONE);
+            updateUI(true);
+        }
+
+        if (savedInstanceState != null) {
+            calistiMi = savedInstanceState.getBoolean("calistiMi", false);
+            if (calistiMi && Service.isRunning()) {
+                start.setVisibility(View.GONE);
+                updateUI(true);
+            }
+        }
+
+
+        paribuL = findViewById(R.id.listview);
+        binanceL =  findViewById(R.id.listview2);
+        binanceTlL =  findViewById(R.id.listview3);
         mQueue = Volley.newRequestQueue(this);
-        dot = (EditText) findViewById(R.id.DOT);
+        dot =  findViewById(R.id.DOT);
         ayarlar = findViewById(R.id.ayarlar);
         yukari = findViewById(R.id.yukari);
         asagi = findViewById(R.id.asagi);
         start = findViewById(R.id.baslat);
         stop = findViewById(R.id.durdur);
         duzenle = findViewById(R.id.duzenle);
-        paribuAnaText = (TextView) findViewById(R.id.baslikparibuhizli);
-        BinanceTlAnaText = (TextView) findViewById(R.id.baslikbinancetlhizli);
-        BinanceAnaText = (TextView) findViewById(R.id.baslikbinancehizli);
+        paribuAnaText = findViewById(R.id.baslikparibuhizli);
+        BinanceTlAnaText =  findViewById(R.id.baslikbinancetlhizli);
+        BinanceAnaText =  findViewById(R.id.baslikbinancehizli);
         BottomAppBar findViewById = findViewById(R.id.bottom_app_bar);
         mbottomappbar = findViewById;
         setSupportActionBar(findViewById);
@@ -2538,156 +3594,135 @@ public class MainActivity extends AppCompatActivity {
         dialog = create;
         create.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
-        dots = MediaPlayer.create(this, R.raw.dot);
-        avax = MediaPlayer.create(this, R.raw.avax);
-        tron = MediaPlayer.create(this, R.raw.tron);
-        eos = MediaPlayer.create(this, R.raw.eos);
         saniye = MediaPlayer.create(this, R.raw.saniye);
-        xlm = MediaPlayer.create(this, R.raw.sitellar);
-        xrp = MediaPlayer.create(this, R.raw.ripple);
-        ont = MediaPlayer.create(this, R.raw.ont);
-        btt = MediaPlayer.create(this, R.raw.btt);
-        atom = MediaPlayer.create(this, R.raw.atom);
-        hot = MediaPlayer.create(this, R.raw.hot);
-        neo = MediaPlayer.create(this, R.raw.neo);
-        bat = MediaPlayer.create(this, R.raw.bat);
-        chz = MediaPlayer.create(this, R.raw.chz);
-        uni = MediaPlayer.create(this, R.raw.uni);
-        bal = MediaPlayer.create(this, R.raw.bal);
-        ada = MediaPlayer.create(this, R.raw.ada);
-        dogem = MediaPlayer.create(this, R.raw.doge);
-        ltc = MediaPlayer.create(this, R.raw.lite);
-        rvn = MediaPlayer.create(this, R.raw.rvn);
-        waves = MediaPlayer.create(this, R.raw.waves);
-        xtz = MediaPlayer.create(this, R.raw.xtz);
-        aave = MediaPlayer.create(this, R.raw.aave);
-        link = MediaPlayer.create(this, R.raw.link);
-        maker = MediaPlayer.create(this, R.raw.maker);
-        omg = MediaPlayer.create(this, R.raw.omg);
-        reef = MediaPlayer.create(this, R.raw.reef);
-        lrc = MediaPlayer.create(this, R.raw.lrc);
-        band= MediaPlayer.create(this, R.raw.band);
-        algo= MediaPlayer.create(this, R.raw.algo);
-        zil= MediaPlayer.create(this, R.raw.zil);
-        grt= MediaPlayer.create(this, R.raw.grt);
-        enj= MediaPlayer.create(this, R.raw.enj);
-        theta= MediaPlayer.create(this, R.raw.theta);
-        matic= MediaPlayer.create(this, R.raw.matic);
-        oxt= MediaPlayer.create(this, R.raw.oxt);
-        psg= MediaPlayer.create(this, R.raw.psg);
-        atm= MediaPlayer.create(this, R.raw.atm);
-        asr= MediaPlayer.create(this, R.raw.asr);
-        bar= MediaPlayer.create(this, R.raw.bar);
-        juv= MediaPlayer.create(this, R.raw.juv);
-        acm= MediaPlayer.create(this, R.raw.acm);
-        crv= MediaPlayer.create(this, R.raw.crv);
-        ogn= MediaPlayer.create(this, R.raw.ogn);
-        mana= MediaPlayer.create(this, R.raw.mana);
-        iota= MediaPlayer.create(this, R.raw.iota);
-        sol= MediaPlayer.create(this, R.raw.sol);
-        mina= MediaPlayer.create(this, R.raw.mina);
-        ape= MediaPlayer.create(this, R.raw.ape);
-        vet= MediaPlayer.create(this, R.raw.vet);
-        ankr= MediaPlayer.create(this, R.raw.ankr);
-        shib= MediaPlayer.create(this, R.raw.shib);
-        lpt=MediaPlayer.create(this, R.raw.lpt);
-        inj=MediaPlayer.create(this, R.raw.inj);
-        icp=MediaPlayer.create(this, R.raw.icp);
-        ftm=MediaPlayer.create(this, R.raw.ftm);
-        axs=MediaPlayer.create(this, R.raw.axs);
-        bch=MediaPlayer.create(this, R.raw.bch);
-        ens=MediaPlayer.create(this, R.raw.ens);
-        alice=MediaPlayer.create(this, R.raw.alice);
-        tlm=MediaPlayer.create(this, R.raw.tlm);
-        sand=MediaPlayer.create(this, R.raw.sand);
-        audio=MediaPlayer.create(this, R.raw.audio);
-        clv=MediaPlayer.create(this, R.raw.clv);
-        gala=MediaPlayer.create(this, R.raw.gala);
-        vanry=MediaPlayer.create(this, R.raw.vanry);
-        uma=MediaPlayer.create(this, R.raw.uma);
-        storj=MediaPlayer.create(this, R.raw.storj);
-        city=MediaPlayer.create(this, R.raw.city);
-        rad=MediaPlayer.create(this, R.raw.rad);
-        inch=MediaPlayer.create(this, R.raw.inch);
-        comp=MediaPlayer.create(this, R.raw.comp);
-        snx=MediaPlayer.create(this, R.raw.snx);
-        fet=MediaPlayer.create(this, R.raw.fet);
-        spell=MediaPlayer.create(this, R.raw.spell);
-        stg=MediaPlayer.create(this, R.raw.stg);
-        qnt=MediaPlayer.create(this, R.raw.qnt);
-        apt=MediaPlayer.create(this, R.raw.apt);
-        rndr=MediaPlayer.create(this, R.raw.rndr);
-        arb=MediaPlayer.create(this, R.raw.arb);
-        sui=MediaPlayer.create(this, R.raw.sui);
-        ctsi=MediaPlayer.create(this, R.raw.ctsi);
-        op=MediaPlayer.create(this, R.raw.op);
-        pepe=MediaPlayer.create(this, R.raw.pepe);
-        ocean=MediaPlayer.create(this, R.raw.ocean);
-        rlc=MediaPlayer.create(this, R.raw.rlc);
-        skl=MediaPlayer.create(this, R.raw.skl);
-        agix=MediaPlayer.create(this, R.raw.agix);
-        t=MediaPlayer.create(this, R.raw.t);
-        dash=MediaPlayer.create(this, R.raw.dash);
-        fil=MediaPlayer.create(this, R.raw.fil);
-        stx=MediaPlayer.create(this, R.raw.stx);
-        amp=MediaPlayer.create(this, R.raw.amp);
-        lunc=MediaPlayer.create(this, R.raw.lunc);
-        bnt=MediaPlayer.create(this, R.raw.bnt);
-        glm=MediaPlayer.create(this, R.raw.glm);
-        luna=MediaPlayer.create(this, R.raw.luna);
-        paxg=MediaPlayer.create(this, R.raw.paxg);
-        imx=MediaPlayer.create(this, R.raw.imx);
-        pla=MediaPlayer.create(this, R.raw.pla);
-        cvc=MediaPlayer.create(this, R.raw.cvc);
-        etc=MediaPlayer.create(this, R.raw.etc);
-        flow=MediaPlayer.create(this, R.raw.flow);
-        mask=MediaPlayer.create(this, R.raw.mask);
-        api3=MediaPlayer.create(this, R.raw.api3);
-        t=MediaPlayer.create(this, R.raw.t);
-        arpa=MediaPlayer.create(this, R.raw.arpa);
-        ldo=MediaPlayer.create(this, R.raw.ldo);
-        sushi=MediaPlayer.create(this, R.raw.sushi);
-        magic=MediaPlayer.create(this, R.raw.magic);
-        sei=MediaPlayer.create(this, R.raw.sei);
-        rdnt=MediaPlayer.create(this, R.raw.rdnt);
-        floki=MediaPlayer.create(this, R.raw.floki);
-        dydx=MediaPlayer.create(this, R.raw.dydx);
-        jasmy=MediaPlayer.create(this, R.raw.jasmy);
-        zrx=MediaPlayer.create(this, R.raw.zrx);
-        nmr=MediaPlayer.create(this, R.raw.nmr);
-        tia=MediaPlayer.create(this, R.raw.tia);
-        blur=MediaPlayer.create(this, R.raw.blur);
-        bonk=MediaPlayer.create(this, R.raw.bonk);
-        beam=MediaPlayer.create(this, R.raw.beam);
-        pyth=MediaPlayer.create(this, R.raw.pyth);
-        joe=MediaPlayer.create(this, R.raw.joe);
-        jto=MediaPlayer.create(this, R.raw.jto);
-        meme=MediaPlayer.create(this, R.raw.meme);
-        strk=MediaPlayer.create(this, R.raw.strk);
-        dym=MediaPlayer.create(this, R.raw.dym);
-        jup=MediaPlayer.create(this, R.raw.jup);
-        pendle=MediaPlayer.create(this, R.raw.pendle);
-        manta=MediaPlayer.create(this, R.raw.manta);
-        alarm=MediaPlayer.create(this, R.raw.alarm);
-        w = MediaPlayer.create(this, R.raw.w);
-        etherfi = MediaPlayer.create(this, R.raw.etherfi);
-        tnsr = MediaPlayer.create(this, R.raw.tnsr);
-        arkm = MediaPlayer.create( this, R.raw.arkm);
-        axl = MediaPlayer.create( this, R.raw.axl);
-        ray = MediaPlayer.create( this, R.raw.ray);
-        eigen = MediaPlayer.create( this, R.raw.eigen);
-        wif = MediaPlayer.create( this, R.raw.wif);
-        io = MediaPlayer.create( this, R.raw.io);
-        aevo = MediaPlayer.create( this, R.raw.aevo);
-        ena = MediaPlayer.create( this, R.raw.ena);
-        zk = MediaPlayer.create( this, R.raw.zk);
-        alt = MediaPlayer.create( this, R.raw.alt);
-        syn = MediaPlayer.create( this, R.raw.syn);
-        pda = MediaPlayer.create( this, R.raw.pda);
-        zro = MediaPlayer.create( this, R.raw.zro);
-        super0 = MediaPlayer.create( this, R.raw.super0);
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
 
 
+        sesler[0] = SOUND_DOT;
+        sesler[1] =SOUND_AVAX;
+        sesler[2] = SOUND_TRON;
+        sesler[3] = SOUND_EOS;
+        sesler[4] = SOUND_BTT;
+        sesler[5] = SOUND_RIPPLE;
+        sesler[6] = SOUND_SITELLAR;
+        sesler[7] = SOUND_ONT;
+        sesler[8] = SOUND_ATOM;
+        sesler[9] = SOUND_HOT;
+        sesler[10] = SOUND_NEO;
+        sesler[11] = SOUND_BAT;
+        sesler[12] = SOUND_CHZ;
+        sesler[13] = SOUND_UNI;
+        sesler[14] = SOUND_BAL;
+        sesler[15] = SOUND_AAVE;
+        sesler[16] = SOUND_LINK;
+        sesler[17] = SOUND_MAKER;
+        sesler[18] = SOUND_W;
+        sesler[19] = SOUND_RAY;
+        sesler[20] = SOUND_LRC;
+        sesler[21] = SOUND_BAND;
+        sesler[22] = SOUND_ALGO;
+        sesler[23] = SOUND_GRT;
+        sesler[24] = SOUND_ENJ;
+        sesler[25] = SOUND_THETA;
+        sesler[26] = SOUND_MATIC;
+        sesler[27] = SOUND_OXT;
+        sesler[28] = SOUND_CRV;
+        sesler[29] = SOUND_OGN;
+        sesler[30] = SOUND_MANA;
+        sesler[31] = SOUND_IOTA;
+        sesler[32] = SOUND_SOL;
+        sesler[33] = SOUND_APE;
+        sesler[34] = SOUND_VET;
+        sesler[35] = SOUND_ANKR;
+        sesler[36] = SOUND_SHIB;
+        sesler[37] = SOUND_LPT;
+        sesler[38] = SOUND_INJ;
+        sesler[39] = SOUND_ICP;
+        sesler[40] = SOUND_FTM;
+        sesler[41] = SOUND_AXS;
+        sesler[42] = SOUND_ENS;
+        sesler[43] = SOUND_SAND;
+        sesler[44] = SOUND_AUDIO;
+        sesler[45] = SOUND_CLV;
+        sesler[46] = SOUND_UMA;
+        sesler[47] = SOUND_STORJ;
+        sesler[48] = SOUND_RAD;
+        sesler[49] = SOUND_INCH;
+        sesler[50] = SOUND_COMP;
+        sesler[51] = SOUND_SNX;
+        sesler[52] = SOUND_FET;
+        sesler[53] = SOUND_STG;
+        sesler[54] = SOUND_QNT;
+        sesler[55] = SOUND_APT;
+        sesler[56] = SOUND_RNDR;
+        sesler[57] = SOUND_ARB;
+        sesler[58] = SOUND_SUI;
+        sesler[59] = SOUND_CTSI;
+        sesler[60] = SOUND_OP;
+        sesler[61] = SOUND_EIGEN;
+        sesler[62] = SOUND_RLC;
+        sesler[63] = SOUND_SKL;
+        sesler[64] = SOUND_WIF;
+        sesler[65] = SOUND_T;
+        sesler[66] = SOUND_SEI;
+        sesler[67] = SOUND_RDNT;
+        sesler[68] = SOUND_FLOKI;
+        sesler[69] = SOUND_DYDX;
+        sesler[70] = SOUND_TIA;
+        sesler[71] = SOUND_ALICE;
+        sesler[72] = SOUND_TLM;
+        sesler[73] = SOUND_GALA;
+        sesler[74] = SOUND_VANRY;
+        sesler[75] = SOUND_SPELL;
+        sesler[76] = SOUND_PEPE;
+        sesler[77] = SOUND_API3;
+        sesler[78] = SOUND_MASK;
+        sesler[79] = SOUND_GLM;
+        sesler[80] = SOUND_IMX;
+        sesler[81] = SOUND_BLUR;
+        sesler[82] = SOUND_BONK;
+        sesler[83] = SOUND_ADA;
+        sesler[84] = SOUND_DOGE;
+        sesler[85] = SOUND_LITE;
+        sesler[86] = SOUND_RVN;
+        sesler[87] = SOUND_ETHERFI;
+        sesler[88] = SOUND_XTZ;
+        sesler[89] = SOUND_ZIL;
+        sesler[90] = SOUND_MINA;
+        sesler[91] = SOUND_BCH;
+        sesler[92] = SOUND_PSG;
+        sesler[93] = SOUND_ATM;
+        sesler[94] = SOUND_ASR;
+        sesler[95] = SOUND_BAR;
+        sesler[96] = SOUND_JUV;
+        sesler[97] = SOUND_ACM;
+        sesler[98] = SOUND_CITY;
+        sesler[99] = SOUND_BEAM;
+        sesler[100] = SOUND_PYTH;
+        sesler[101] = SOUND_JOE;
+        sesler[102] = SOUND_JTO;
+        sesler[103] = SOUND_MEME;
+        sesler[104] = SOUND_STRK;
+        sesler[105] = SOUND_DYM;
+        sesler[106] = SOUND_JUP;
+        sesler[107] = SOUND_MAGIC;
+        sesler[108] = SOUND_ZRX;
+        sesler[109] = SOUND_NMR;
+        sesler[110] = SOUND_PENDLE;
+        sesler[111] = SOUND_MANTA;
+        sesler[112] = SOUND_TNSR;
+        sesler[113] = SOUND_ARKM;
+        sesler[114] = SOUND_AXL;
+        sesler[115] = SOUND_IO;
+        sesler[116] = SOUND_LDO;
+        sesler[117] = SOUND_AEVO;
+        sesler[118] = SOUND_ENA;
+        sesler[119] = SOUND_ZK;
+        sesler[120] = SOUND_ALT;
+        sesler[121] = SOUND_SYN;
+        sesler[122] = SOUND_FIL;
+        sesler[123] = SOUND_PDA;
+        sesler[124] = SOUND_ZRO;
 
         indexler[0] = 954;
         indexler[1] = 1052;
@@ -2941,131 +3976,7 @@ public class MainActivity extends AppCompatActivity {
         paribuisim[123] = "PDA_TL";
         paribuisim[124] = "ZRO_TL";
 
-        sesler[0] = dots;
-        sesler[1] = avax;
-        sesler[2] = tron;
-        sesler[3] = eos;
-        sesler[4] = btt;
-        sesler[5] = xrp;
-        sesler[6] = xlm;
-        sesler[7] = ont;
-        sesler[8] = atom;
-        sesler[9] = hot;
-        sesler[10] = neo;
-        sesler[11] = bat;
-        sesler[12] = chz;
-        sesler[13] = uni;
-        sesler[14] = bal;
-        sesler[15] = aave;
-        sesler[16] = link;
-        sesler[17] = maker;
-        sesler[18] = w;
-        sesler[19] = ray;
-        sesler[20] = lrc;
-        sesler[21] = band;
-        sesler[22] = algo;
-        sesler[23] = grt;
-        sesler[24] = enj;
-        sesler[25] = theta;
-        sesler[26] = matic;
-        sesler[27] = oxt;
-        sesler[28] = crv;
-        sesler[29] = ogn;
-        sesler[30] = mana;
-        sesler[31] = iota;
-        sesler[32] = sol;
-        sesler[33] = ape;
-        sesler[34] = vet;
-        sesler[35] = ankr;
-        sesler[36] = shib;
-        sesler[37] = lpt;
-        sesler[38] = inj;
-        sesler[39] = icp;
-        sesler[40] = ftm;
-        sesler[41] = axs;
-        sesler[42] = ens;
-        sesler[43] = sand;
-        sesler[44] = audio;
-        sesler[45] = clv;
-        sesler[46] = uma;
-        sesler[47] = storj;
-        sesler[48] = rad;
-        sesler[49] = inch;
-        sesler[50] = comp;
-        sesler[51] = snx;
-        sesler[52] = fet;
-        sesler[53] = stg;
-        sesler[54] = qnt;
-        sesler[55] = apt;
-        sesler[56] = rndr;
-        sesler[57] = arb;
-        sesler[58] = sui;
-        sesler[59] = ctsi;
-        sesler[60] = op;
-        sesler[61] = eigen;
-        sesler[62] = rlc;
-        sesler[63] = skl;
-        sesler[64] = wif;
-        sesler[65] = t;
-        sesler[66] = sei;
-        sesler[67] = rdnt;
-        sesler[68] = floki;
-        sesler[69] = dydx;
-        sesler[70] = tia;
-        sesler[71] = alice;
-        sesler[72] = tlm;
-        sesler[73] = gala;
-        sesler[74] = vanry;
-        sesler[75] = spell;
-        sesler[76] = pepe;
-        sesler[77] = api3;
-        sesler[78] = mask;
-        sesler[79] = glm;
-        sesler[80] = imx;
-        sesler[81] = blur;
-        sesler[82] = bonk;
-        sesler[83] = ada;
-        sesler[84] = dogem;
-        sesler[85] = ltc;
-        sesler[86] = rvn;
-        sesler[87] = etherfi;
-        sesler[88] = xtz;
-        sesler[89] = zil;
-        sesler[90] = mina;
-        sesler[91] = bch;
-        sesler[92] = psg;
-        sesler[93] = atm;
-        sesler[94] = asr;
-        sesler[95] = bar;
-        sesler[96] = juv;
-        sesler[97] = acm;
-        sesler[98] = city;
-        sesler[99] = beam;
-        sesler[100] = pyth;
-        sesler[101] = joe;
-        sesler[102] = jto;
-        sesler[103] = meme;
-        sesler[104] = strk;
-        sesler[105] = dym;
-        sesler[106] = jup;
-        sesler[107] = magic;
-        sesler[108] = zrx;
-        sesler[109] = nmr;
-        sesler[110] = pendle;
-        sesler[111] = manta;
-        sesler[112] = tnsr;
-        sesler[113] = arkm;
-        sesler[114] = axl;
-        sesler[115] = io;
-        sesler[116] = ldo;
-        sesler[117] = aevo;
-        sesler[118] = ena;
-        sesler[119] = zk;
-        sesler[120] = alt;
-        sesler[121] = syn;
-        sesler[122] = fil;
-        sesler[123] = pda;
-        sesler[124] = zro;
+
 
         btcturkisim[0] = "XRP_TRY";
         btcturkisim[1] = "LTC_TRY";
@@ -3229,86 +4140,86 @@ public class MainActivity extends AppCompatActivity {
         indexlerbtcturk[78] = 950;
         indexlerbtcturk[79] = 2215;
 
-        seslerBtcTurk[0] = xrp;
-        seslerBtcTurk[1] = ltc;
-        seslerBtcTurk[2] = xlm;
-        seslerBtcTurk[3] = neo;
-        seslerBtcTurk[4] = eos;
-        seslerBtcTurk[5] = dash;
-        seslerBtcTurk[6] = link;
-        seslerBtcTurk[7] = atom;
-        seslerBtcTurk[8] = xtz;
-        seslerBtcTurk[9] = tron;
-        seslerBtcTurk[10] = ada;
-        seslerBtcTurk[11] = dots;
-        seslerBtcTurk[12] = uni;
-        seslerBtcTurk[13] = ankr;
-        seslerBtcTurk[14] = maker;
-        seslerBtcTurk[15] = enj;
-        seslerBtcTurk[16] = comp;
-        seslerBtcTurk[17] = grt;
-        seslerBtcTurk[18] = mana;
-        seslerBtcTurk[19] = matic;
-        seslerBtcTurk[20] = snx;
-        seslerBtcTurk[21] = bat;
-        seslerBtcTurk[22] = avax;
-        seslerBtcTurk[23] = fil;
-        seslerBtcTurk[24] = dogem;
-        seslerBtcTurk[25] = chz;
-        seslerBtcTurk[26] = sol;
-        seslerBtcTurk[27] = stx;
-        seslerBtcTurk[28] = axs;
-        seslerBtcTurk[29] = shib;
-        seslerBtcTurk[30] = ftm;
-        seslerBtcTurk[31] = lrc;
-        seslerBtcTurk[32] = uma;
-        seslerBtcTurk[33] = fet;
-        seslerBtcTurk[34] = storj;
-        seslerBtcTurk[35] = uni;
-        seslerBtcTurk[36] = gala;
-        seslerBtcTurk[37] = vet;
-        seslerBtcTurk[38] = amp;
-        seslerBtcTurk[39] = audio;
-        seslerBtcTurk[40] = spell;
-        seslerBtcTurk[41] = algo;
-        seslerBtcTurk[42] = ape;
-        seslerBtcTurk[43] = bnt;
-        seslerBtcTurk[44] = crv;
-        seslerBtcTurk[45] = qnt;
-        seslerBtcTurk[46] = skl;
-        seslerBtcTurk[47] = glm;
-        seslerBtcTurk[48] = luna;
-        seslerBtcTurk[49] = paxg;
-        seslerBtcTurk[50] = ens;
-        seslerBtcTurk[51] = imx;
-        seslerBtcTurk[52] = lpt;
-        seslerBtcTurk[53] = rndr;
-        seslerBtcTurk[54] = cvc;
-        seslerBtcTurk[55] = rad;
-        seslerBtcTurk[56] = etc;
-        seslerBtcTurk[57] = hot;
-        seslerBtcTurk[58] = sand;
-        seslerBtcTurk[59] = flow;
-        seslerBtcTurk[60] = ctsi;
-        seslerBtcTurk[61] = mask;
-        seslerBtcTurk[62] = api3;
-        seslerBtcTurk[63] = band;
-        seslerBtcTurk[64] = t;
-        seslerBtcTurk[65] = arb;
-        seslerBtcTurk[66] = strk;
-        seslerBtcTurk[67] = super0;
-        seslerBtcTurk[68] = inj;
-        seslerBtcTurk[69] = ogn;
-        seslerBtcTurk[70] = rlc;
-        seslerBtcTurk[71] = arpa;
-        seslerBtcTurk[72] = ldo;
-        seslerBtcTurk[73] = sushi;
-        seslerBtcTurk[74] = magic;
-        seslerBtcTurk[75] = jasmy;
-        seslerBtcTurk[76] = zrx;
-        seslerBtcTurk[77] = pepe;
-        seslerBtcTurk[78] = nmr;
-        seslerBtcTurk[79] = floki;
+        seslerBtcTurk[0] = SOUND_RIPPLE;
+        seslerBtcTurk[1] = SOUND_LITE;
+        seslerBtcTurk[2] = SOUND_SITELLAR;
+        seslerBtcTurk[3] = SOUND_NEO;
+        seslerBtcTurk[4] = SOUND_EOS;
+        seslerBtcTurk[5] = SOUND_DASH;
+        seslerBtcTurk[6] = SOUND_LINK;
+        seslerBtcTurk[7] = SOUND_ATOM;
+        seslerBtcTurk[8] = SOUND_XTZ;
+        seslerBtcTurk[9] = SOUND_TRON;
+        seslerBtcTurk[10] = SOUND_ADA;
+        seslerBtcTurk[11] = SOUND_DOT;
+        seslerBtcTurk[12] = SOUND_UNI;
+        seslerBtcTurk[13] = SOUND_ANKR;
+        seslerBtcTurk[14] = SOUND_MAKER;
+        seslerBtcTurk[15] = SOUND_ENJ;
+        seslerBtcTurk[16] = SOUND_COMP;
+        seslerBtcTurk[17] = SOUND_GRT;
+        seslerBtcTurk[18] = SOUND_MANA;
+        seslerBtcTurk[19] = SOUND_MATIC;
+        seslerBtcTurk[20] = SOUND_SNX;
+        seslerBtcTurk[21] = SOUND_BAT;
+        seslerBtcTurk[22] = SOUND_AVAX;
+        seslerBtcTurk[23] = SOUND_FIL;
+        seslerBtcTurk[24] = SOUND_DOGE;
+        seslerBtcTurk[25] = SOUND_CHZ;
+        seslerBtcTurk[26] = SOUND_SOL;
+        seslerBtcTurk[27] = SOUND_STX;
+        seslerBtcTurk[28] = SOUND_AXS;
+        seslerBtcTurk[29] = SOUND_SHIB;
+        seslerBtcTurk[30] = SOUND_FTM;
+        seslerBtcTurk[31] = SOUND_LRC;
+        seslerBtcTurk[32] = SOUND_UMA;
+        seslerBtcTurk[33] = SOUND_FET;
+        seslerBtcTurk[34] = SOUND_STORJ;
+        seslerBtcTurk[35] = SOUND_UNI;
+        seslerBtcTurk[36] = SOUND_GALA;
+        seslerBtcTurk[37] = SOUND_VET;
+        seslerBtcTurk[38] = SOUND_AMP;
+        seslerBtcTurk[39] = SOUND_AUDIO;
+        seslerBtcTurk[40] = SOUND_SPELL;
+        seslerBtcTurk[41] = SOUND_ALGO;
+        seslerBtcTurk[42] = SOUND_APE;
+        seslerBtcTurk[43] = SOUND_BNT;
+        seslerBtcTurk[44] = SOUND_CRV;
+        seslerBtcTurk[45] = SOUND_QNT;
+        seslerBtcTurk[46] = SOUND_SKL;
+        seslerBtcTurk[47] = SOUND_GLM;
+        seslerBtcTurk[48] = SOUND_LUNA;
+        seslerBtcTurk[49] = SOUND_PAXG;
+        seslerBtcTurk[50] = SOUND_ENS;
+        seslerBtcTurk[51] = SOUND_IMX;
+        seslerBtcTurk[52] = SOUND_LPT;
+        seslerBtcTurk[53] = SOUND_RNDR;
+        seslerBtcTurk[54] = SOUND_CVC;
+        seslerBtcTurk[55] = SOUND_RAD;
+        seslerBtcTurk[56] = SOUND_ETC;
+        seslerBtcTurk[57] = SOUND_HOT;
+        seslerBtcTurk[58] = SOUND_SAND;
+        seslerBtcTurk[59] = SOUND_FLOW;
+        seslerBtcTurk[60] = SOUND_CTSI;
+        seslerBtcTurk[61] = SOUND_MASK;
+        seslerBtcTurk[62] = SOUND_API3;
+        seslerBtcTurk[63] = SOUND_BAND;
+        seslerBtcTurk[64] = SOUND_T;
+        seslerBtcTurk[65] = SOUND_ARB;
+        seslerBtcTurk[66] = SOUND_STRK;
+        seslerBtcTurk[67] = SOUND_SUPER0;
+        seslerBtcTurk[68] = SOUND_INJ;
+        seslerBtcTurk[69] = SOUND_OGN;
+        seslerBtcTurk[70] = SOUND_RLC;
+        seslerBtcTurk[71] = SOUND_ARPA;
+        seslerBtcTurk[72] = SOUND_LDO;
+        seslerBtcTurk[73] = SOUND_SUSHI;
+        seslerBtcTurk[74] = SOUND_MAGIC;
+        seslerBtcTurk[75] = SOUND_JASMY;
+        seslerBtcTurk[76] = SOUND_ZRX;
+        seslerBtcTurk[77] = SOUND_PEPE;
+        seslerBtcTurk[78] = SOUND_NMR;
+        seslerBtcTurk[79] = SOUND_FLOKI;
         for (int i = 0; i < hizli; i++) {
             String[] strArr3 = isimler;
             StringBuilder sb = new StringBuilder();
@@ -3318,7 +4229,7 @@ public class MainActivity extends AppCompatActivity {
             oranlar[i] = Double.valueOf(0.0d);
             sesSeviyesi[i] = 15;
         }
-        for (int i2 = 0; i2 < BtcTurk.btctotal; i2++) {
+        for (int i2 = 0; i2 < btctotal; i2++) {
             String[] strArr4 = isimlerBtcTurk;
             StringBuilder sb2 = new StringBuilder();
             String str2 = btcturkisim[i2];
@@ -3327,29 +4238,53 @@ public class MainActivity extends AppCompatActivity {
             oranlarbtcturk[i2] = Double.valueOf(0.0d);
             sesSeviyesiBtcTurk[i2] = 15;
         }
-        ayarlar.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.1
-            @Override // android.view.View.OnClickListener
+        ayarlar.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) Sesler.class);
                 openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 MainActivity.this.startActivityIfNeeded(openMainActivity, 2);
             }
         });
-        yukari.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.2
-            @Override // android.view.View.OnClickListener
+        yukari.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 MainActivity.this.ekran3.scrollTo(0, 0);
             }
         });
-        asagi.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.3
-            @Override // android.view.View.OnClickListener
+        asagi.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 MainActivity.this.ekran3.scrollTo(99000, 99000);
             }
         });
-        paribuL.setOnItemClickListener(new AdapterView.OnItemClickListener() { // from class: com.codinginflow.bigots.MainActivity.4
-            @Override // android.widget.AdapterView.OnItemClickListener
+        paribuL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    String coinName = MainActivity.paribuisim[position];
+                    String formattedCoin = coinName.toLowerCase()
+                            .replace("_tl", "")
+                            .replace("_", "") +
+                            "usdt";
+
+                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(binanceUrl));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=com.binance.dev")));
+                }
+            }
+        });
+
+
+        paribuL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (MainActivity.this.calistiMi) {
                     MainActivity.this.dialog.show();
                     if (!MainActivity.girdi) {
@@ -3359,27 +4294,27 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.oran.setText("" + MainActivity.oranlar[position]);
                         MainActivity.this.seek.setProgress((int) (MainActivity.oranlar[position].doubleValue() * 10.0d));
                         MainActivity.this.seekses.setProgress(MainActivity.sesSeviyesi[position]);
-                        MainActivity.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.MainActivity.4.1
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        MainActivity.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                            @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
                                     if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
                                         MainActivity.sesSeviyesi[i3] = progress;
-                                        MainActivity.sesler[i3].setVolume(progress / 15.0f, progress / 15.0f);
+                                        mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
                                         return;
                                     }
                                 }
                             }
 
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                            @Override
                             public void onStartTrackingTouch(SeekBar seekBar) {
                             }
 
-                            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                            @Override
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-                        return;
+                        return true;
                     }
                     MainActivity.tiklanansira = MainActivity.aramaindexler.get(position).intValue();
                     MainActivity.this.isim = MainActivity.paribuisim[MainActivity.tiklanansira];
@@ -3387,45 +4322,48 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this.edit.setText("" + MainActivity.oranlar[MainActivity.tiklanansira]);
                     MainActivity.this.oran.setText("" + MainActivity.oranlar[MainActivity.tiklanansira]);
                     MainActivity.this.seek.setProgress((int) (MainActivity.oranlar[MainActivity.tiklanansira].doubleValue() * 10.0d));
-                    MainActivity.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.MainActivity.4.2
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                    MainActivity.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        @Override
                         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                             for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
                                 if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
                                     MainActivity.sesSeviyesi[i3] = progress;
-                                    MainActivity.sesler[i3].setVolume(progress / 15.0f, progress / 15.0f);
+                                    mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
                                     return;
                                 }
                             }
                         }
 
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        @Override
                         public void onStartTrackingTouch(SeekBar seekBar) {
                         }
 
-                        @Override // android.widget.SeekBar.OnSeekBarChangeListener
+                        @Override
                         public void onStopTrackingTouch(SeekBar seekBar) {
                         }
                     });
                 }
+                return true;
             }
         });
+
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int height = displayMetrics.heightPixels;
         final int width = displayMetrics.widthPixels;
-        TextWatcher tt = new TextWatcher() { // from class: com.codinginflow.bigots.MainActivity.5
-            @Override // android.text.TextWatcher
+        TextWatcher tt = new TextWatcher() {
+            @Override
             public void afterTextChanged(Editable s) {
                 if (MainActivity.this.calistiMi) {
                     try {
                         Double.parseDouble(MainActivity.dot.getText().toString());
                         if (Double.parseDouble(MainActivity.dot.getText().toString()) >= 0.0d) {
-                            MainActivity.this.duzenle.setVisibility(View.GONE);
+                            MainActivity.this.duzenle.setVisibility(View.VISIBLE);
                             return;
                         }
                     } catch (NumberFormatException e) {
-                        MainActivity.this.duzenle.setVisibility(View.VISIBLE);
+                        MainActivity.this.duzenle.setVisibility(View.GONE);
                         return;
                     }
                 } else {
@@ -3446,25 +4384,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            @Override // android.text.TextWatcher
+            @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            @Override // android.text.TextWatcher
+            @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         };
         dot.addTextChangedListener(tt);
-        dot.setOnFocusChangeListener(new View.OnFocusChangeListener() { // from class: com.codinginflow.bigots.MainActivity.6
-            @Override // android.view.View.OnFocusChangeListener
+        dot.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
                     MainActivity.this.duzenle.setVisibility(View.GONE);
                 }
             }
         });
-        duzenle.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.7
-            @Override // android.view.View.OnClickListener
+        duzenle.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 MainActivity.this.dotusd = Double.valueOf(MainActivity.dot.getText().toString());
                 for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
@@ -3474,8 +4412,8 @@ public class MainActivity extends AppCompatActivity {
                 snackbar.show();
             }
         });
-        popupButon.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.8
-            @Override // android.view.View.OnClickListener
+        popupButon.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 try {
                     Double.parseDouble(MainActivity.this.edit.getText().toString());
@@ -3493,8 +4431,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        geributton.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.9
-            @Override // android.view.View.OnClickListener
+        geributton.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 MainActivity.this.dialog.cancel();
                 MainActivity.this.dialog.dismiss();
@@ -3502,22 +4440,22 @@ public class MainActivity extends AppCompatActivity {
         });
         seek.setMax(100);
         seekses.setMax(15);
-        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.MainActivity.10
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 MainActivity.this.edit.setText("" + (progress / 10.0d));
             }
 
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+            @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
-            @Override // android.widget.SeekBar.OnSeekBarChangeListener
+            @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-        mbottomappbar.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.MainActivity.11
-            @Override // android.view.View.OnClickListener
+        mbottomappbar.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 MainActivity.p++;
                 if (MainActivity.p % 2 == 1) {
@@ -3527,15 +4465,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        paribuL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.MainActivity.12
-            @Override // android.view.View.OnTouchListener
+        paribuL.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 MainActivity.dot.clearFocus();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         MainActivity.this.downX = event.getX();
                         break;
-                    case MotionEvent.ACTION_UP /* 1 */:
+                    case MotionEvent.ACTION_UP :
                         break;
                     default:
                         return false;
@@ -3543,7 +4481,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.upX = event.getX();
                 float deltaX = MainActivity.this.downX - MainActivity.this.upX;
                 if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) BtcTurk.class);
+                    Intent openMainActivity = new Intent( MainActivity.this,  BtcTurk.class);
                     openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
                     return true;
@@ -3551,15 +4489,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        binanceL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.MainActivity.13
-            @Override // android.view.View.OnTouchListener
+        binanceL.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 MainActivity.dot.clearFocus();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         MainActivity.this.downX = event.getX();
                         break;
-                    case MotionEvent.ACTION_UP /* 1 */:
+                    case MotionEvent.ACTION_UP :
                         break;
                     default:
                         return false;
@@ -3567,7 +4505,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.upX = event.getX();
                 float deltaX = MainActivity.this.downX - MainActivity.this.upX;
                 if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) BtcTurk.class);
+                    Intent openMainActivity = new Intent( MainActivity.this,  BtcTurk.class);
                     openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
                     return true;
@@ -3575,15 +4513,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        binanceTlL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.MainActivity.14
-            @Override // android.view.View.OnTouchListener
+        binanceTlL.setOnTouchListener(new View.OnTouchListener() {
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 MainActivity.dot.clearFocus();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         MainActivity.this.downX = event.getX();
                         break;
-                    case MotionEvent.ACTION_UP /* 1 */:
+                    case MotionEvent.ACTION_UP :
                         break;
                     default:
                         return false;
@@ -3591,7 +4529,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.upX = event.getX();
                 float deltaX = MainActivity.this.downX - MainActivity.this.upX;
                 if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) BtcTurk.class);
+                    Intent openMainActivity = new Intent(MainActivity.this,  BtcTurk.class);
                     openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
                     return true;
@@ -3599,7 +4537,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        ekran3.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.MainActivity.15
+        ekran3.setOnTouchListener(new View.OnTouchListener() {
             @Override // android.view.View.OnTouchListener
             public boolean onTouch(View v, MotionEvent event) {
                 MainActivity.dot.clearFocus();
@@ -3607,7 +4545,7 @@ public class MainActivity extends AppCompatActivity {
                     case MotionEvent.ACTION_DOWN:
                         MainActivity.this.downX = event.getX();
                         break;
-                    case MotionEvent.ACTION_UP /* 1 */:
+                    case MotionEvent.ACTION_UP :
                         break;
                     default:
                         return false;
@@ -3615,7 +4553,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.upX = event.getX();
                 float deltaX = MainActivity.this.downX - MainActivity.this.upX;
                 if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) BtcTurk.class);
+                    Intent openMainActivity = new Intent( MainActivity.this, BtcTurk.class);
                     openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
                     return true;
@@ -3626,8 +4564,14 @@ public class MainActivity extends AppCompatActivity {
         Dot();
     }
 
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
     public void startService(View v) {
+        saniye.start();
         start.setVisibility(View.GONE);
+        updateUI(true);
         paribuAnaText.setVisibility(View.VISIBLE);
         BinanceAnaText.setVisibility(View.VISIBLE);
         BinanceTlAnaText.setVisibility(View.VISIBLE);
@@ -3649,49 +4593,82 @@ public class MainActivity extends AppCompatActivity {
             oranlar[i] = dotusd;
         }
         Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
-        Dot();
-        Thread t2 = new Thread() { // from class: com.codinginflow.bigots.MainActivity.16
-            @Override // java.lang.Thread, java.lang.Runnable
-            public void run() {
-                while (!isInterrupted()) {
-                    try {
-                        Thread.sleep((long) Sesler.saniyed);
-                        MainActivity.this.runOnUiThread(new Runnable() { // from class: com.codinginflow.bigots.MainActivity.16.1
-                            @Override // java.lang.Runnable
-                            public void run() {
-                                Intent serviceIntent = new Intent((Context) MainActivity.this, (Class<?>) Service.class);
-                                serviceIntent.putExtra("inputExtra", MainActivity.this.Dot());
-                                ContextCompat.startForegroundService(MainActivity.this, serviceIntent);
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        };
-        t2.start();
+        Intent serviceIntent = new Intent(this, Service.class);
+        ContextCompat.startForegroundService(this, serviceIntent);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Service.isRunning()&&calistiMi) {
+            updateUI(true);
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (!isFinishing()&&calistiMi) {
+            updateUI(false);
+        }
+    }
+    private WeakReference<MainActivity> mainActivityRef;
 
-    /* JADX WARN: Multi-variable type inference failed */
+    public void setMainActivity(MainActivity activity) {
+        mainActivityRef = new WeakReference<>(activity);
+    }
+    private void updateUI(boolean show) {
+        SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
+        prefs.edit().putBoolean("isVisible", show).apply();
+
+        if (show) {
+            paribuAnaText.setVisibility(View.VISIBLE);
+            BinanceTlAnaText.setVisibility(View.VISIBLE);
+            BinanceAnaText.setVisibility(View.VISIBLE);
+            paribuL.setVisibility(View.VISIBLE);
+            binanceL.setVisibility(View.VISIBLE);
+            binanceTlL.setVisibility(View.VISIBLE);
+            if (paribucheck != null) paribucheck.setChecked(true);
+            if (tlcheck != null) tlcheck.setChecked(true);
+            if (binancecheck != null) binancecheck.setChecked(true);
+        } else {
+            paribuAnaText.setVisibility(View.GONE);
+            BinanceTlAnaText.setVisibility(View.GONE);
+            BinanceAnaText.setVisibility(View.GONE);
+            paribuL.setVisibility(View.GONE);
+            binanceL.setVisibility(View.GONE);
+            binanceTlL.setVisibility(View.GONE);
+
+        }
+    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("calistiMi", calistiMi);
+    }
     public void stopService(View v) {
-        Intent serviceIntent = new Intent((Context) this, (Class<?>) Service.class);
+        calistiMi = false;
+        updateUI(false);
+        Intent serviceIntent = new Intent( this, Service2.class);
         stopService(serviceIntent);
+        Intent serviceIntent0 = new Intent( this,  Service.class);
+        stopService(serviceIntent0);
         finishAffinity();
         onDestroy();
         System.exit(0);
     }
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        super.onDestroy();
+    }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r1v0 */
-    /* JADX WARN: Type inference failed for: r1v1, types: [boolean, int] */
-    /* JADX WARN: Type inference failed for: r1v8 */
     public String Dot() {
         JsonObjectRequest request3;
 
         otuyorMu = false;
         sayac++;
-        JsonObjectRequest request32 = new JsonObjectRequest(0, "https://www.paribu.com/ticker", (JSONObject) null, new Response.Listener<JSONObject>() { // from class: com.codinginflow.bigots.MainActivity.17
+        JsonObjectRequest request32 = new JsonObjectRequest(0, "https://www.paribu.com/ticker", (JSONObject) null, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject response) {
                 try {
                     JSONObject jsonArray2 = response.getJSONObject("USDT_TL");
@@ -3709,21 +4686,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mQueue.add(request32);
-        JsonArrayRequest request0 = new JsonArrayRequest(0, "https://www.binance.com/api/v3/ticker/bookTicker", (JSONArray) null, new Response.Listener<JSONArray>() { // from class: com.codinginflow.bigots.MainActivity.19
+        JsonArrayRequest request0 = new JsonArrayRequest(0, "https://www.binance.com/api/v3/ticker/bookTicker", (JSONArray) null, new Response.Listener<JSONArray>() {
             public void onResponse(JSONArray response) {
                 try {
                     MainActivity.btc = (float) response.getJSONObject(11).getDouble("bidPrice");
                     for (int i = 0; i < MainActivity.hizli; i++) {
                         MainActivity.huobi[i] = (float) response.getJSONObject(MainActivity.indexler[i]).getDouble("bidPrice");
                     }
-                    for (int i2 = 0; i2 < BtcTurk.btctotal; i2++) {
+                    for (int i2 = 0; i2 < btctotal; i2++) {
                         MainActivity.huobibtcturk[i2] = (float) response.getJSONObject(MainActivity.indexlerbtcturk[i2]).getDouble("bidPrice");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener() { // from class: com.codinginflow.bigots.MainActivity.20
+        }, new Response.ErrorListener() {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
             }
@@ -3734,87 +4711,63 @@ public class MainActivity extends AppCompatActivity {
             float f = paribu[i];
             fArr[i] = ((f - (huobi[i] * tsatis)) * 100.0f) / f;
         }
-        for (int i2 = 0; i2 < BtcTurk.btctotal; i2++) {
+        for (int i2 = 0; i2 < btctotal; i2++) {
             float[] fArr2 = farklarBtcTurk;
             float f2 = btcturk[i2];
             fArr2[i2] = ((f2 - (huobibtcturk[i2] * tsatisb)) * 100.0f) / f2;
         }
-        int i3 = sayac;
-        if (i3 % 5 == 0) {
-            JsonObjectRequest request1 = new JsonObjectRequest(0, "https://www.binance.com/bapi/composite/v1/public/cms/article/catalog/list/query?catalogId=48&pageNo=1&pageSize=1", (JSONObject) null, new Response.Listener<JSONObject>() { // from class: com.codinginflow.bigots.MainActivity.21
-                public void onResponse(JSONObject response) {
-                    try {
-                        MainActivity.binanceDuyuruText = response.getJSONObject("data").getJSONArray("articles").getJSONObject(0).getString("title");
-                        if (MainActivity.this.sayac == 5) {
-                            MainActivity.binanceDuyuruText = MainActivity.binanceGeciciDuyuruText;
-                        }
-                        if (!MainActivity.binanceDuyuruText.equals(MainActivity.binanceGeciciDuyuruText) && MainActivity.binanceDuyuruText.contains("Will List") && !MainActivity.binanceDuyuruText.contains("Futures") && !MainActivity.binanceDuyuruText.contains("Options")) {
-                            Intent i4 = new Intent("android.intent.action.VIEW");
-                            i4.setData(Uri.parse(MainActivity.url));
-                            MainActivity.this.startActivity(i4);
-                            MainActivity.alarm.start();
-                        }
-                        MainActivity.binanceGeciciDuyuruText = response.getJSONObject("data").getJSONArray("articles").getJSONObject(0).getString("title");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() { // from class: com.codinginflow.bigots.MainActivity.22
-                public void onErrorResponse(VolleyError error) {
-                    error.printStackTrace();
-                }
-            });
-            mQueue.add(request1);
-        }
-        JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            // USDT/TRY paritesini bul
-                            JSONArray data = response.getJSONArray("data");
-                            for (int i = 0; i < data.length(); i++) {
-                                JSONObject pair = data.getJSONObject(i);
-                                if (pair.getString("pair").equals("USDTTRY")) {
-                                    tsatisb = (float) pair.getDouble("ask");
-                                    break;
-                                }
-                            }
-
-                            // Her bir btcturkisim için eşleşen pair'i bul
-                            for (int i = 0; i < BtcTurk.btctotal; i++) {
-                                String targetPair = btcturkisim[i];
-                                boolean found = false;
-
-                                for (int j = 0; j < data.length(); j++) {
-                                    JSONObject pair = data.getJSONObject(j);
-                                    if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
-                                        btcturk[i] = (float) pair.getDouble("bid");
-                                        found = true;
+        if (BtcTurk.calistiMi) {
+            JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                // USDT/TRY paritesini bul
+                                JSONArray data = response.getJSONArray("data");
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject pair = data.getJSONObject(i);
+                                    if (pair.getString("pair").equals("USDTTRY")) {
+                                        tsatisb = (float) pair.getDouble("ask");
                                         break;
                                     }
                                 }
 
-                                if (!found) {
-                                    // Eğer pair bulunamadıysa 0 ata veya hata işle
-                                    btcturk[i] = 0f;
-                                    System.out.println("Pair not found: " + targetPair);
-                                }
-                            }
+                                // Her bir btcturkisim için eşleşen pair'i bul
+                                for (int i = 0; i < btctotal; i++) {
+                                    String targetPair = btcturkisim[i];
+                                    boolean found = false;
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                                    for (int j = 0; j < data.length(); j++) {
+                                        JSONObject pair = data.getJSONObject(j);
+                                        if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
+                                            btcturk[i] = (float) pair.getDouble("bid");
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (!found) {
+                                        // Eğer pair bulunamadıysa 0 ata veya hata işle
+                                        btcturk[i] = 0f;
+                                        System.out.println("Pair not found: " + targetPair);
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                }
-        );
-        mQueue.add(request2);
+            );
+            mQueue.add(request2);
+        }
+
         setTitle(btc + " | " + tsatis);
         aramaindexler.clear();
         hizli2 = 0;
@@ -3834,7 +4787,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString2.setSpan(yellow, 0, spannableString2.length(), 33);
                     SpannableString spannableString3 = metinlerBinanceTl[a];
                     spannableString3.setSpan(red, 0, spannableString3.length(), 33);
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
                     SpannableString spannableString4 = metinlerParibu[a];
@@ -3843,7 +4796,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString5.setSpan(yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a];
                     spannableString6.setSpan(red, 0, spannableString6.length(), 33);
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
                     SpannableString spannableString7 = metinlerParibu[a];
@@ -3852,7 +4805,7 @@ public class MainActivity extends AppCompatActivity {
                     spannableString8.setSpan(yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a];
                     spannableString9.setSpan(red, 0, spannableString9.length(), 33);
-                    sesler[a].start();
+                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else {
                     SpannableString spannableString10 = metinlerParibu[a];
@@ -3881,9 +4834,10 @@ public class MainActivity extends AppCompatActivity {
             a++;
             request0 = request02;
         }
-        mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
+        if(BtcTurk.calistiMi){     mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
                 btcturkisim, isimlerBtcTurk, sesSeviyesiBtcTurk, indexlerbtcturk, siralamaBtcTurk,
-                oranlarbtcturk, seslerBtcTurk);
+                oranlarbtcturk, seslerBtcTurk);}
+
         if (calistiMi) {
 
             if (hizli2 == 0) {
@@ -3909,33 +4863,33 @@ public class MainActivity extends AppCompatActivity {
                 while (a3 < hizli2) {
                     int index = aramaindexler.get(a3).intValue();
                     otuyorMuArama = false;
-                    JsonObjectRequest request22 = request2;
+
                     metinlerParibuarama[a3] = new SpannableString(isimler[index] + paribu[index] + " %" + df.format(farklar[index]));
                     metinlerBinancearama[a3] = new SpannableString(isimler[index] + huobi[index]);
                     metinlerBinanceTlarama[a3] = new SpannableString(isimler[index] + (huobi[index] * tsatis));
                     if (Sesler.arti && !Sesler.eksi && farklar[index] > oranlar[index].doubleValue()) {
-                        metinlerParibuarama[a].setSpan(fscgreen, 0, metinlerParibuarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinancearama[a].setSpan(yellow, 0, metinlerBinancearama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinanceTlarama[a].setSpan(red, 0, metinlerBinanceTlarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerParibuarama[a3].setSpan(fscgreen, 0, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinancearama[a3].setSpan(yellow, 0, metinlerBinancearama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinanceTlarama[a3].setSpan(red, 0, metinlerBinanceTlarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         otuyorMuArama = true;
                     } else if (!Sesler.arti && !Sesler.eksi && (farklar[index] < oranlar[index].doubleValue() * (-1.0d) || farklar[index] > oranlar[index].doubleValue())) {
-                        metinlerParibuarama[a].setSpan(fscgreen, 0, metinlerParibuarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinancearama[a].setSpan(yellow, 0, metinlerBinancearama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinanceTlarama[a].setSpan(red, 0, metinlerBinanceTlarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerParibuarama[a3].setSpan(fscgreen,  0, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinancearama[a3].setSpan(yellow, 0, metinlerBinancearama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinanceTlarama[a3].setSpan(red, 0, metinlerBinanceTlarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         otuyorMuArama = true;
                     } else {
                         if (!Sesler.arti && Sesler.eksi) {
                             if (farklar[index] < oranlar[index].doubleValue() * (-1.0d)) {
-                                metinlerParibuarama[a].setSpan(fscgreen, 0, metinlerParibuarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                metinlerBinancearama[a].setSpan(yellow, 0, metinlerBinancearama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                                metinlerBinanceTlarama[a].setSpan(red, 0, metinlerBinanceTlarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                metinlerParibuarama[a3].setSpan(fscgreen, 0, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                metinlerBinancearama[a3].setSpan(yellow, 0, metinlerBinancearama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                metinlerBinanceTlarama[a3].setSpan(red, 0, metinlerBinanceTlarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                                 otuyorMuArama = true;
                             }
                         }
 
-                        metinlerParibuarama[a].setSpan(fsccyan, 0, metinlerParibuarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinancearama[a].setSpan(fscdarkyellow, 0, metinlerBinancearama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerBinanceTlarama[a].setSpan(darkred, 0, metinlerBinanceTlarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerParibuarama[a3].setSpan(fsccyan, 0, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinancearama[a3].setSpan(fscdarkyellow, 0, metinlerBinancearama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerBinanceTlarama[a3].setSpan(darkred, 0, metinlerBinanceTlarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         otuyorMuArama = false;
                     }
                     if (!otuyorMuArama) {
@@ -3945,13 +4899,13 @@ public class MainActivity extends AppCompatActivity {
                         int sayac02 = sayac3.length();
                         int sayi2 = isimler[index].length() + df.format(farklar[index]).length() + sayac02 + " %".length();
                         request3 = request32;
-                        metinlerParibuarama[a] = new SpannableString(isimler[index] + paribu[index] + " %" + df.format(farklar[index]) + " || " + huobi[index] * tsatis);
-                        metinlerParibuarama[a].setSpan(fscgreen, 0, sayi2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        metinlerParibuarama[a].setSpan(darkred, sayi2 + 1, metinlerParibuarama[a].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerParibuarama[a3] = new SpannableString(isimler[index] + paribu[index] + " %" + df.format(farklar[index]) + " || " + huobi[index] * tsatis);
+                        metinlerParibuarama[a3].setSpan(fscgreen, 0, sayi2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        metinlerParibuarama[a3].setSpan(darkred, sayi2 + 1, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     a3++;
                     request32 = request3;
-                    request2 = request22;
+
 
                 }
                 arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibuarama);
@@ -3962,7 +4916,7 @@ public class MainActivity extends AppCompatActivity {
                 binanceL.setLayoutParams(layoutParams2);
                 paribuL.setLayoutParams(layoutParams2);
                 binanceTlL.setLayoutParams(layoutParams2);
-                paribuL.setAdapter((ListAdapter) arrayAdapter);
+                paribuL.setAdapter( arrayAdapter);
                 Helper.getListViewSize(paribuL, false);
                 binanceL.setAdapter((ListAdapter) arrayAdapter3);
                 Helper.getListViewSize(binanceL, false);
@@ -4055,7 +5009,7 @@ public class MainActivity extends AppCompatActivity {
         binancecheck = menu.findItem(R.id.checkboxhizlibinance);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Arama yapmak için yazın");
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() { // from class: com.codinginflow.bigots.MainActivity.25
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
@@ -4097,53 +5051,242 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+# app\src\main\java\com\codinginflow\bigots\MediaPlayerManager.java
+
+```java
+package com.codinginflow.bigots;
+
+import android.content.Context;
+import android.media.MediaPlayer;
+import android.media.AudioAttributes;
+import android.util.Log;
+import java.util.HashMap;
+import java.util.Map;
+
+public class MediaPlayerManager {
+    private static MediaPlayerManager instance;
+    private Context context;
+    private Map<Integer, MediaPlayer> playerPool;
+    private static final String TAG = "MediaPlayerManager";
+
+    private MediaPlayerManager(Context context) {
+        this.context = context.getApplicationContext();
+        this.playerPool = new HashMap<>();
+    }
+
+    public static synchronized MediaPlayerManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new MediaPlayerManager(context);
+        }
+        return instance;
+    }
+    public void updateVolume(int rawResourceId, float volume) {
+        MediaPlayer player = playerPool.get(rawResourceId);
+        if (player != null) {
+            try {
+                player.setVolume(volume, volume);
+            } catch (Exception e) {
+                Log.e(TAG, "Error updating volume: " + e.getMessage());
+            }
+        }
+    }
+    public MediaPlayer getPlayer(int rawResourceId) {
+        try {
+            MediaPlayer player = playerPool.get(rawResourceId);
+
+            if (player == null || !player.isPlaying()) {
+                // Eğer player null ise veya çalmıyorsa yeni bir player oluştur
+                if (player != null) {
+                    player.release();
+                }
+
+                player = MediaPlayer.create(context, rawResourceId);
+
+                if (player != null) {
+                    player.setAudioAttributes(
+                            new AudioAttributes.Builder()
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                                    .setUsage(AudioAttributes.USAGE_ALARM)
+                                    .build()
+                    );
+
+                    player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mp.reset();
+                            mp.release();
+                            playerPool.remove(rawResourceId);
+                        }
+                    });
+
+                    playerPool.put(rawResourceId, player);
+                }
+            }
+            return player;
+        } catch (Exception e) {
+            Log.e(TAG, "Error creating/getting MediaPlayer: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public void playSound(int rawResourceId, float volume) {
+        try {
+            MediaPlayer player = getPlayer(rawResourceId);
+            if (player != null) {
+                player.setVolume(volume, volume);
+                if (!player.isPlaying()) {
+                    player.start();
+                }
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "Error playing sound: " + e.getMessage());
+        }
+    }
+
+    public void releaseAll() {
+        for (MediaPlayer player : playerPool.values()) {
+            try {
+                if (player != null) {
+                    player.release();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Error releasing player: " + e.getMessage());
+            }
+        }
+        playerPool.clear();
+    }
+}
+```
+
 # app\src\main\java\com\codinginflow\bigots\Service.java
 
 ```java
 package com.codinginflow.bigots;
 
 import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.IBinder;
-import androidx.core.app.NotificationCompat;
-import androidx.core.internal.view.SupportMenu;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
-import androidx.annotation.*;
+import android.os.Looper;
+import android.os.PowerManager;
+
 import androidx.core.app.NotificationCompat;
-import static com.codinginflow.bigots.App.CHANNEL_ID;
 
-/* loaded from: classes3.dex */
 public class Service extends android.app.Service {
-    private NotificationCompat.Builder builder;
-    Notification notification;
-    private NotificationManager notificationManager;
+    private MediaPlayerManager mediaPlayerManager;
+    private Handler handler;
+    private Runnable updateRunnable;
+    private MainActivity mainActivity;
+    private boolean isRunning = false;
+    private static boolean isServiceRunning = false;
 
-    @Override // android.app.Service
+    @Override
     public void onCreate() {
         super.onCreate();
-        Notification build = new NotificationCompat.Builder(this, "exampleServiceChannel").setStyle(new NotificationCompat.BigTextStyle().bigText("Paribu")).setContentTitle("bigots").setColor(SupportMenu.CATEGORY_MASK).setSmallIcon(R.drawable.ic_android).setUsesChronometer(true).build();
-        this.notification = build;
-        startForeground(1, build);
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
+        handler = new Handler(Looper.getMainLooper());
+        createInitialNotification();
+        isServiceRunning = true;
     }
 
-    @Override // android.app.Service
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return START_NOT_STICKY;
+        if (!isRunning) {
+            acquireWakeLock();
+            startPeriodicUpdates();
+            isRunning = true;
+        }
+        return START_STICKY;
     }
 
-    @Override // android.app.Service
-    public void onDestroy() {
-        NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        nMgr.cancelAll();
-        super.onDestroy();
+    private void startPeriodicUpdates() {
+        updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (mainActivity == null) {
+                    mainActivity = MainActivity.getInstance();
+                }
+
+                if (mainActivity != null) {
+                    mainActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mainActivity.Dot();
+                        }
+                    });
+                }
+
+                handler.postDelayed(this, (long)Sesler.saniyed);
+            }
+        };
+        handler.post(updateRunnable);
     }
 
-    @Override // android.app.Service
+    private void createInitialNotification() {
+        NotificationCompat.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            builder = new NotificationCompat.Builder(this, App.CHANNEL_ID)
+                    .setContentTitle("BigotsPlus")
+                    .setContentText("Paribu servisi çalışıyor")
+                    .setSmallIcon(R.drawable.paribu_amblem)
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setAutoCancel(false)
+                    .setOngoing(true)
+                    .setUsesChronometer(true)
+                    .setWhen(System.currentTimeMillis())
+                    .setChronometerCountDown(false)
+                    .setDefaults(NotificationCompat.DEFAULT_ALL);
+        }
+
+        startForeground(1, builder.build());
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onDestroy() {
+        isServiceRunning = false;
+        isRunning = false;
+        if (handler != null && updateRunnable != null) {
+            handler.removeCallbacks(updateRunnable);
+        }
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+
+        stopForeground(true);
+        stopSelf();
+        super.onDestroy();
+    }
+    private PowerManager.WakeLock wakeLock;
+
+    private void acquireWakeLock() {
+        if (wakeLock == null) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                    "BigotsPlus:WakeLock");
+            wakeLock.acquire();
+        }
+    }
+
+    private void releaseWakeLock() {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+            wakeLock = null;
+        }
+    }
+
+    public void setMainActivity(MainActivity activity) {
+        this.mainActivity = activity;
+    }
+    public static boolean isRunning() {
+        return isServiceRunning;
     }
 }
 ```
@@ -4154,36 +5297,129 @@ public class Service extends android.app.Service {
 package com.codinginflow.bigots;
 
 import android.app.Notification;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.PowerManager;
+
 import androidx.core.app.NotificationCompat;
-import androidx.core.internal.view.SupportMenu;
 
-/* loaded from: classes3.dex */
 public class Service2 extends android.app.Service {
-    Notification notification;
-
-    @Override // android.app.Service
+    private MediaPlayerManager mediaPlayerManager;
+    private Handler handler;
+    private Runnable updateRunnable;
+    private BtcTurk btcTurkActivity;
+    private boolean isRunning = false;
+    private static boolean isServiceRunning = false;
+    @Override
     public void onCreate() {
         super.onCreate();
-        Notification build = new NotificationCompat.Builder(this, "exampleServiceChannel").setStyle(new NotificationCompat.BigTextStyle().bigText("BTCTurk")).setContentTitle("bigots").setColor(SupportMenu.CATEGORY_MASK).setSmallIcon(R.drawable.ic_android).setUsesChronometer(true).build();
-        this.notification = build;
-        startForeground(5, build);
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
+        handler = new Handler(Looper.getMainLooper());
+        isServiceRunning = true;
+        createInitialNotification();
+        isServiceRunning = true;
     }
 
-    @Override // android.app.Service
+    @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        return  START_NOT_STICKY;
+        if (!isRunning) {
+            acquireWakeLock();
+            startPeriodicUpdates();
+            isRunning = true;
+        }
+        return START_STICKY;
     }
 
-    @Override // android.app.Service
-    public void onDestroy() {
-        super.onDestroy();
+    private void startPeriodicUpdates() {
+        updateRunnable = new Runnable() {
+            @Override
+            public void run() {
+                if (btcTurkActivity == null) {
+                    btcTurkActivity = BtcTurk.getInstance();
+                }
+
+                if (btcTurkActivity != null) {
+                    btcTurkActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            btcTurkActivity.Dot();
+                        }
+                    });
+                }
+
+                handler.postDelayed(this, (long)Sesler.saniyed);
+            }
+        };
+        handler.post(updateRunnable);
     }
 
-    @Override // android.app.Service
+    private void createInitialNotification() {
+        NotificationCompat.Builder builder = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            builder = new NotificationCompat.Builder(this, App2.CHANNEL_ID)
+                    .setContentTitle("BigotsPlus")
+                    .setContentText("BTCTurk servisi çalışıyor")
+                    .setSmallIcon(R.drawable.btcturk)
+                    .setPriority(NotificationCompat.PRIORITY_MAX)
+                    .setCategory(NotificationCompat.CATEGORY_SERVICE)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setAutoCancel(false)
+                    .setOngoing(true)
+                    .setUsesChronometer(true)
+                    .setWhen(System.currentTimeMillis())
+                    .setChronometerCountDown(false)
+                    .setDefaults(NotificationCompat.DEFAULT_ALL);
+
+            Notification notification = builder.build();
+            notification.flags |= Notification.FLAG_NO_CLEAR |
+                    Notification.FLAG_ONGOING_EVENT |
+                    Notification.FLAG_FOREGROUND_SERVICE;
+
+            startForeground(2, notification);
+        }
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+    public static boolean isRunning() {
+        return isServiceRunning;
+    }
+
+    @Override
+    public void onDestroy() {
+        isServiceRunning = false;
+        isRunning = false;
+        if (handler != null && updateRunnable != null) {
+            handler.removeCallbacks(updateRunnable);
+        }
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        stopForeground(true);
+        stopSelf();
+        super.onDestroy();
+    }
+    private PowerManager.WakeLock wakeLock;
+
+    private void acquireWakeLock() {
+        if (wakeLock == null) {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                    "BigotsPlus:WakeLock");
+            wakeLock.acquire();
+        }
+    }
+
+    private void releaseWakeLock() {
+        if (wakeLock != null && wakeLock.isHeld()) {
+            wakeLock.release();
+            wakeLock = null;
+        }
     }
 }
 ```
@@ -4211,8 +5447,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/* loaded from: classes3.dex */
+
 public class Sesler extends AppCompatActivity {
+    private MediaPlayerManager mediaPlayerManager;
     FloatingActionButton asagi;
     AudioManager audiomanager;
     FloatingActionButton geri;
@@ -4225,19 +5462,20 @@ public class Sesler extends AppCompatActivity {
     FloatingActionButton yukari;
     public static float saniyed = 2000.0f;
 
-    /* renamed from: artı, reason: contains not printable characters */
+
     public static boolean arti = false;
     public static boolean eksi = false;
-    static int toplamsesler = 120;
-    static SeekBar[] seeks = new SeekBar[120];
-    static MediaPlayer[] sesler = new MediaPlayer[120];
+    static int toplamsesler = 139;
+    static int[] tumSesler = new int[toplamsesler];
 
-    @Override // androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Ayarlar");
         super.onCreate(savedInstanceState);
+        mediaPlayerManager = MediaPlayerManager.getInstance(this);
         setContentView(R.layout.sesler);
-        this.kontrola = (CheckBox) findViewById(R.id.artı);
+        this.kontrola = (CheckBox) findViewById(R.id.arti);
         this.kontrole = (CheckBox) findViewById(R.id.eksi);
         AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         this.audiomanager = audioManager;
@@ -4250,126 +5488,144 @@ public class Sesler extends AppCompatActivity {
         this.saniye = (TextView) findViewById(R.id.saniye);
         this.seekveri = (SeekBar) findViewById(R.id.seekBar32);
         this.seektum = (SeekBar) findViewById(R.id.seekBar30);
-        sesler[0] = MainActivity.dots;
-        sesler[1] = MainActivity.avax;
-        sesler[2] = MainActivity.eos;
-        sesler[3] = MainActivity.tron;
-        sesler[4] = MainActivity.xrp;
-        sesler[5] = MainActivity.xlm;
-        sesler[6] = MainActivity.ltc;
-        sesler[7] = MainActivity.ont;
-        sesler[8] = MainActivity.hot;
-        sesler[9] = MainActivity.ada;
-        sesler[10] = MainActivity.dogem;
-        sesler[11] = MainActivity.atom;
-        sesler[12] = MainActivity.btt;
-        sesler[13] = MainActivity.neo;
-        sesler[14] = MainActivity.etherfi;
-        sesler[15] = MainActivity.rvn;
-        sesler[16] = MainActivity.xtz;
-        sesler[17] = MainActivity.bat;
-        sesler[18] = MainActivity.chz;
-        sesler[19] = MainActivity.uni;
-        sesler[20] = MainActivity.bal;
-        sesler[21] = MainActivity.aave;
-        sesler[22] = MainActivity.link;
-        sesler[23] = MainActivity.maker;
-        sesler[24] = MainActivity.w;
-        sesler[25] = MainActivity.reef;
-        sesler[26] = MainActivity.lrc;
-        sesler[27] = MainActivity.band;
-        sesler[28] = MainActivity.algo;
-        sesler[29] = MainActivity.zil;
-        sesler[30] = MainActivity.grt;
-        sesler[31] = MainActivity.enj;
-        sesler[32] = MainActivity.theta;
-        sesler[33] = MainActivity.matic;
-        sesler[34] = MainActivity.oxt;
-        sesler[35] = MainActivity.psg;
-        sesler[36] = MainActivity.atm;
-        sesler[37] = MainActivity.asr;
-        sesler[38] = MainActivity.bar;
-        sesler[39] = MainActivity.juv;
-        sesler[40] = MainActivity.acm;
-        sesler[41] = MainActivity.crv;
-        sesler[42] = MainActivity.ogn;
-        sesler[43] = MainActivity.mana;
-        sesler[44] = MainActivity.iota;
-        sesler[45] = MainActivity.sol;
-        sesler[46] = MainActivity.mina;
-        sesler[47] = MainActivity.ape;
-        sesler[48] = MainActivity.vet;
-        sesler[49] = MainActivity.ankr;
-        sesler[50] = MainActivity.shib;
-        sesler[51] = MainActivity.lpt;
-        sesler[52] = MainActivity.inj;
-        sesler[53] = MainActivity.icp;
-        sesler[54] = MainActivity.ftm;
-        sesler[55] = MainActivity.axs;
-        sesler[56] = MainActivity.bch;
-        sesler[57] = MainActivity.ens;
-        sesler[58] = MainActivity.alice;
-        sesler[59] = MainActivity.tlm;
-        sesler[60] = MainActivity.sand;
-        sesler[61] = MainActivity.audio;
-        sesler[62] = MainActivity.clv;
-        sesler[63] = MainActivity.gala;
-        sesler[64] = MainActivity.vanry;
-        sesler[65] = MainActivity.uma;
-        sesler[66] = MainActivity.storj;
-        sesler[67] = MainActivity.city;
-        sesler[68] = MainActivity.rad;
-        sesler[69] = MainActivity.inch;
-        sesler[70] = MainActivity.comp;
-        sesler[71] = MainActivity.snx;
-        sesler[72] = MainActivity.fet;
-        sesler[73] = MainActivity.spell;
-        sesler[74] = MainActivity.stg;
-        sesler[75] = MainActivity.qnt;
-        sesler[76] = MainActivity.apt;
-        sesler[77] = MainActivity.rndr;
-        sesler[78] = MainActivity.arb;
-        sesler[79] = MainActivity.sui;
-        sesler[80] = MainActivity.ctsi;
-        sesler[81] = MainActivity.op;
-        sesler[82] = MainActivity.pepe;
-        sesler[83] = MainActivity.ocean;
-        sesler[84] = MainActivity.rlc;
-        sesler[85] = MainActivity.skl;
-        sesler[86] = MainActivity.agix;
-        sesler[87] = MainActivity.tia;
-        sesler[88] = MainActivity.dash;
-        sesler[89] = MainActivity.fil;
-        sesler[90] = MainActivity.stx;
-        sesler[91] = MainActivity.amp;
-        sesler[92] = MainActivity.lunc;
-        sesler[93] = MainActivity.bnt;
-        sesler[94] = MainActivity.glm;
-        sesler[95] = MainActivity.luna;
-        sesler[96] = MainActivity.paxg;
-        sesler[97] = MainActivity.imx;
-        sesler[98] = MainActivity.cvc;
-        sesler[99] = MainActivity.etc;
-        sesler[100] = MainActivity.flow;
-        sesler[101] = MainActivity.mask;
-        sesler[102] = MainActivity.api3;
-        sesler[103] = MainActivity.t;
-        sesler[104] = MainActivity.arpa;
-        sesler[105] = MainActivity.ldo;
-        sesler[106] = MainActivity.sushi;
-        sesler[107] = MainActivity.magic;
-        sesler[108] = MainActivity.sei;
-        sesler[109] = MainActivity.rdnt;
-        sesler[110] = MainActivity.floki;
-        sesler[111] = MainActivity.dydx;
-        sesler[112] = MainActivity.jasmy;
-        sesler[113] = MainActivity.zrx;
-        sesler[114] = MainActivity.nmr;
-        sesler[115] = MainActivity.blur;
-        sesler[116] = MainActivity.bonk;
-        sesler[117] = MainActivity.arkm;
-        sesler[118] = MainActivity.tnsr;
-        sesler[119] = MainActivity.axl;
+        tumSesler[0] = MainActivity.SOUND_DOT;
+        tumSesler[1] = MainActivity.SOUND_AVAX;
+        tumSesler[2] = MainActivity.SOUND_EOS;
+        tumSesler[3] = MainActivity.SOUND_TRON;
+        tumSesler[4] = MainActivity.SOUND_RIPPLE;
+        tumSesler[5] = MainActivity.SOUND_SITELLAR;
+        tumSesler[6] = MainActivity.SOUND_LITE;
+        tumSesler[7] = MainActivity.SOUND_ONT;
+        tumSesler[8] = MainActivity.SOUND_HOT;
+        tumSesler[9] = MainActivity.SOUND_ADA;
+        tumSesler[10] = MainActivity.SOUND_DOGE;
+        tumSesler[11] = MainActivity.SOUND_ATOM;
+        tumSesler[12] = MainActivity.SOUND_BTT;
+        tumSesler[13] = MainActivity.SOUND_NEO;
+        tumSesler[14] = MainActivity.SOUND_ETHERFI;
+        tumSesler[15] = MainActivity.SOUND_RVN;
+        tumSesler[16] = MainActivity.SOUND_XTZ;
+        tumSesler[17] = MainActivity.SOUND_BAT;
+        tumSesler[18] = MainActivity.SOUND_CHZ;
+        tumSesler[19] = MainActivity.SOUND_UNI;
+        tumSesler[20] = MainActivity.SOUND_BAL;
+        tumSesler[21] = MainActivity.SOUND_AAVE;
+        tumSesler[22] = MainActivity.SOUND_LINK;
+        tumSesler[23] = MainActivity.SOUND_MAKER;
+        tumSesler[24] = MainActivity.SOUND_W;
+        tumSesler[25] = MainActivity.SOUND_BEAM;
+        tumSesler[26] = MainActivity.SOUND_LRC;
+        tumSesler[27] = MainActivity.SOUND_BAND;
+        tumSesler[28] = MainActivity.SOUND_ALGO;
+        tumSesler[29] = MainActivity.SOUND_ZIL;
+        tumSesler[30] = MainActivity.SOUND_GRT;
+        tumSesler[31] = MainActivity.SOUND_ENJ;
+        tumSesler[32] = MainActivity.SOUND_THETA;
+        tumSesler[33] = MainActivity.SOUND_MATIC;
+        tumSesler[34] = MainActivity.SOUND_OXT;
+        tumSesler[35] = MainActivity.SOUND_PSG;
+        tumSesler[36] = MainActivity.SOUND_ATM;
+        tumSesler[37] = MainActivity.SOUND_ASR;
+        tumSesler[38] = MainActivity.SOUND_BAR;
+        tumSesler[39] = MainActivity.SOUND_JUV;
+        tumSesler[40] = MainActivity.SOUND_ACM;
+        tumSesler[41] = MainActivity.SOUND_CRV;
+        tumSesler[42] = MainActivity.SOUND_OGN;
+        tumSesler[43] = MainActivity.SOUND_MANA;
+        tumSesler[44] = MainActivity.SOUND_IOTA;
+        tumSesler[45] = MainActivity.SOUND_SOL;
+        tumSesler[46] = MainActivity.SOUND_MINA;
+        tumSesler[47] = MainActivity.SOUND_APE;
+        tumSesler[48] = MainActivity.SOUND_VET;
+        tumSesler[49] = MainActivity.SOUND_ANKR;
+        tumSesler[50] = MainActivity.SOUND_SHIB;
+        tumSesler[51] = MainActivity.SOUND_LPT;
+        tumSesler[52] = MainActivity.SOUND_INJ;
+        tumSesler[53] = MainActivity.SOUND_ICP;
+        tumSesler[54] = MainActivity.SOUND_FTM;
+        tumSesler[55] = MainActivity.SOUND_AXS;
+        tumSesler[56] = MainActivity.SOUND_BCH;
+        tumSesler[57] = MainActivity.SOUND_ENS;
+        tumSesler[58] = MainActivity.SOUND_ALICE;
+        tumSesler[59] = MainActivity.SOUND_TLM;
+        tumSesler[60] = MainActivity.SOUND_SAND;
+        tumSesler[61] = MainActivity.SOUND_AUDIO;
+        tumSesler[62] = MainActivity.SOUND_CLV;
+        tumSesler[63] = MainActivity.SOUND_GALA;
+        tumSesler[64] = MainActivity.SOUND_VANRY;
+        tumSesler[65] = MainActivity.SOUND_UMA;
+        tumSesler[66] = MainActivity.SOUND_STORJ;
+        tumSesler[67] = MainActivity.SOUND_CITY;
+        tumSesler[68] = MainActivity.SOUND_RAD;
+        tumSesler[69] = MainActivity.SOUND_INCH;
+        tumSesler[70] = MainActivity.SOUND_COMP;
+        tumSesler[71] = MainActivity.SOUND_SNX;
+        tumSesler[72] = MainActivity.SOUND_FET;
+        tumSesler[73] = MainActivity.SOUND_SPELL;
+        tumSesler[74] = MainActivity.SOUND_STG;
+        tumSesler[75] = MainActivity.SOUND_QNT;
+        tumSesler[76] = MainActivity.SOUND_APT;
+        tumSesler[77] = MainActivity.SOUND_RNDR;
+        tumSesler[78] = MainActivity.SOUND_ARB;
+        tumSesler[79] = MainActivity.SOUND_SUI;
+        tumSesler[80] = MainActivity.SOUND_CTSI;
+        tumSesler[81] = MainActivity.SOUND_OP;
+        tumSesler[82] = MainActivity.SOUND_PEPE;
+        tumSesler[83] = MainActivity.SOUND_DYM;
+        tumSesler[84] = MainActivity.SOUND_RLC;
+        tumSesler[85] = MainActivity.SOUND_SKL;
+        tumSesler[86] = MainActivity.SOUND_JOE;
+        tumSesler[87] = MainActivity.SOUND_TIA;
+        tumSesler[88] = MainActivity.SOUND_DASH;
+        tumSesler[89] = MainActivity.SOUND_FIL;
+        tumSesler[90] = MainActivity.SOUND_STX;
+        tumSesler[91] = MainActivity.SOUND_AMP;
+        tumSesler[92] = MainActivity.SOUND_JTO;
+        tumSesler[93] = MainActivity.SOUND_BNT;
+        tumSesler[94] = MainActivity.SOUND_GLM;
+        tumSesler[95] = MainActivity.SOUND_LUNA;
+        tumSesler[96] = MainActivity.SOUND_PAXG;
+        tumSesler[97] = MainActivity.SOUND_IMX;
+        tumSesler[98] = MainActivity.SOUND_CVC;
+        tumSesler[99] = MainActivity.SOUND_ETC;
+        tumSesler[100] = MainActivity.SOUND_FLOW;
+        tumSesler[101] = MainActivity.SOUND_MASK;
+        tumSesler[102] = MainActivity.SOUND_API3;
+        tumSesler[103] = MainActivity.SOUND_T;
+        tumSesler[104] = MainActivity.SOUND_ARPA;
+        tumSesler[105] = MainActivity.SOUND_LDO;
+        tumSesler[106] = MainActivity.SOUND_SUSHI;
+        tumSesler[107] = MainActivity.SOUND_MAGIC;
+        tumSesler[108] = MainActivity.SOUND_SEI;
+        tumSesler[109] = MainActivity.SOUND_RDNT;
+        tumSesler[110] = MainActivity.SOUND_FLOKI;
+        tumSesler[111] = MainActivity.SOUND_DYDX;
+        tumSesler[112] = MainActivity.SOUND_JASMY;
+        tumSesler[113] = MainActivity.SOUND_ZRX;
+        tumSesler[114] = MainActivity.SOUND_NMR;
+        tumSesler[115] = MainActivity.SOUND_BLUR;
+        tumSesler[116] = MainActivity.SOUND_BONK;
+        tumSesler[117] = MainActivity.SOUND_ARKM;
+        tumSesler[118] = MainActivity.SOUND_TNSR;
+        tumSesler[120] = MainActivity.SOUND_AXL;
+        tumSesler[121] = MainActivity.SOUND_JUP;
+        tumSesler[122] = MainActivity.SOUND_MANTA;
+        tumSesler[123] = MainActivity.SOUND_MEME;
+        tumSesler[124] = MainActivity.SOUND_PENDLE;
+        tumSesler[125] = MainActivity.SOUND_PYTH;
+        tumSesler[126] = MainActivity.SOUND_STRK;
+        tumSesler[127] = MainActivity.SOUND_EIGEN;
+        tumSesler[128] = MainActivity.SOUND_RAY;
+        tumSesler[129] = MainActivity.SOUND_WIF;
+        tumSesler[130] = MainActivity.SOUND_IO;
+        tumSesler[131] = MainActivity.SOUND_AEVO;
+        tumSesler[132] = MainActivity.SOUND_ENA;
+        tumSesler[133] = MainActivity.SOUND_ZK;
+        tumSesler[134] = MainActivity.SOUND_ALT;
+        tumSesler[135] = MainActivity.SOUND_SYN;
+        tumSesler[136] = MainActivity.SOUND_PDA;
+        tumSesler[137] = MainActivity.SOUND_ZRO;
+        tumSesler[138] = MainActivity.SOUND_SUPER0;
         this.seektum.setMax(max);
         this.seekveri.setMax(15);
         this.seektum.setProgress(max);
@@ -4435,7 +5691,9 @@ public class Sesler extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 this.progressChangedValue = progress;
                 for (int i = 0; i < Sesler.toplamsesler; i++) {
-                    Sesler.sesler[i].setVolume(progress / 15.0f, progress / 15.0f);
+                    if (tumSesler[i] != 0) { // 0 olmayan (geçerli) ses ID'leri için
+                        mediaPlayerManager.updateVolume(tumSesler[i], progress / 15.0f);
+                    }
                 }
                 if (progress == 0) {
                     Drawable tempDrawable2 = Sesler.this.getResources().getDrawable(R.drawable.daire0);
@@ -4690,6 +5948,13 @@ public class Sesler extends AppCompatActivity {
                 Toast.makeText(Sesler.this, "Hız (per): " + (Sesler.saniyed / 1000.0f) + " sn",  Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        super.onDestroy();
     }
 }
 ```
@@ -5407,6 +6672,9 @@ This is a binary file of the type: Image
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
+
             <EditText
                 android:id="@+id/DOT"
                 android:layout_width="match_parent"
@@ -5433,6 +6701,7 @@ This is a binary file of the type: Image
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:visibility="gone" />
+
 
 
             <ListView
@@ -5497,7 +6766,7 @@ This is a binary file of the type: Image
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 
-    
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -5511,48 +6780,48 @@ This is a binary file of the type: Image
             android:id="@+id/appbar"
             android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="#3780f4"
-            android:id="@+id/toolbar"
-            />
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="#3780f4"
+                android:id="@+id/toolbar"
+                />
 
 
         </com.google.android.material.appbar.AppBarLayout>
 
-<androidx.viewpager.widget.ViewPager
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-    />
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            />
 
-    <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-android:backgroundTint="@color/colorAccent"
-app:fabAnimationMode="slide"
-        app:fabCradleMargin="8dp"
-        app:fabCradleRoundedCornerRadius="32dp"
-        app:fabAlignmentMode="end"
-        app:navigationIcon="@drawable/paribu_amblem"
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottom_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/colorAccent"
+            app:fabAnimationMode="slide"
+            app:fabCradleMargin="8dp"
+            app:fabCradleRoundedCornerRadius="32dp"
+            app:fabAlignmentMode="end"
+            app:navigationIcon="@drawable/paribu_amblem"
 
-        />
+            />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ayarlar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="6dp"
-        android:backgroundTint="@color/design_default_color_primary_variant"
-        app:elevation="6dp"
-        app:srcCompat="@drawable/ayarlar"
-        app:layout_anchor="@id/bottom_app_bar"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ayarlar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:backgroundTint="@color/design_default_color_primary_variant"
+            app:elevation="6dp"
+            app:srcCompat="@drawable/ayarlar"
+            app:layout_anchor="@id/bottom_app_bar"
 
-        />
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -6576,7 +7845,7 @@ app:fabAnimationMode="slide"
                 />
 
             <CheckBox
-                android:id="@+id/artı"
+                android:id="@+id/arti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sadece +"

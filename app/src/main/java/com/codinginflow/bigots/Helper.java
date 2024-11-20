@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-/* loaded from: classes3.dex */
+
 public class Helper {
     public static void getListViewSize(ListView myListView, boolean kontrol) {
         ListAdapter myListAdapter = myListView.getAdapter();
