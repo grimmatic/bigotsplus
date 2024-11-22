@@ -16,6 +16,7 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -51,6 +52,9 @@ import com.google.android.material.snackbar.Snackbar;
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -111,7 +115,12 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton duzenle;
     private EditText edit;
     NestedScrollView ekran3;
+    private final ExecutorService executorService = Executors.newFixedThreadPool(3);
     private Button geributton;
+    private Button binancetradebutton;
+    private Button binancewalletbutton;
+    private Button paributradebutton;
+    private Button paribuwalletbutton;
     private RequestQueue mQueue;
     private BottomAppBar mbottomappbar;
     private TextView oran;
@@ -619,14 +628,18 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById2;
         setSupportActionBar(findViewById2);
         dialogBuilder = new AlertDialog.Builder(this);
-        View popupView = getLayoutInflater().inflate(R.layout.popup, (ViewGroup) null);
-        pop = (TextView) popupView.findViewById(R.id.textView665);
-        edit = (EditText) popupView.findViewById(R.id.edittext);
-        seek = (SeekBar) popupView.findViewById(R.id.seekbar665);
-        seekses = (SeekBar) popupView.findViewById(R.id.seekbar666);
-        popupButon = (Button) popupView.findViewById(R.id.button665);
-        geributton = (Button) popupView.findViewById(R.id.button6650);
-        oran = (TextView) popupView.findViewById(R.id.textView6650);
+        View popupView = getLayoutInflater().inflate(R.layout.popup,null);
+        pop =  popupView.findViewById(R.id.textView665);
+        edit = popupView.findViewById(R.id.edittext);
+        seek =popupView.findViewById(R.id.seekbar665);
+        seekses = popupView.findViewById(R.id.seekbar666);
+        popupButon = popupView.findViewById(R.id.button665);
+        geributton =popupView.findViewById(R.id.button6650);
+        binancetradebutton =popupView.findViewById(R.id.binanceTrade);
+        binancewalletbutton =popupView.findViewById(R.id.binanceWallet);
+        paributradebutton =popupView.findViewById(R.id.paribuTrade);
+        paribuwalletbutton =popupView.findViewById(R.id.paribuWallet);
+        oran = popupView.findViewById(R.id.textView6650);
         dialogBuilder.setView(popupView);
         AlertDialog create = dialogBuilder.create();
         dialog = create;
@@ -1296,55 +1309,28 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.ekran3.scrollTo(99000, 99000);
             }
         });
+
+
+
         paribuL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
+                if (calistiMi) {
+                    dialog.show();
                     if (!girdi) {
+                        tiklanansira = MainActivity.siralama[position];
+                        pop.setText(MainActivity.paribuisim[position]);
                         coinName = MainActivity.paribuisim[position];
-                    } else {
-                        tiklanansira = aramaindexler.get(position).intValue();
-                        coinName = MainActivity.paribuisim[tiklanansira];
-                    }
-
-                    String formattedCoin = coinName.toLowerCase()
-                            .replace("_tl", "")
-                            .replace("_", "") +
-                            "usdt";
-
-                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(binanceUrl));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=com.binance.dev")));
-                }
-            }
-        });
-
-
-
-        paribuL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                if (MainActivity.this.calistiMi) {
-                    MainActivity.this.dialog.show();
-                    if (!MainActivity.girdi) {
-                        MainActivity.tiklanansira = MainActivity.siralama[position];
-                        MainActivity.this.pop.setText(MainActivity.paribuisim[position]);
-                        MainActivity.this.edit.setText("" + MainActivity.oranlar[position]);
-                        MainActivity.this.oran.setText("" + MainActivity.oranlar[position]);
-                        MainActivity.this.seek.setProgress((int) (MainActivity.oranlar[position].doubleValue() * 10.0d));
-                        MainActivity.this.seekses.setProgress(MainActivity.sesSeviyesi[position]);
-                        MainActivity.this.seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        edit.setText("" + MainActivity.oranlar[position]);
+                        oran.setText("" + MainActivity.oranlar[position]);
+                        seek.setProgress((int) (MainActivity.oranlar[position].doubleValue() * 10.0d));
+                        seekses.setProgress(MainActivity.sesSeviyesi[position]);
+                        seekses.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                             @Override
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
-                                    if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
-                                        MainActivity.sesSeviyesi[i3] = progress;
+                                    if (paribuisim[i3].contains(pop.getText())) {
+                                        sesSeviyesi[i3] = progress;
                                         mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
                                         return;
                                     }
@@ -1359,11 +1345,64 @@ public class MainActivity extends AppCompatActivity {
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-                        return true;
+                        binancetradebutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        binancewalletbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("paribu://markets/"+ coinName.toLowerCase()));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("paribu://wallet/"+coinName.toLowerCase().replace("_tl", "").replace("_", "")+"/deposit"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        return;
                     }
                     MainActivity.tiklanansira = MainActivity.aramaindexler.get(position).intValue();
                     MainActivity.this.isim = MainActivity.paribuisim[MainActivity.tiklanansira];
                     MainActivity.this.pop.setText(MainActivity.paribuisim[MainActivity.tiklanansira]);
+                    coinName = MainActivity.paribuisim[tiklanansira];
                     MainActivity.this.edit.setText("" + MainActivity.oranlar[MainActivity.tiklanansira]);
                     MainActivity.this.oran.setText("" + MainActivity.oranlar[MainActivity.tiklanansira]);
                     MainActivity.this.seek.setProgress((int) (MainActivity.oranlar[MainActivity.tiklanansira].doubleValue() * 10.0d));
@@ -1387,8 +1426,58 @@ public class MainActivity extends AppCompatActivity {
                         public void onStopTrackingTouch(SeekBar seekBar) {
                         }
                     });
+                    binancetradebutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            } catch (ActivityNotFoundException e) {
+                                Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    binancewalletbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            } catch (ActivityNotFoundException e) {
+                                Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("paribu://markets/"+ coinName.toLowerCase()));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            } catch (ActivityNotFoundException e) {
+                                Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                    paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("paribu://wallet/"+coinName.toLowerCase().replace("_tl", "").replace("_", "")+"/deposit"));
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            } catch (ActivityNotFoundException e) {
+                                Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
-                return true;
             }
         });
 
@@ -1613,6 +1702,27 @@ public class MainActivity extends AppCompatActivity {
     public static MainActivity getInstance() {
         return instance;
     }
+    private void updateListViewHeights(int itemCount) {
+        int itemHeight = 40;
+        int totalHeightInDp = itemHeight * itemCount;
+        int totalHeightInPixels = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                totalHeightInDp,
+                getResources().getDisplayMetrics()
+        );
+
+        ViewGroup.LayoutParams paramsP = paribuL.getLayoutParams();
+        ViewGroup.LayoutParams paramsB = binanceL.getLayoutParams();
+        ViewGroup.LayoutParams paramsBT = binanceTlL.getLayoutParams();
+
+        paramsP.height = totalHeightInPixels;
+        paramsB.height = totalHeightInPixels;
+        paramsBT.height = totalHeightInPixels;
+
+        paribuL.setLayoutParams(paramsP);
+        binanceL.setLayoutParams(paramsB);
+        binanceTlL.setLayoutParams(paramsBT);
+    }
     public void startService(View v) {
         saniye.start();
         start.setVisibility(View.GONE);
@@ -1637,10 +1747,19 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < hizli; i++) {
             oranlar[i] = dotusd;
         }
+        arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
+        arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinance);
+        arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTl);
+
+        paribuL.setAdapter(arrayAdapter);
+        binanceL.setAdapter(arrayAdapter3);
+        binanceTlL.setAdapter(arrayAdapter2);
+        updateListViewHeights(hizli);
         Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
         Intent serviceIntent = new Intent(this, Service.class);
         ContextCompat.startForegroundService(this, serviceIntent);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -1710,110 +1829,113 @@ public class MainActivity extends AppCompatActivity {
         }
         super.onDestroy();
     }
-
-    public String Dot() {
-        JsonObjectRequest request3;
-
-        otuyorMu = false;
-        sayac++;
-        JsonObjectRequest request32 = new JsonObjectRequest(0, "https://www.paribu.com/ticker", (JSONObject) null, new Response.Listener<JSONObject>() {
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONObject jsonArray2 = response.getJSONObject("USDT_TL");
-                    MainActivity.tsatis = (float) jsonArray2.getDouble("lowestAsk");
-                    for (int i = 0; i < MainActivity.hizli; i++) {
-                        MainActivity.paribu[i] = (float) response.getJSONObject(MainActivity.paribuisim[i]).getDouble("highestBid");
+    private void fetchData() {
+        executorService.execute(() -> {
+            JsonObjectRequest request32 = new JsonObjectRequest(0, "https://www.paribu.com/ticker", (JSONObject) null, new Response.Listener<JSONObject>() {
+                public void onResponse(JSONObject response) {
+                    try {
+                        JSONObject jsonArray2 = response.getJSONObject("USDT_TL");
+                        MainActivity.tsatis = (float) jsonArray2.getDouble("lowestAsk");
+                        for (int i = 0; i < MainActivity.hizli; i++) {
+                            MainActivity.paribu[i] = (float) response.getJSONObject(MainActivity.paribuisim[i]).getDouble("highestBid");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() { // from class: com.codinginflow.bigots.MainActivity.18
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        mQueue.add(request32);
-        JsonArrayRequest request0 = new JsonArrayRequest(0, "https://www.binance.com/api/v3/ticker/bookTicker", (JSONArray) null, new Response.Listener<JSONArray>() {
-            public void onResponse(JSONArray response) {
-                try {
-                    MainActivity.btc = (float) response.getJSONObject(11).getDouble("bidPrice");
-                    for (int i = 0; i < MainActivity.hizli; i++) {
-                        MainActivity.huobi[i] = (float) response.getJSONObject(MainActivity.indexler[i]).getDouble("bidPrice");
-                    }
-                    for (int i2 = 0; i2 < btctotal; i2++) {
-                        MainActivity.huobibtcturk[i2] = (float) response.getJSONObject(MainActivity.indexlerbtcturk[i2]).getDouble("bidPrice");
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            }, new Response.ErrorListener() { // from class: com.codinginflow.bigots.MainActivity.18
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
                 }
-            }
-        }, new Response.ErrorListener() {
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-        mQueue.add(request0);
-        for (int i = 0; i < hizli; i++) {
-            float[] fArr = farklar;
-            float f = paribu[i];
-            fArr[i] = ((f - (huobi[i] * tsatis)) * 100.0f) / f;
-        }
-        for (int i2 = 0; i2 < btctotal; i2++) {
-            float[] fArr2 = farklarBtcTurk;
-            float f2 = btcturk[i2];
-            fArr2[i2] = ((f2 - (huobibtcturk[i2] * tsatisb)) * 100.0f) / f2;
-        }
-        if (BtcTurk.calistiMi) {
-            JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                // USDT/TRY paritesini bul
-                                JSONArray data = response.getJSONArray("data");
-                                for (int i = 0; i < data.length(); i++) {
-                                    JSONObject pair = data.getJSONObject(i);
-                                    if (pair.getString("pair").equals("USDTTRY")) {
-                                        tsatisb = (float) pair.getDouble("ask");
-                                        break;
-                                    }
-                                }
+            });
+            mQueue.add(request32);
+            JsonArrayRequest request0 = new JsonArrayRequest(0, "https://www.binance.com/api/v3/ticker/bookTicker", (JSONArray) null, new Response.Listener<JSONArray>() {
+                public void onResponse(JSONArray response) {
+                    try {
+                        MainActivity.btc = (float) response.getJSONObject(11).getDouble("bidPrice");
+                        for (int i = 0; i < MainActivity.hizli; i++) {
+                            MainActivity.huobi[i] = (float) response.getJSONObject(MainActivity.indexler[i]).getDouble("bidPrice");
+                        }
+                        for (int i2 = 0; i2 < btctotal; i2++) {
+                            MainActivity.huobibtcturk[i2] = (float) response.getJSONObject(MainActivity.indexlerbtcturk[i2]).getDouble("bidPrice");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                }
+            });
+            mQueue.add(request0);
 
-                                // Her bir btcturkisim için eşleşen pair'i bul
-                                for (int i = 0; i < btctotal; i++) {
-                                    String targetPair = btcturkisim[i];
-                                    boolean found = false;
 
-                                    for (int j = 0; j < data.length(); j++) {
-                                        JSONObject pair = data.getJSONObject(j);
-                                        if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
-                                            btcturk[i] = (float) pair.getDouble("bid");
-                                            found = true;
+            if (BtcTurk.calistiMi) {
+                JsonObjectRequest request2 = new JsonObjectRequest(0, "https://api.btcturk.com/api/v2/ticker", null,
+                        new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    // USDT/TRY paritesini bul
+                                    JSONArray data = response.getJSONArray("data");
+                                    for (int i = 0; i < data.length(); i++) {
+                                        JSONObject pair = data.getJSONObject(i);
+                                        if (pair.getString("pair").equals("USDTTRY")) {
+                                            tsatisb = (float) pair.getDouble("ask");
                                             break;
                                         }
                                     }
 
-                                    if (!found) {
-                                        // Eğer pair bulunamadıysa 0 ata veya hata işle
-                                        btcturk[i] = 0f;
-                                        System.out.println("Pair not found: " + targetPair);
-                                    }
-                                }
+                                    // Her bir btcturkisim için eşleşen pair'i bul
+                                    for (int i = 0; i < btctotal; i++) {
+                                        String targetPair = btcturkisim[i];
+                                        boolean found = false;
 
-                            } catch (JSONException e) {
-                                e.printStackTrace();
+                                        for (int j = 0; j < data.length(); j++) {
+                                            JSONObject pair = data.getJSONObject(j);
+                                            if (pair.getString("pair").equals(targetPair.replace("_", ""))) {
+                                                btcturk[i] = (float) pair.getDouble("bid");
+                                                found = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if (!found) {
+                                            // Eğer pair bulunamadıysa 0 ata veya hata işle
+                                            btcturk[i] = 0f;
+                                            System.out.println("Pair not found: " + targetPair);
+                                        }
+                                    }
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                error.printStackTrace();
                             }
                         }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                        }
-                    }
-            );
-            mQueue.add(request2);
+                );
+                mQueue.add(request2);
+            }     });
+    }
+    public String Dot() {
+        otuyorMu = false;
+        sayac++;
+
+       fetchData();
+
+        for (int i = 0; i < hizli; i++) {
+            farklar[i] = ((paribu[i] - (huobi[i] * tsatis)) * 100.0f) / paribu[i];
+        }
+        if(BtcTurk.calistiMi) {
+            for (int i2 = 0; i2 < btctotal; i2++) {
+                farklarBtcTurk[i2] = ((btcturk[i2] - (huobibtcturk[i2] * tsatisb)) * 100.0f) / btcturk[i2];
+            }
         }
 
         if (isVisible) {
@@ -1821,61 +1943,62 @@ public class MainActivity extends AppCompatActivity {
         }
         aramaindexler.clear();
         hizli2 = 0;
+
         if(isVisible){
         mergeSort(farklar, 0, farklar.length - 1, paribu, huobi, paribuisim, isimler, sesSeviyesi, indexler, siralama, oranlar, sesler);}
         int a = 0;
         while (a < hizli) {
             otuyorMu = false;
-            JsonArrayRequest request02 = request0;
+
             metinlerParibu[a] = new SpannableString(isimler[a] + paribu[a] + " %" + df.format(farklar[a]));
             metinlerBinance[a] = new SpannableString(isimler[a] + huobi[a]);
             metinlerBinanceTl[a] = new SpannableString(isimler[a] + (huobi[a] * tsatis));
             if (calistiMi) {
                 if (Sesler.arti && !Sesler.eksi && farklar[a] > oranlar[a].doubleValue()) {
-                    if (isVisible) {
+
                         SpannableString spannableString = metinlerParibu[a];
                         spannableString.setSpan(fscgreen, 0, spannableString.length(), 33);
                         SpannableString spannableString2 = metinlerBinance[a];
                         spannableString2.setSpan(yellow, 0, spannableString2.length(), 33);
                         SpannableString spannableString3 = metinlerBinanceTl[a];
                         spannableString3.setSpan(red, 0, spannableString3.length(), 33);
-                    }
+
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
-                    if (isVisible) {
+
                     SpannableString spannableString4 = metinlerParibu[a];
                     spannableString4.setSpan(fscgreen, 0, spannableString4.length(), 33);
                     SpannableString spannableString5 = metinlerBinance[a];
                     spannableString5.setSpan(yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a];
                     spannableString6.setSpan(red, 0, spannableString6.length(), 33);
-                    }
+
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
-                    if (isVisible) {
+
                     SpannableString spannableString7 = metinlerParibu[a];
                     spannableString7.setSpan(fscgreen, 0, spannableString7.length(), 33);
                     SpannableString spannableString8 = metinlerBinance[a];
                     spannableString8.setSpan(yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a];
                     spannableString9.setSpan(red, 0, spannableString9.length(), 33);
-                    }
+
                     mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
                     otuyorMu = true;
                 } else {
-                    if (isVisible) {
+
                     SpannableString spannableString10 = metinlerParibu[a];
                     spannableString10.setSpan(fsccyan, 0, spannableString10.length(), 33);
                     SpannableString spannableString11 = metinlerBinance[a];
                     spannableString11.setSpan(fscdarkyellow, 0, spannableString11.length(), 33);
                     SpannableString spannableString12 = metinlerBinanceTl[a];
                     spannableString12.setSpan(darkred, 0, spannableString12.length(), 33);
-                    }
+
                     otuyorMu = false;
                 }
-                if (otuyorMu&&isVisible) {
+                if (otuyorMu) {
                     String sayac = paribu[a] + "";
                     int sayac0 = sayac.length();
                     int sayi = isimler[a].length() + df.format(farklar[a]).length() + sayac0 + " %".length();
@@ -1891,29 +2014,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             a++;
-            request0 = request02;
+
         }
         if(BtcTurk.calistiMi&&BtcTurk.isVisible){     mergeSortBtcTurk(farklarBtcTurk, 0, farklarBtcTurk.length - 1, btcturk, huobibtcturk,
                 btcturkisim, isimlerBtcTurk, sesSeviyesiBtcTurk, indexlerbtcturk, siralamaBtcTurk,
                 oranlarbtcturk, seslerBtcTurk);}
 
-        if (calistiMi&&isVisible) {
+        if (calistiMi) {
 
             if (hizli2 == 0) {
-                arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
-                arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinance);
-                arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTl);
-                ViewGroup.MarginLayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) paribuL.getLayoutParams();
-                layoutParams.setMargins(0, 0, 0, -190);
-                binanceL.setLayoutParams(layoutParams);
-                binanceTlL.setLayoutParams(layoutParams);
-                paribuL.setLayoutParams(layoutParams);
-                paribuL.setAdapter((ListAdapter) arrayAdapter);
-                Helper.getListViewSize(paribuL, false);
-                binanceL.setAdapter((ListAdapter) arrayAdapter3);
-                Helper.getListViewSize(binanceL, false);
-                binanceTlL.setAdapter((ListAdapter) arrayAdapter2);
-                Helper.getListViewSize(binanceTlL, false);
+                notifyAllAdapters();
+
             } else {
                 metinlerParibuarama = new SpannableString[hizli2];
                 metinlerBinancearama = new SpannableString[hizli2];
@@ -1952,35 +2063,30 @@ public class MainActivity extends AppCompatActivity {
                         otuyorMuArama = false;
                     }
                     if (!otuyorMuArama) {
-                        request3 = request32;
+
                     } else {
                         String sayac3 = paribu[index] + "";
                         int sayac02 = sayac3.length();
                         int sayi2 = isimler[index].length() + df.format(farklar[index]).length() + sayac02 + " %".length();
-                        request3 = request32;
+
                         metinlerParibuarama[a3] = new SpannableString(isimler[index] + paribu[index] + " %" + df.format(farklar[index]) + " || " + huobi[index] * tsatis);
                         metinlerParibuarama[a3].setSpan(fscgreen, 0, sayi2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         metinlerParibuarama[a3].setSpan(darkred, sayi2 + 1, metinlerParibuarama[a3].length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     }
                     a3++;
-                    request32 = request3;
+
 
 
                 }
                 arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibuarama);
                 arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinancearama);
                 arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTlarama);
-                ViewGroup.MarginLayoutParams layoutParams2 = (LinearLayoutCompat.LayoutParams) binanceL.getLayoutParams();
-                layoutParams2.setMargins(0, 0, 0, 45);
-                binanceL.setLayoutParams(layoutParams2);
-                paribuL.setLayoutParams(layoutParams2);
-                binanceTlL.setLayoutParams(layoutParams2);
-                paribuL.setAdapter( arrayAdapter);
-                Helper.getListViewSize(paribuL, false);
-                binanceL.setAdapter((ListAdapter) arrayAdapter3);
-                Helper.getListViewSize(binanceL, false);
-                binanceTlL.setAdapter((ListAdapter) arrayAdapter2);
-                Helper.getListViewSize(binanceTlL, false);
+
+                paribuL.setAdapter(arrayAdapter);
+                binanceL.setAdapter(arrayAdapter3);
+                binanceTlL.setAdapter(arrayAdapter2);
+                updateListViewHeights(hizli2);
+                // Filtreleri uygula
                 arrayAdapter.getFilter().filter(aramaMetni);
                 arrayAdapter2.getFilter().filter(aramaMetni);
                 arrayAdapter3.getFilter().filter(aramaMetni);
@@ -1988,7 +2094,17 @@ public class MainActivity extends AppCompatActivity {
         }
         return "";
     }
-
+    private void notifyAllAdapters() {
+        if (arrayAdapter != null) {
+            arrayAdapter.notifyDataSetChanged();
+        }
+        if (arrayAdapter2 != null) {
+            arrayAdapter2.notifyDataSetChanged();
+        }
+        if (arrayAdapter3 != null) {
+            arrayAdapter3.notifyDataSetChanged();
+        }
+    }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.checkboxhizlibinance:
@@ -2095,12 +2211,11 @@ public class MainActivity extends AppCompatActivity {
                     arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
                     arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinance);
                     arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTl);
-                    MainActivity.paribuL.setAdapter((ListAdapter) MainActivity.this.arrayAdapter);
-                    Helper.getListViewSize(MainActivity.paribuL, false);
-                    MainActivity.binanceL.setAdapter((ListAdapter) MainActivity.this.arrayAdapter3);
-                    Helper.getListViewSize(MainActivity.binanceL, false);
-                    MainActivity.binanceTlL.setAdapter((ListAdapter) MainActivity.this.arrayAdapter2);
-                    Helper.getListViewSize(MainActivity.binanceTlL, false);
+
+                    MainActivity.paribuL.setAdapter(arrayAdapter);
+                    MainActivity.binanceL.setAdapter(arrayAdapter3);
+                    MainActivity.binanceTlL.setAdapter(arrayAdapter2);
+                    updateListViewHeights(hizli);
                 }
                 return false;
             }

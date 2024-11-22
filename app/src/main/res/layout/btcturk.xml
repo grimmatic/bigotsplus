@@ -49,15 +49,12 @@
                 />
             <ListView
                 android:id="@+id/listview0btcturk"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:divider="@drawable/divider"
                 android:dividerHeight="1dp"
-                android:nestedScrollingEnabled="true"
                 android:visibility="gone"
-
-
-                />
+                android:nestedScrollingEnabled="false" />
 
 
 
@@ -75,12 +72,13 @@
                 />
             <ListView
                 android:id="@+id/listview1btcturk"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:divider="@drawable/divider"
                 android:dividerHeight="1dp"
-                android:nestedScrollingEnabled="true"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false" />
+
 
 
 
@@ -99,13 +97,12 @@
                 android:visibility="gone"/>
             <ListView
                 android:id="@+id/listview2btcturk"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:divider="@drawable/divider"
                 android:dividerHeight="1dp"
-                android:nestedScrollingEnabled="true"
-                android:visibility="gone" />
-
+                android:visibility="gone"
+                android:nestedScrollingEnabled="false" />
 
 
 

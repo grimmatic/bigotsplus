@@ -14,6 +14,7 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -75,6 +76,10 @@ public class BtcTurk extends AppCompatActivity {
     static SpannableString[] metinlerBtcTurkarama;
     public static TextView oran;
     public static TextView pop;
+    private Button binancetradebutton;
+    private Button binancewalletbutton;
+    private Button paributradebutton;
+    private Button paribuwalletbutton;
     static FloatingActionButton start;
     static FloatingActionButton stop;
     static FloatingActionButton yukari;
@@ -156,6 +161,10 @@ public class BtcTurk extends AppCompatActivity {
         geributton=popupView.findViewById(R.id.button6650);
         oran=popupView.findViewById(R.id.textView6650);
         dialogBuilder.setView(popupView);
+        binancetradebutton =popupView.findViewById(R.id.binanceTrade);
+        binancewalletbutton =popupView.findViewById(R.id.binanceWallet);
+        paributradebutton =popupView.findViewById(R.id.paribuTrade);
+        paribuwalletbutton =popupView.findViewById(R.id.paribuWallet);
         dialog=dialogBuilder.create();
         mQueue = Volley.newRequestQueue(this);
         dot = findViewById(R.id.DOTT);
@@ -308,46 +317,22 @@ public class BtcTurk extends AppCompatActivity {
             }
         });
 
+
+
         btcturkL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                try {
-
-                    if (!BtcTurk.girdi){
-                     coinName = MainActivity.btcturkisim[position];}
-                    else{
-                        BtcTurk.tiklanansira = BtcTurk.aramaindexler.get(position).intValue();
-                        coinName = MainActivity.btcturkisim[tiklanansira];
-                    }
-
-                    // İsmi düzenle: küçük harfe çevir, _TL'yi kaldır ve sonuna USDT ekle
-                    String formattedCoin = coinName.toLowerCase()      // Küçük harfe çevir
-                            .replace("_try", "")   // _tl'yi kaldır
-                            .replace("_", "") +   // Varsa diğer _ işaretlerini kaldır
-                            "usdt";               // sonuna usdt ekle
-
-                    // Binance URL'ini oluştur
-                    String binanceUrl = "bnc://app.binance.com/trade/trade?at=spot&symbol=" + formattedCoin;
-
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(binanceUrl));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=com.binance.dev")));
-                }
-            }
-        });
-
-        btcturkL.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 if (BtcTurk.calistiMi) {
                     BtcTurk.this.dialog.show();
                     if (!BtcTurk.girdi) {
                         BtcTurk.tiklanansira = MainActivity.siralamaBtcTurk[position];
                         BtcTurk.pop.setText(MainActivity.btcturkisim[position]);
+                        paributradebutton.setText("BTCTurk PARİTE");
+                        paributradebutton.setBackgroundColor(Color.parseColor("#1e88e5"));
+                        paribuwalletbutton.setText("BTCTurk CÜZDANI");
+                        paribuwalletbutton.setBackgroundColor(Color.parseColor("#1e88e5"));
+
+                        coinName = MainActivity.btcturkisim[position];
                         BtcTurk.this.edit.setText("" + MainActivity.oranlarbtcturk[position]);
                         BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[position]);
                         BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[position].doubleValue() * 10.0d));
@@ -372,11 +357,63 @@ public class BtcTurk extends AppCompatActivity {
                             public void onStopTrackingTouch(SeekBar seekBar) {
                             }
                         });
-                        return true;
+                        binancetradebutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        binancewalletbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("btcturkpro://host/trade/" + coinName.toLowerCase()));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("btcturkpro://host/wallet"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        return ;
                     }
                     BtcTurk.tiklanansira = BtcTurk.aramaindexler.get(position).intValue();
                     BtcTurk.this.isim = MainActivity.btcturkisim[BtcTurk.tiklanansira];
                     BtcTurk.pop.setText(MainActivity.btcturkisim[BtcTurk.tiklanansira]);
+                    coinName = MainActivity.btcturkisim[tiklanansira];
                     BtcTurk.this.edit.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
                     BtcTurk.oran.setText("" + MainActivity.oranlarbtcturk[BtcTurk.tiklanansira]);
                     BtcTurk.this.seek.setProgress((int) (MainActivity.oranlarbtcturk[BtcTurk.tiklanansira].doubleValue() * 10.0d));
@@ -401,7 +438,7 @@ public class BtcTurk extends AppCompatActivity {
                         }
                     });
                 }
-                return true;
+
             }
         });
         btcturkL.setOnTouchListener(new View.OnTouchListener() { // from class: com.codinginflow.bigots.BtcTurk.12
@@ -506,6 +543,27 @@ public class BtcTurk extends AppCompatActivity {
         }
         super.onDestroy();
     }
+    private void updateListViewHeights(int itemCount) {
+        int itemHeight = 40;
+        int totalHeightInDp = itemHeight * itemCount;
+        int totalHeightInPixels = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                totalHeightInDp,
+                getResources().getDisplayMetrics()
+        );
+
+        ViewGroup.LayoutParams paramsP = btcturkL.getLayoutParams();
+        ViewGroup.LayoutParams paramsB = binanceL.getLayoutParams();
+        ViewGroup.LayoutParams paramsBT = binanceTlL.getLayoutParams();
+
+        paramsP.height = totalHeightInPixels;
+        paramsB.height = totalHeightInPixels;
+        paramsBT.height = totalHeightInPixels;
+
+        btcturkL.setLayoutParams(paramsP);
+        binanceL.setLayoutParams(paramsB);
+        binanceTlL.setLayoutParams(paramsBT);
+    }
     public void startService(View v) {
         if (MainActivity.MainservisSayac == 0) {
             Toast.makeText(getApplicationContext(), "Önce hızlı servisini başlatmanız gerekir!", Toast.LENGTH_SHORT).show();
@@ -534,6 +592,16 @@ public class BtcTurk extends AppCompatActivity {
         for (int i = 0; i < btctotal; i++) {
             MainActivity.oranlarbtcturk[i] = this.dotusd;
         }
+        arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurk);
+        arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinance);
+        arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTl);
+
+        btcturkL.setAdapter(arrayAdapter);
+        binanceL.setAdapter(arrayAdapter2);
+        binanceTlL.setAdapter(arrayAdapter1);
+        updateListViewHeights(btctotal);
+
+
         this.dotusd = Double.valueOf(dot.getText().toString());
         Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
         Intent serviceIntent = new Intent(this, Service2.class);
@@ -562,8 +630,7 @@ public class BtcTurk extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
         prefs.edit().putBoolean("isVisible", show).apply();
         isVisible = show;
-        if (show) {
-            btcturkAnaText.setVisibility(View.VISIBLE);
+        if (show) {btcturkAnaText.setVisibility(View.VISIBLE);
             BinanceAnaText.setVisibility(View.VISIBLE);
             BinanceTlAnaText.setVisibility(View.VISIBLE);
             btcturkL.setVisibility(View.VISIBLE);
@@ -605,10 +672,7 @@ public class BtcTurk extends AppCompatActivity {
         System.exit(0);
     }
 
-    /* JADX WARN: Multi-variable type inference failed */
-    /* JADX WARN: Type inference failed for: r1v1 */
-    /* JADX WARN: Type inference failed for: r1v2, types: [boolean, int] */
-    /* JADX WARN: Type inference failed for: r1v9 */
+
     public String Dot() {
 
 
@@ -635,47 +699,47 @@ public class BtcTurk extends AppCompatActivity {
             }
             if (calistiMi) {
                 if (Sesler.arti && !Sesler.eksi && MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue()) {
-                    if (isVisible) {
+
                         SpannableString spannableString = metinlerBtcTurk[a2];
                         spannableString.setSpan(this.fscgreen, 0, spannableString.length(), 33);
                         SpannableString spannableString2 = metinlerBinance[a2];
                         spannableString2.setSpan(this.yellow, 0, spannableString2.length(), 33);
                         SpannableString spannableString3 = metinlerBinanceTl[a2];
                         spannableString3.setSpan(this.red, 0, spannableString3.length(), 33);
-                    }
+
                     mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
 
-                    if (isVisible) {  SpannableString spannableString4 = metinlerBtcTurk[a2];
+                     SpannableString spannableString4 = metinlerBtcTurk[a2];
                     spannableString4.setSpan(this.fscgreen, 0, spannableString4.length(), 33);
                     SpannableString spannableString5 = metinlerBinance[a2];
                     spannableString5.setSpan(this.yellow, 0, spannableString5.length(), 33);
                     SpannableString spannableString6 = metinlerBinanceTl[a2];
                     spannableString6.setSpan(this.red, 0, spannableString6.length(), 33);
-                    }
+
                     mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
 
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
-                    if (isVisible) {  SpannableString spannableString7 = metinlerBtcTurk[a2];
+                    SpannableString spannableString7 = metinlerBtcTurk[a2];
                     spannableString7.setSpan(this.fscgreen, 0, spannableString7.length(), 33);
                     SpannableString spannableString8 = metinlerBinance[a2];
                     spannableString8.setSpan(this.yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a2];
-                    spannableString9.setSpan(this.red, 0, spannableString9.length(), 33);  }
+                    spannableString9.setSpan(this.red, 0, spannableString9.length(), 33);
                     mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
                     otuyorMu = true;
                 } else {
-                    if (isVisible) {   SpannableString spannableString10 = metinlerBtcTurk[a2];
+                      SpannableString spannableString10 = metinlerBtcTurk[a2];
                     spannableString10.setSpan(this.fsccyan, 0, spannableString10.length(), 33);
                     SpannableString spannableString11 = metinlerBinance[a2];
                     spannableString11.setSpan(this.fscdarkyellow, 0, spannableString11.length(), 33);
                     SpannableString spannableString12 = metinlerBinanceTl[a2];
-                    spannableString12.setSpan(this.darkred, 0, spannableString12.length(), 33); }
+                    spannableString12.setSpan(this.darkred, 0, spannableString12.length(), 33);
                     otuyorMu = false;
                 }
-                if (otuyorMu&&isVisible) {
+                if (otuyorMu) {
                     String sayac = btcturk[a2] + "";
                     int sayac0 = sayac.length();
                     int sayi = MainActivity.isimlerBtcTurk[a2].length() + this.df.format(MainActivity.farklarBtcTurk[a2]).length() + sayac0 + " %".length();
@@ -692,23 +756,11 @@ public class BtcTurk extends AppCompatActivity {
             }
             a2++;
         }
-        if (calistiMi&&isVisible) {
+        if (calistiMi) {
 
             if (btctotal2 == 0) {
-                arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurk);
-                arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinance);
-                arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTl);
-                ViewGroup.MarginLayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) btcturkL.getLayoutParams();
-                layoutParams.setMargins(0, 0, 0, -190);
-                binanceL.setLayoutParams(layoutParams);
-                binanceTlL.setLayoutParams(layoutParams);
-                btcturkL.setLayoutParams(layoutParams);
-                btcturkL.setAdapter((ListAdapter) this.arrayAdapter);
-                Helper.getListViewSize(btcturkL, false);
-                binanceL.setAdapter((ListAdapter) this.arrayAdapter2);
-                Helper.getListViewSize(binanceL, false);
-                binanceTlL.setAdapter((ListAdapter) this.arrayAdapter1);
-                Helper.getListViewSize(binanceTlL, false);
+                notifyAllAdapters();
+
             } else {
                 metinlerBtcTurkarama = new SpannableString[btctotal2];
                 metinlerBinancearama = new SpannableString[btctotal2];
@@ -775,25 +827,30 @@ public class BtcTurk extends AppCompatActivity {
                 arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurkarama);
                 arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinancearama);
                 arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTlarama);
-                ViewGroup.MarginLayoutParams layoutParams2 = (LinearLayoutCompat.LayoutParams) binanceL.getLayoutParams();
-                layoutParams2.setMargins(0, 0, 0, 45);
-                binanceL.setLayoutParams(layoutParams2);
-                btcturkL.setLayoutParams(layoutParams2);
-                binanceTlL.setLayoutParams(layoutParams2);
-                btcturkL.setAdapter((ListAdapter) this.arrayAdapter);
-                Helper.getListViewSize(btcturkL, false);
-                binanceL.setAdapter((ListAdapter) this.arrayAdapter2);
-                Helper.getListViewSize(binanceL, false);
-                binanceTlL.setAdapter((ListAdapter) this.arrayAdapter1);
-                Helper.getListViewSize(binanceTlL, false);
-                this.arrayAdapter.getFilter().filter(this.aramaMetni);
-                this.arrayAdapter2.getFilter().filter(this.aramaMetni);
-                this.arrayAdapter1.getFilter().filter(this.aramaMetni);
+
+                btcturkL.setAdapter(arrayAdapter);
+                binanceL.setAdapter(arrayAdapter2);
+                binanceTlL.setAdapter(arrayAdapter1);
+                updateListViewHeights(btctotal2);
+
+                arrayAdapter.getFilter().filter(aramaMetni);
+                arrayAdapter2.getFilter().filter(aramaMetni);
+                arrayAdapter1.getFilter().filter(aramaMetni);
             }
         }
         return "";
     }
-
+    private void notifyAllAdapters() {
+        if (arrayAdapter != null) {
+            arrayAdapter.notifyDataSetChanged();
+        }
+        if (arrayAdapter2 != null) {
+            arrayAdapter2.notifyDataSetChanged();
+        }
+        if (arrayAdapter1 != null) {
+            arrayAdapter1.notifyDataSetChanged();
+        }
+    }
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.checkboxhizliparibu:
@@ -900,12 +957,11 @@ public class BtcTurk extends AppCompatActivity {
                     arrayAdapter = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBtcTurk);
                     arrayAdapter2 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinance);
                     arrayAdapter1 = new ArrayAdapter<>(BtcTurk.this, R.layout.listview, metinlerBinanceTl);
-                    BtcTurk.btcturkL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter);
-                    Helper.getListViewSize(BtcTurk.btcturkL, false);
-                    BtcTurk.binanceL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter2);
-                    Helper.getListViewSize(BtcTurk.binanceL, false);
-                    BtcTurk.binanceTlL.setAdapter((ListAdapter) BtcTurk.this.arrayAdapter1);
-                    Helper.getListViewSize(BtcTurk.binanceTlL, false);
+
+                    MainActivity.paribuL.setAdapter(arrayAdapter);
+                    MainActivity.binanceL.setAdapter(arrayAdapter1);
+                    MainActivity.binanceTlL.setAdapter(arrayAdapter1);
+                    updateListViewHeights(btctotal);
                 }
                 return false;
             }
