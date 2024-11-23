@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -17,22 +19,20 @@ import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -41,6 +41,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -54,6 +58,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.lang.ref.WeakReference;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -71,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<Integer> aramaindexler;
     static String binanceDuyuruText;
     static String binanceGeciciDuyuruText;
-    static ListView binanceL;
-    static ListView binanceTlL;
+
     static float[] btcturk;
     static String[] btcturkisim;
     static float[] farklar;
@@ -95,7 +99,12 @@ public class MainActivity extends AppCompatActivity {
     static int p;
     static boolean otuyorMu;
     static float[] paribu;
-    static ListView paribuL;
+    private RecyclerView paribuRecyclerView;
+    private RecyclerView binanceRecyclerView;
+    private RecyclerView binanceTlRecyclerView;
+    private CoinAdapter paribuAdapter;
+    private CoinAdapter binanceAdapter;
+    private CoinAdapter binanceTlAdapter;
     static String[] paribuisim;
     static int[] sesSeviyesi;
     public static int[] sesSeviyesiBtcTurk;
@@ -105,9 +114,7 @@ public class MainActivity extends AppCompatActivity {
     public static int[] seslerBtcTurk;
     private TextView BinanceAnaText;
     private TextView BinanceTlAnaText;
-    ArrayAdapter<SpannableString> arrayAdapter;
-    ArrayAdapter<SpannableString> arrayAdapter2;
-    ArrayAdapter<SpannableString> arrayAdapter3;
+
     FloatingActionButton asagi;
     FloatingActionButton ayarlar;
     MenuItem binancecheck;
@@ -117,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton duzenle;
     private EditText edit;
     NestedScrollView ekran3;
+    private NestedScrollView scrollView;
+    private int currentPosition = 0;
     private final ExecutorService executorService = Executors.newFixedThreadPool(3);
     private Button geributton;
     private Button binancetradebutton;
@@ -576,6 +585,98 @@ public class MainActivity extends AppCompatActivity {
     }
     private static MainActivity instance;
     private MediaPlayerManager mediaPlayerManager;
+
+    private void setupRecyclerViews() {
+        paribuRecyclerView.setHasFixedSize(true);
+        binanceRecyclerView.setHasFixedSize(true);
+        binanceTlRecyclerView.setHasFixedSize(true);
+
+        // Tüm decorationları temizle
+        while (paribuRecyclerView.getItemDecorationCount() > 0) {
+            paribuRecyclerView.removeItemDecorationAt(0);
+        }
+        while (binanceRecyclerView.getItemDecorationCount() > 0) {
+            binanceRecyclerView.removeItemDecorationAt(0);
+        }
+        while (binanceTlRecyclerView.getItemDecorationCount() > 0) {
+            binanceTlRecyclerView.removeItemDecorationAt(0);
+        }
+
+        // Yeni divider decoration
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider));
+
+        // Decorationları ekle
+        paribuRecyclerView.addItemDecoration(dividerItemDecoration);
+        binanceRecyclerView.addItemDecoration(dividerItemDecoration);
+        binanceTlRecyclerView.addItemDecoration(dividerItemDecoration);
+    }
+
+
+    private class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
+        private final GestureDetector gestureDetector;
+        private float downX;
+
+        public RecyclerTouchListener(Context context) {
+            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    View childView = paribuRecyclerView.findChildViewUnder(e.getX(), e.getY());
+                    if (childView != null && calistiMi) {
+                        int position = paribuRecyclerView.getChildAdapterPosition(childView);
+                        if (position != RecyclerView.NO_POSITION) {
+                            if (paribuAdapter != null) {
+                                paribuAdapter.onItemClick(position);
+                            }
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+
+                @Override
+                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                    float deltaX = e2.getX() - e1.getX();
+                    if (Math.abs(deltaX) > 100 && Math.abs(velocityX) > 100) {
+                        if (deltaX < 0) { // Sağdan sola kaydırma
+                            Intent openBtcTurk = new Intent(MainActivity.this, BtcTurk.class);
+                            openBtcTurk.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            startActivityIfNeeded(openBtcTurk, 1);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            View childView = rv.findChildViewUnder(e.getX(), e.getY());
+            if (childView != null) {
+                return gestureDetector.onTouchEvent(e);
+            }
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         Sesler.arti = true;
         instance = this;
@@ -589,14 +690,14 @@ public class MainActivity extends AppCompatActivity {
                         new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1);
             }
         }
-        if (Service.isRunning() && calistiMi) {
+        if (UnifiedService.isMainServiceRunning() && calistiMi) {
             start.setVisibility(View.GONE);
             updateUI(true);
         }
 
         if (savedInstanceState != null) {
             calistiMi = savedInstanceState.getBoolean("calistiMi", false);
-            if (calistiMi && Service.isRunning()) {
+            if (calistiMi && UnifiedService.isMainServiceRunning()) {
                 start.setVisibility(View.GONE);
                 updateUI(true);
             }
@@ -608,11 +709,35 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        paribuL = findViewById(R.id.listview);
-        binanceL =  findViewById(R.id.listview2);
-        binanceTlL =  findViewById(R.id.listview3);
+        paribuRecyclerView = findViewById(R.id.recyclerview); // XML'de id'yi güncelle
+        binanceRecyclerView = findViewById(R.id.recyclerview2);
+        binanceTlRecyclerView = findViewById(R.id.recyclerview3);
+        paribuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binanceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binanceTlRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        paribuAdapter = new CoinAdapter();
+        binanceAdapter = new CoinAdapter();
+        binanceTlAdapter = new CoinAdapter();
+        paribuRecyclerView.setAdapter(paribuAdapter);
+        binanceRecyclerView.setAdapter(binanceAdapter);
+        binanceTlRecyclerView.setAdapter(binanceTlAdapter);
+        RecyclerTouchListener touchListener = new RecyclerTouchListener(this);
+        paribuRecyclerView.addOnItemTouchListener(touchListener);
+        binanceRecyclerView.addOnItemTouchListener(touchListener);
+        binanceTlRecyclerView.addOnItemTouchListener(touchListener);
+        setupRecyclerViews();
+
+        // RecyclerView'ların padding ve clipToPadding ayarlarını programmatik olarak da set et
+        paribuRecyclerView.setPadding(0, 0, 0, 0);
+        paribuRecyclerView.setClipToPadding(false);
+        binanceRecyclerView.setPadding(0, 0, 0, 0);
+        binanceRecyclerView.setClipToPadding(false);
+        binanceTlRecyclerView.setPadding(0, 0, 0, 0);
+        binanceTlRecyclerView.setClipToPadding(false);
+
+
         mQueue = Volley.newRequestQueue(this);
-        dot =  findViewById(R.id.DOT);
+        dot = findViewById(R.id.DOT);
         ayarlar = findViewById(R.id.ayarlar);
         yukari = findViewById(R.id.yukari);
         asagi = findViewById(R.id.asagi);
@@ -620,8 +745,9 @@ public class MainActivity extends AppCompatActivity {
         stop = findViewById(R.id.durdur);
         duzenle = findViewById(R.id.duzenle);
         paribuAnaText = findViewById(R.id.baslikparibuhizli);
-        BinanceTlAnaText =  findViewById(R.id.baslikbinancetlhizli);
-        BinanceAnaText =  findViewById(R.id.baslikbinancehizli);
+        BinanceTlAnaText = findViewById(R.id.baslikbinancetlhizli);
+        BinanceAnaText = findViewById(R.id.baslikbinancehizli);
+        scrollView = findViewById(R.id.ekran1);
         BottomAppBar findViewById = findViewById(R.id.bottom_app_bar);
         mbottomappbar = findViewById;
         setSupportActionBar(findViewById);
@@ -630,17 +756,17 @@ public class MainActivity extends AppCompatActivity {
         toolbar = findViewById2;
         setSupportActionBar(findViewById2);
         dialogBuilder = new AlertDialog.Builder(this);
-        View popupView = getLayoutInflater().inflate(R.layout.popup,null);
-        pop =  popupView.findViewById(R.id.textView665);
+        View popupView = getLayoutInflater().inflate(R.layout.popup, null);
+        pop = popupView.findViewById(R.id.textView665);
         edit = popupView.findViewById(R.id.edittext);
-        seek =popupView.findViewById(R.id.seekbar665);
+        seek = popupView.findViewById(R.id.seekbar665);
         seekses = popupView.findViewById(R.id.seekbar666);
         popupButon = popupView.findViewById(R.id.button665);
-        geributton =popupView.findViewById(R.id.button6650);
-        binancetradebutton =popupView.findViewById(R.id.binanceTrade);
-        binancewalletbutton =popupView.findViewById(R.id.binanceWallet);
-        paributradebutton =popupView.findViewById(R.id.paribuTrade);
-        paribuwalletbutton =popupView.findViewById(R.id.paribuWallet);
+        geributton = popupView.findViewById(R.id.button6650);
+        binancetradebutton = popupView.findViewById(R.id.binanceTrade);
+        binancewalletbutton = popupView.findViewById(R.id.binanceWallet);
+        paributradebutton = popupView.findViewById(R.id.paribuTrade);
+        paribuwalletbutton = popupView.findViewById(R.id.paribuWallet);
         oran = popupView.findViewById(R.id.textView6650);
         dialogBuilder.setView(popupView);
         AlertDialog create = dialogBuilder.create();
@@ -652,7 +778,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         sesler[0] = SOUND_DOT;
-        sesler[1] =SOUND_AVAX;
+        sesler[1] = SOUND_AVAX;
         sesler[2] = SOUND_TRON;
         sesler[3] = SOUND_EOS;
         sesler[4] = SOUND_BTT;
@@ -1030,7 +1156,6 @@ public class MainActivity extends AppCompatActivity {
         paribuisim[124] = "ZRO_TL";
 
 
-
         btcturkisim[0] = "XRP_TRY";
         btcturkisim[1] = "LTC_TRY";
         btcturkisim[2] = "XLM_TRY";
@@ -1111,6 +1236,8 @@ public class MainActivity extends AppCompatActivity {
         btcturkisim[77] = "PEPE_TRY";
         btcturkisim[78] = "NMR_TRY";
         btcturkisim[79] = "FLOKI_TRY";
+        btcturkisim[80] = "EIGEN_TRY";
+        btcturkisim[81] = "W_TRY";
 
         indexlerbtcturk[0] = 306;
         indexlerbtcturk[1] = 190;
@@ -1192,6 +1319,8 @@ public class MainActivity extends AppCompatActivity {
         indexlerbtcturk[77] = 2213;
         indexlerbtcturk[78] = 950;
         indexlerbtcturk[79] = 2215;
+        indexlerbtcturk[80] = 2755;
+        indexlerbtcturk[81] = 2568;
 
         seslerBtcTurk[0] = SOUND_RIPPLE;
         seslerBtcTurk[1] = SOUND_LITE;
@@ -1273,6 +1402,8 @@ public class MainActivity extends AppCompatActivity {
         seslerBtcTurk[77] = SOUND_PEPE;
         seslerBtcTurk[78] = SOUND_NMR;
         seslerBtcTurk[79] = SOUND_FLOKI;
+        seslerBtcTurk[80] = SOUND_EIGEN;
+        seslerBtcTurk[81] = SOUND_W;
         for (int i = 0; i < hizli; i++) {
             String[] strArr3 = isimler;
             StringBuilder sb = new StringBuilder();
@@ -1302,21 +1433,28 @@ public class MainActivity extends AppCompatActivity {
         yukari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.ekran3.scrollTo(0, 0);
+                if (currentPosition > 0) {
+                    currentPosition--;
+                    scrollToPosition(currentPosition);
+                }
             }
         });
+
         asagi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.ekran3.scrollTo(99000, 99000);
+                if (currentPosition < 2) {
+                    currentPosition++;
+                    scrollToPosition(currentPosition);
+                }
             }
         });
 
 
 
-        paribuL.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        paribuAdapter.setOnItemClickListener(position -> {
+
                 if (calistiMi) {
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -1353,8 +1491,10 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 try {
+                                    String binanceSymbol = CoinMapper.getBinanceSymbol(coinName.replace("_TL", ""));
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" +
+                                            binanceSymbol.toLowerCase() + "usdt"));
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
@@ -1374,25 +1514,13 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                        });paributradebutton.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 try {
+                                    String paribuPath = CoinMapper.getParibTradeUrl(coinName);
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse("paribu://markets/"+ coinName.toLowerCase()));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                    startActivity(intent);
-                                } catch (ActivityNotFoundException e) {
-                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                        paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                try {
-                                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse("paribu://wallet/"+coinName.toLowerCase().replace("_tl", "").replace("_", "")+"/deposit"));
+                                    intent.setData(Uri.parse("paribu://markets/" + paribuPath));
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
@@ -1401,6 +1529,20 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
 
+                        paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    String paribuPath = CoinMapper.getParibWalletUrl(coinName);
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse("paribu://wallet/" + paribuPath + "/deposit"));
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                } catch (ActivityNotFoundException e) {
+                                    Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                         return;
                     }
                     MainActivity.tiklanansira = MainActivity.aramaindexler.get(position).intValue();
@@ -1434,8 +1576,10 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             try {
+                                String binanceSymbol = CoinMapper.getBinanceSymbol(coinName.replace("_TL", ""));
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" +
+                                        binanceSymbol.toLowerCase() + "usdt"));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
@@ -1455,12 +1599,13 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
                             }
                         }
-                    }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                    });paributradebutton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             try {
+                                String paribuPath = CoinMapper.getParibTradeUrl(coinName);
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("paribu://markets/"+ coinName.toLowerCase()));
+                                intent.setData(Uri.parse("paribu://markets/" + paribuPath));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
@@ -1472,8 +1617,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             try {
+                                String paribuPath = CoinMapper.getParibWalletUrl(coinName);
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                                intent.setData(Uri.parse("paribu://wallet/"+coinName.toLowerCase().replace("_tl", "").replace("_", "")+"/deposit"));
+                                intent.setData(Uri.parse("paribu://wallet/" + paribuPath + "/deposit"));
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
@@ -1481,8 +1627,9 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
+
                 }
-            }
+
         });
 
 
@@ -1603,98 +1750,49 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        paribuL.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                MainActivity.dot.clearFocus();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        MainActivity.this.downX = event.getX();
-                        break;
-                    case MotionEvent.ACTION_UP :
-                        break;
-                    default:
-                        return false;
-                }
-                MainActivity.this.upX = event.getX();
-                float deltaX = MainActivity.this.downX - MainActivity.this.upX;
-                if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent( MainActivity.this,  BtcTurk.class);
-                    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
-                    return true;
-                }
-                return false;
-            }
-        });
-        binanceL.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                MainActivity.dot.clearFocus();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        MainActivity.this.downX = event.getX();
-                        break;
-                    case MotionEvent.ACTION_UP :
-                        break;
-                    default:
-                        return false;
-                }
-                MainActivity.this.upX = event.getX();
-                float deltaX = MainActivity.this.downX - MainActivity.this.upX;
-                if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent( MainActivity.this,  BtcTurk.class);
-                    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
-                    return true;
-                }
-                return false;
-            }
-        });
-        binanceTlL.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                MainActivity.dot.clearFocus();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        MainActivity.this.downX = event.getX();
-                        break;
-                    case MotionEvent.ACTION_UP :
-                        break;
-                    default:
-                        return false;
-                }
-                MainActivity.this.upX = event.getX();
-                float deltaX = MainActivity.this.downX - MainActivity.this.upX;
-                if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent(MainActivity.this,  BtcTurk.class);
-                    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
-                    return true;
-                }
-                return false;
-            }
-        });
+
         ekran3.setOnTouchListener(new View.OnTouchListener() {
-            @Override // android.view.View.OnTouchListener
+            private float startX;
+            private float startY;
+            private static final float SWIPE_THRESHOLD = 100;
+            private static final float SWIPE_VELOCITY_THRESHOLD = 100;
+
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
-                MainActivity.dot.clearFocus();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        MainActivity.this.downX = event.getX();
-                        break;
-                    case MotionEvent.ACTION_UP :
-                        break;
-                    default:
+                        startX = event.getX();
+                        startY = event.getY();
+                        return false; // false döndürerek scroll'un da çalışmasını sağlıyoruz
+
+                    case MotionEvent.ACTION_UP:
+                        float deltaX = event.getX() - startX;
+                        float deltaY = Math.abs(event.getY() - startY);
+
+                        // Yatay hareket dikey hareketten daha büyükse ve eşik değerini geçiyorsa
+                        if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > deltaY) {
+                            if (deltaX < 0) { // Sağdan sola kaydırma
+                                Intent openBtcTurk = new Intent(MainActivity.this, BtcTurk.class);
+                                openBtcTurk.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                startActivityIfNeeded(openBtcTurk, 1);
+                                return true;
+                            }
+                        }
                         return false;
-                }
-                MainActivity.this.upX = event.getX();
-                float deltaX = MainActivity.this.downX - MainActivity.this.upX;
-                if (Math.abs(deltaX) > 0.0f && deltaX >= 300.0f) {
-                    Intent openMainActivity = new Intent( MainActivity.this, BtcTurk.class);
-                    openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    MainActivity.this.startActivityIfNeeded(openMainActivity, 1);
-                    return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        float currentX = event.getX();
+                        float currentY = event.getY();
+
+                        float diffX = Math.abs(currentX - startX);
+                        float diffY = Math.abs(currentY - startY);
+
+                        // Eğer yatay hareket dikey hareketten fazlaysa scroll'u engelle
+                        if (diffX > diffY && diffX > SWIPE_THRESHOLD) {
+                            v.getParent().requestDisallowInterceptTouchEvent(true);
+                            return true;
+                        }
+                        return false;
                 }
                 return false;
             }
@@ -1702,30 +1800,111 @@ public class MainActivity extends AppCompatActivity {
         Dot();
     }
 
+    public void scrollToPosition(int position) {
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Scroll yapılacak view'ı seç
+                LinearLayoutCompat layout = scrollView.findViewById(R.id.ekran1)
+                        .findViewById(R.id.linear_layout_compat);
+                View targetView;
 
+                switch (position) {
+                    case 0:
+                        targetView = layout.getChildAt(layout.indexOfChild(paribuAnaText));
+                        break;
+                    case 1:
+                        targetView = layout.getChildAt(layout.indexOfChild(BinanceTlAnaText));
+                        break;
+                    case 2:
+                        targetView = layout.getChildAt(layout.indexOfChild(BinanceAnaText));
+                        break;
+                    default:
+                        return;
+                }
+
+                if (targetView != null) {
+                    // View'ın üst kenarının scrollview içindeki pozisyonunu hesapla
+                    int targetTop = 0;
+                    View current = targetView;
+
+                    while (current != scrollView) {
+                        targetTop += current.getTop();
+                        if (current.getParent() instanceof View) {
+                            current = (View) current.getParent();
+                        } else {
+                            break;
+                        }
+                    }
+
+                    // Toolbar yüksekliğini hesapla
+                    int toolbarHeight = toolbar != null ? toolbar.getHeight() : 0;
+
+                    // Status bar yüksekliğini al
+                    int statusBarHeight = 0;
+                    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+                    if (resourceId > 0) {
+                        statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+                    }
+
+                    // Son scroll pozisyonunu hesapla
+                    final int scrollTo = targetTop - toolbarHeight - statusBarHeight;
+
+                    // Smooth scroll yap
+                    scrollView.smoothScrollTo(0, scrollTo);
+
+                    // Debug için log
+                    Log.d("ScrollDebug", "Position: " + position +
+                            ", TargetTop: " + targetTop +
+                            ", ScrollTo: " + scrollTo);
+                }
+            }
+        });
+    }
     public static MainActivity getInstance() {
         return instance;
     }
-    private void updateListViewHeights(int itemCount) {
-        int itemHeight = 35;
-        int totalHeightInDp = itemHeight * itemCount;
-        int totalHeightInPixels = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                totalHeightInDp,
-                getResources().getDisplayMetrics()
-        );
+    private void updateRecyclerViewHeights(int itemCount) {
+        // Ekran density'sini al
+        Resources resources = getResources();
+        float density = resources.getDisplayMetrics().density;
 
-        ViewGroup.LayoutParams paramsP = paribuL.getLayoutParams();
-        ViewGroup.LayoutParams paramsB = binanceL.getLayoutParams();
-        ViewGroup.LayoutParams paramsBT = binanceTlL.getLayoutParams();
+        // Her bir item için minimum yükseklik (dp olarak)
+        int itemHeightDp = 37;
 
-        paramsP.height = totalHeightInPixels;
-        paramsB.height = totalHeightInPixels;
-        paramsBT.height = totalHeightInPixels;
+        // Her item için toplam yükseklik hesaplama (pixel olarak)
+        int itemHeightPx = (int) (itemHeightDp * density);
+        int totalHeight = itemHeightPx * itemCount;
 
-        paribuL.setLayoutParams(paramsP);
-        binanceL.setLayoutParams(paramsB);
-        binanceTlL.setLayoutParams(paramsBT);
+        // Layout parametrelerini güncelle
+        ViewGroup.LayoutParams paramsP = paribuRecyclerView.getLayoutParams();
+        ViewGroup.LayoutParams paramsB = binanceRecyclerView.getLayoutParams();
+        ViewGroup.LayoutParams paramsBT = binanceTlRecyclerView.getLayoutParams();
+
+        if (paramsP instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams marginParamsP = (ViewGroup.MarginLayoutParams) paramsP;
+            ViewGroup.MarginLayoutParams marginParamsB = (ViewGroup.MarginLayoutParams) paramsB;
+            ViewGroup.MarginLayoutParams marginParamsBT = (ViewGroup.MarginLayoutParams) paramsBT;
+
+            // Margin'leri ayarla
+            marginParamsP.setMargins(0, 2, 0, 2);
+            marginParamsB.setMargins(0, 2, 0, 2);
+            marginParamsBT.setMargins(0, 2, 0, 2);
+
+            // Yükseklikleri ayarla
+            marginParamsP.height = totalHeight;
+            marginParamsB.height = totalHeight;
+            marginParamsBT.height = totalHeight;
+
+            paribuRecyclerView.setLayoutParams(marginParamsP);
+            binanceRecyclerView.setLayoutParams(marginParamsB);
+            binanceTlRecyclerView.setLayoutParams(marginParamsBT);
+        }
+
+        // RecyclerView'ları yeniden çiz
+        paribuRecyclerView.requestLayout();
+        binanceRecyclerView.requestLayout();
+        binanceTlRecyclerView.requestLayout();
     }
     public void startService(View v) {
         saniye.start();
@@ -1734,12 +1913,12 @@ public class MainActivity extends AppCompatActivity {
         paribuAnaText.setVisibility(View.VISIBLE);
         BinanceAnaText.setVisibility(View.VISIBLE);
         BinanceTlAnaText.setVisibility(View.VISIBLE);
-        paribuL.setVisibility(View.VISIBLE);
-        binanceTlL.setVisibility(View.VISIBLE);
-        binanceL.setVisibility(View.VISIBLE);
-        paribucheck.setChecked(true);
+        paribuRecyclerView.setVisibility(View.VISIBLE);
+        binanceRecyclerView.setVisibility(View.VISIBLE);
+        binanceTlRecyclerView.setVisibility(View.VISIBLE);
+     /*   paribucheck.setChecked(true);
         tlcheck.setChecked(true);
-        binancecheck.setChecked(true);
+        binancecheck.setChecked(true);*/
         calistiMi = true;
         AppBarLayout.LayoutParams paramst = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
         ViewGroup.MarginLayoutParams layoutParams = (LinearLayoutCompat.LayoutParams) dot.getLayoutParams();
@@ -1751,33 +1930,33 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < hizli; i++) {
             oranlar[i] = dotusd;
         }
-        arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
-        arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinance);
-        arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTl);
 
-        paribuL.setAdapter(arrayAdapter);
-        binanceL.setAdapter(arrayAdapter3);
-        binanceTlL.setAdapter(arrayAdapter2);
-        updateListViewHeights(hizli);
+        paribuAdapter.updateData(Arrays.asList(metinlerParibu));
+        binanceAdapter.updateData(Arrays.asList(metinlerBinance));
+        binanceTlAdapter.updateData(Arrays.asList(metinlerBinanceTl));
+        updateRecyclerViewHeights(hizli);
         Toast.makeText(getApplicationContext(), "Servis Başlatıldı", Toast.LENGTH_SHORT).show();
-        Intent serviceIntent = new Intent(this, Service.class);
+        Intent serviceIntent = new Intent(this, UnifiedService.class);
+        serviceIntent.putExtra("service_type", "main");
         ContextCompat.startForegroundService(this, serviceIntent);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (Service.isRunning()&&calistiMi) {
+        if (UnifiedService.isMainServiceRunning()&&calistiMi) {
             updateUI(true);
         }
     }
     @Override
     protected void onPause() {
         super.onPause();
-        if (!isFinishing()&&calistiMi) {
+        if (!isFinishing() && calistiMi) {
             updateUI(false);
         }
+
     }
+
     private WeakReference<MainActivity> mainActivityRef;
 
     public void setMainActivity(MainActivity activity) {
@@ -1792,21 +1971,21 @@ public class MainActivity extends AppCompatActivity {
             paribuAnaText.setVisibility(View.VISIBLE);
             BinanceTlAnaText.setVisibility(View.VISIBLE);
             BinanceAnaText.setVisibility(View.VISIBLE);
-            paribuL.setVisibility(View.VISIBLE);
-            binanceL.setVisibility(View.VISIBLE);
-            binanceTlL.setVisibility(View.VISIBLE);
-            if (paribucheck != null) paribucheck.setChecked(true);
+            paribuRecyclerView.setVisibility(View.VISIBLE);
+            binanceRecyclerView.setVisibility(View.VISIBLE);
+            binanceTlRecyclerView.setVisibility(View.VISIBLE);
+           /* if (paribucheck != null) paribucheck.setChecked(true);
             if (tlcheck != null) tlcheck.setChecked(true);
-            if (binancecheck != null) binancecheck.setChecked(true);
+            if (binancecheck != null) binancecheck.setChecked(true);*/
 
         } else {
 
             paribuAnaText.setVisibility(View.GONE);
             BinanceTlAnaText.setVisibility(View.GONE);
             BinanceAnaText.setVisibility(View.GONE);
-            paribuL.setVisibility(View.GONE);
-            binanceL.setVisibility(View.GONE);
-            binanceTlL.setVisibility(View.GONE);
+            paribuRecyclerView.setVisibility(View.GONE);
+            binanceRecyclerView.setVisibility(View.GONE);
+            binanceTlRecyclerView.setVisibility(View.GONE);
 
         }
     }
@@ -1815,19 +1994,29 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putBoolean("calistiMi", calistiMi);
     }
+
     public void stopService(View v) {
+        // Dialog'u kapat
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
+
         calistiMi = false;
         updateUI(false);
-        Intent serviceIntent = new Intent( this, Service2.class);
+
+        Intent serviceIntent = new Intent(this, UnifiedService.class);
         stopService(serviceIntent);
-        Intent serviceIntent0 = new Intent( this,  Service.class);
-        stopService(serviceIntent0);
+
         finishAffinity();
-        onDestroy();
-        System.exit(0);
     }
+
     @Override
     protected void onDestroy() {
+        // Dialog'u temizle
+        if (dialog != null) {
+            dialog.dismiss();
+            dialog = null;
+        }
         if (mediaPlayerManager != null) {
             mediaPlayerManager.releaseAll();
         }
@@ -2027,7 +2216,12 @@ public class MainActivity extends AppCompatActivity {
         if (calistiMi) {
 
             if (hizli2 == 0) {
-                notifyAllAdapters();
+                // Normal veriler için
+                paribuAdapter.updateData(Arrays.asList(metinlerParibu));
+                binanceAdapter.updateData(Arrays.asList(metinlerBinance));
+                binanceTlAdapter.updateData(Arrays.asList(metinlerBinanceTl));
+                updateRecyclerViewHeights(hizli);
+               // notifyAllAdapters();
 
             } else {
                 metinlerParibuarama = new SpannableString[hizli2];
@@ -2082,40 +2276,24 @@ public class MainActivity extends AppCompatActivity {
 
 
                 }
-                arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibuarama);
-                arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinancearama);
-                arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTlarama);
 
-                paribuL.setAdapter(arrayAdapter);
-                binanceL.setAdapter(arrayAdapter3);
-                binanceTlL.setAdapter(arrayAdapter2);
-                updateListViewHeights(hizli2);
-                // Filtreleri uygula
-                arrayAdapter.getFilter().filter(aramaMetni);
-                arrayAdapter2.getFilter().filter(aramaMetni);
-                arrayAdapter3.getFilter().filter(aramaMetni);
+                paribuAdapter.updateData(Arrays.asList(metinlerParibuarama));
+                binanceAdapter.updateData(Arrays.asList(metinlerBinancearama));
+                binanceTlAdapter.updateData(Arrays.asList(metinlerBinanceTlarama));
+                updateRecyclerViewHeights(hizli2);
+
             }
         }
         return "";
     }
-    private void notifyAllAdapters() {
-        if (arrayAdapter != null) {
-            arrayAdapter.notifyDataSetChanged();
-        }
-        if (arrayAdapter2 != null) {
-            arrayAdapter2.notifyDataSetChanged();
-        }
-        if (arrayAdapter3 != null) {
-            arrayAdapter3.notifyDataSetChanged();
-        }
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
+
+  /*  public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.checkboxhizlibinance:
                 if (calistiMi) {
                     if (!item.isChecked()) {
                         BinanceAnaText.setVisibility(View.VISIBLE);
-                        binanceL.setVisibility(View.VISIBLE);
+                        binanceRecyclerView.setVisibility(View.VISIBLE);
                         if (BtcTurk.calistiMi) {
                             BtcTurk.binanceL.setVisibility(View.VISIBLE);
                             BtcTurk.BinanceAnaText.setVisibility(View.VISIBLE);
@@ -2126,7 +2304,7 @@ public class MainActivity extends AppCompatActivity {
                             BtcTurk.binanceL.setVisibility(View.GONE);
                             BtcTurk.BinanceAnaText.setVisibility(View.GONE);
                         }
-                        binanceL.setVisibility(View.GONE);
+                        binanceRecyclerView.setVisibility(View.GONE);
                         BinanceAnaText.setVisibility(View.GONE);
                         item.setChecked(false);
                     }
@@ -2136,7 +2314,7 @@ public class MainActivity extends AppCompatActivity {
                 if (calistiMi) {
                     if (!item.isChecked()) {
                         paribuAnaText.setVisibility(View.VISIBLE);
-                        paribuL.setVisibility(View.VISIBLE);
+                        paribuRecyclerView.setVisibility(View.VISIBLE);
                         if (BtcTurk.calistiMi) {
                             BtcTurk.btcturkAnaText.setVisibility(View.VISIBLE);
                             BtcTurk.btcturkL.setVisibility(View.VISIBLE);
@@ -2144,7 +2322,7 @@ public class MainActivity extends AppCompatActivity {
                         item.setChecked(true);
                     } else {
                         paribuAnaText.setVisibility(View.GONE);
-                        paribuL.setVisibility(View.GONE);
+                        paribuRecyclerView.setVisibility(View.GONE);
                         if (BtcTurk.calistiMi) {
                             BtcTurk.btcturkAnaText.setVisibility(View.GONE);
                             BtcTurk.btcturkL.setVisibility(View.GONE);
@@ -2177,15 +2355,15 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
+    }*/
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(search, menu);
         MenuItem menuItem = menu.findItem(R.id.arama);
-        paribucheck = menu.findItem(R.id.checkboxhizliparibu);
+       /* paribucheck = menu.findItem(R.id.checkboxhizliparibu);
         tlcheck = menu.findItem(R.id.checkboxhizlitl);
-        binancecheck = menu.findItem(R.id.checkboxhizlibinance);
+        binancecheck = menu.findItem(R.id.checkboxhizlibinance);*/
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Arama yapmak için yazın");
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -2212,14 +2390,10 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.hizli2 = 0;
                 }
                 if (MainActivity.this.aramaMetni.length() == 0 && MainActivity.hizli2 == 0 && MainActivity.this.calistiMi) {
-                    arrayAdapter = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerParibu);
-                    arrayAdapter3 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinance);
-                    arrayAdapter2 = new ArrayAdapter<>(MainActivity.this, R.layout.listview, metinlerBinanceTl);
-
-                    MainActivity.paribuL.setAdapter(arrayAdapter);
-                    MainActivity.binanceL.setAdapter(arrayAdapter3);
-                    MainActivity.binanceTlL.setAdapter(arrayAdapter2);
-                    updateListViewHeights(hizli);
+                    paribuAdapter.updateData(Arrays.asList(metinlerParibu));
+                    binanceAdapter.updateData(Arrays.asList(metinlerBinance));
+                    binanceTlAdapter.updateData(Arrays.asList(metinlerBinanceTl));
+                    updateRecyclerViewHeights(hizli);
                 }
                 return false;
             }

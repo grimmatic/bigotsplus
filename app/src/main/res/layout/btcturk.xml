@@ -47,7 +47,7 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 />
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listview0btcturk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,6 +55,7 @@
                 android:dividerHeight="1dp"
                 android:visibility="gone"
                 android:nestedScrollingEnabled="false" />
+
 
 
 
@@ -70,7 +71,7 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 />
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listview1btcturk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:visibility="gone"/>
-            <ListView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listview2btcturk"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

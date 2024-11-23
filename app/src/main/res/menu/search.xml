@@ -14,39 +14,39 @@
 
     />
 
-    <group
-        android:checkableBehavior="all"
-android:id="@+id/group"
-        android:orderInCategory="1"
-        >
+<!--    <group-->
+<!--        android:checkableBehavior="all"-->
+<!--android:id="@+id/group"-->
+<!--        android:orderInCategory="1"-->
+<!--        >-->
 
 
-        <item
+<!--        <item-->
 
-            android:id="@+id/checkboxhizliparibu"
-            android:title="Paribu"
-            android:checkable="true"
-            android:orderInCategory="1"
+<!--            android:id="@+id/checkboxhizliparibu"-->
+<!--            android:title="Paribu"-->
+<!--            android:checkable="true"-->
+<!--            android:orderInCategory="1"-->
 
-            />
-        <item
-            android:id="@+id/checkboxhizlitl"
-            android:title="Binance (₺)"
-            android:checkable="true"
-            android:orderInCategory="1"
-
-
-            />
-        <item
-            android:id="@+id/checkboxhizlibinance"
-            android:title="Binance"
-            android:checkable="true"
-            android:orderInCategory="1"
+<!--            />-->
+<!--        <item-->
+<!--            android:id="@+id/checkboxhizlitl"-->
+<!--            android:title="Binance (₺)"-->
+<!--            android:checkable="true"-->
+<!--            android:orderInCategory="1"-->
 
 
-            />
+<!--            />-->
+<!--        <item-->
+<!--            android:id="@+id/checkboxhizlibinance"-->
+<!--            android:title="Binance"-->
+<!--            android:checkable="true"-->
+<!--            android:orderInCategory="1"-->
 
-    </group>
+
+<!--            />-->
+
+<!--    </group>-->
 
     <group
         android:checkableBehavior="single"
