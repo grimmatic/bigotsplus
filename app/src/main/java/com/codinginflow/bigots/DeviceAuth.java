@@ -12,6 +12,7 @@ public class DeviceAuth {
     private static final String[] ALLOWED_DEVICE_IDS = {
             "a9bd872eefe5e52c", //BEN
             "57bb7be0dfef4866", //PC
+            "4f7a8b0d9a22fce5", //PC2
             "091d1522b86ae1dc"//ABİM
     };
 

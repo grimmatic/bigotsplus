@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -1316,6 +1318,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (calistiMi) {
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                     dialog.show();
                     if (!girdi) {
                         tiklanansira = MainActivity.siralama[position];
@@ -1703,7 +1707,7 @@ public class MainActivity extends AppCompatActivity {
         return instance;
     }
     private void updateListViewHeights(int itemCount) {
-        int itemHeight = 40;
+        int itemHeight = 35;
         int totalHeightInDp = itemHeight * itemCount;
         int totalHeightInPixels = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP,
@@ -1852,12 +1856,12 @@ public class MainActivity extends AppCompatActivity {
             JsonArrayRequest request0 = new JsonArrayRequest(0, "https://www.binance.com/api/v3/ticker/bookTicker", (JSONArray) null, new Response.Listener<JSONArray>() {
                 public void onResponse(JSONArray response) {
                     try {
-                        MainActivity.btc = (float) response.getJSONObject(11).getDouble("bidPrice");
+                        MainActivity.btc = (float) response.getJSONObject(11).getDouble("askPrice");
                         for (int i = 0; i < MainActivity.hizli; i++) {
-                            MainActivity.huobi[i] = (float) response.getJSONObject(MainActivity.indexler[i]).getDouble("bidPrice");
+                            MainActivity.huobi[i] = (float) response.getJSONObject(MainActivity.indexler[i]).getDouble("askPrice");
                         }
                         for (int i2 = 0; i2 < btctotal; i2++) {
-                            MainActivity.huobibtcturk[i2] = (float) response.getJSONObject(MainActivity.indexlerbtcturk[i2]).getDouble("bidPrice");
+                            MainActivity.huobibtcturk[i2] = (float) response.getJSONObject(MainActivity.indexlerbtcturk[i2]).getDouble("askPrice");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
