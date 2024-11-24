@@ -8,7 +8,11 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.util.Log;
+
 import androidx.core.app.NotificationCompat;
+
+import java.lang.ref.WeakReference;
 
 public class UnifiedService extends android.app.Service {
     private MediaPlayerManager mediaPlayerManager;
@@ -23,10 +27,13 @@ public class UnifiedService extends android.app.Service {
     private static final int NOTIFICATION_ID_BTCTURK = 2;
     private PowerManager.WakeLock wakeLock;
     private NotificationManager notificationManager;
+    public static WeakReference<MainActivity> mainActivityRef;
+    public static WeakReference<BtcTurk> btcTurkActivityRef;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        MainActivity.initSoundPrefs(this);
         mediaPlayerManager = MediaPlayerManager.getInstance(this);
         handler = new Handler(Looper.getMainLooper());
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -183,23 +190,34 @@ public class UnifiedService extends android.app.Service {
     }
 
     private void stopService() {
-        isRunning = false;
-        isMainServiceRunning = false;
-        isBtcTurkServiceRunning = false;
+        try {
+            isRunning = false;
+            isMainServiceRunning = false;
+            isBtcTurkServiceRunning = false;
 
-        if (handler != null && updateRunnable != null) {
-            handler.removeCallbacks(updateRunnable);
+            if (handler != null && updateRunnable != null) {
+                handler.removeCallbacks(updateRunnable);
+                handler = null;
+                updateRunnable = null;
+            }
+
+            if (mediaPlayerManager != null) {
+                mediaPlayerManager.releaseAll();
+                mediaPlayerManager = null;
+            }
+
+            releaseWakeLock();
+
+            if (notificationManager != null) {
+                notificationManager.cancelAll();
+                notificationManager = null;
+            }
+
+            stopForeground(true);
+            stopSelf();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        if (mediaPlayerManager != null) {
-            mediaPlayerManager.releaseAll();
-        }
-
-        releaseWakeLock();
-        notificationManager.cancelAll();
-        stopForeground(true);
-        // stopMainService() ve stopBtcTurkService() çağrılarını kaldırdık
-        stopSelf();
     }
 
     private void acquireWakeLock() {
@@ -238,4 +256,59 @@ public class UnifiedService extends android.app.Service {
     public static boolean isBtcTurkServiceRunning() {
         return isBtcTurkServiceRunning;
     }
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+        // Uygulama arkaplanda kapatıldığında çağrılır
+        stopCompletelyAndKill();
+    }
+
+    private void stopCompletelyAndKill() {
+        try {
+            // Tüm servisleri durdur
+            stopService();
+
+            // Tüm aktiviteleri kapat
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+
+            // Servis ve uygulamayı tamamen sonlandır
+            stopSelf();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }  private void handleError(Exception e) {
+        try {
+            // Hata logla
+            Log.e("UnifiedService", "Error occurred: " + e.getMessage());
+
+            // Mevcut durumu temizle
+            releaseResources();
+
+            // Servisi yeniden başlat
+            restartService();
+        } catch (Exception ex) {
+            // En kötü durumda servisi durdur
+            stopSelf();
+        }
+    }
+
+    private void releaseResources() {
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
+        }
+        // Diğer kaynakları temizle
+    }
+
+    private void restartService() {
+        Intent intent = new Intent(this, UnifiedService.class);
+        stopSelf();
+        startService(intent);
+    }
+
 }

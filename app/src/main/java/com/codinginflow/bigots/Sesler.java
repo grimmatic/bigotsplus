@@ -44,6 +44,7 @@ public class Sesler extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Ayarlar");
         super.onCreate(savedInstanceState);
+        MainActivity.initSoundPrefs(this); // SharedPreferences'ı initialize et
         mediaPlayerManager = MediaPlayerManager.getInstance(this);
         setContentView(R.layout.sesler);
         this.kontrola = (CheckBox) findViewById(R.id.arti);
@@ -255,12 +256,13 @@ public class Sesler extends AppCompatActivity {
                 Sesler.this.startActivityIfNeeded(openMainActivity, 0);
             }
         });
-        this.seektum.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.Sesler.6
+        this.seektum.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressChangedValue = 0;
 
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 this.progressChangedValue = progress;
+                MainActivity.updateAllSoundLevels(progress);
                 for (int i = 0; i < Sesler.toplamsesler; i++) {
                     if (tumSesler[i] != 0) { // 0 olmayan (geçerli) ses ID'leri için
                         mediaPlayerManager.updateVolume(tumSesler[i], progress / 15.0f);
@@ -375,7 +377,7 @@ public class Sesler extends AppCompatActivity {
                 Toast.makeText(Sesler.this, "Ses: %" + Math.round(this.progressChangedValue * 6.66d),  Toast.LENGTH_SHORT).show();
             }
         });
-        this.seekveri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { // from class: com.codinginflow.bigots.Sesler.7
+        this.seekveri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (progress == 15) {

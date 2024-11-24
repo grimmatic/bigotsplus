@@ -56,6 +56,7 @@ import java.util.Arrays;
 import static com.codinginflow.bigots.MainActivity.saniye;
 import static com.codinginflow.bigots.MainActivity.sesSeviyesiBtcTurk;
 import static com.codinginflow.bigots.MainActivity.seslerBtcTurk;
+import static com.codinginflow.bigots.MainActivity.soundPrefs;
 import static com.codinginflow.bigots.R.menu.search;
 
 public class BtcTurk extends AppCompatActivity {
@@ -112,6 +113,7 @@ public class BtcTurk extends AppCompatActivity {
     static boolean calistiMi = false;
     static boolean otuyorMu = false;
     static boolean girdi = false;
+    private static WeakReference<BtcTurk> instanceRef;
     static ArrayList<Integer> aramaindexler = new ArrayList<>();
     static int tiklanansira = 0;
     Double dotusd = Double.valueOf(2.5d);
@@ -135,7 +137,7 @@ public class BtcTurk extends AppCompatActivity {
         metinlerBinanceTl = new SpannableString[r0];
     }
 
-    private static BtcTurk instance;
+
     private MediaPlayerManager mediaPlayerManager;
     private void setupRecyclerViews() {
         btcturkRecyclerView.setHasFixedSize(true);
@@ -223,7 +225,8 @@ public class BtcTurk extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        instance = this;
+        instanceRef = new WeakReference<>(this);
+
         setContentView(R.layout.btcturk);
         ayarlar = findViewById(R.id.ayarlarbtcturk);
         yukari=findViewById(R.id.yukaribtcturk);
@@ -252,7 +255,9 @@ public class BtcTurk extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
         dot = findViewById(R.id.DOTT);
         ekran6=findViewById(R.id.ekran6);
-        dot.setText(MainActivity.dot.getText().toString(),TextView.BufferType.EDITABLE);
+        if (dot != null && MainActivity.dot != null) {
+            dot.setText(MainActivity.dot.getText().toString(), TextView.BufferType.EDITABLE);
+        }
         mbottomappbar=findViewById(R.id.bottom_app_barbtcturk);
         toolbar=findViewById(R.id.toolbarbtcturk);
         setSupportActionBar(toolbar);
@@ -453,8 +458,7 @@ public class BtcTurk extends AppCompatActivity {
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 for (int i = 0; i < BtcTurk.btctotal; i++) {
                                     if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
-                                        MainActivity.sesSeviyesiBtcTurk[i] = progress;
-                                        mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
+                                        MainActivity.getInstance().updateSoundLevel(i, progress, true);
                                         return;
                                     }
                                 }
@@ -533,8 +537,7 @@ public class BtcTurk extends AppCompatActivity {
                         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                             for (int i = 0; i < BtcTurk.btctotal; i++) {
                                 if (MainActivity.btcturkisim[i].contains(BtcTurk.pop.getText())) {
-                                    MainActivity.sesSeviyesiBtcTurk[i] = progress;
-                                    mediaPlayerManager.updateVolume(seslerBtcTurk[i], progress / 15.0f);
+                                    MainActivity.getInstance().updateSoundLevel(i, progress, true);
                                     return;
                                 }
                             }
@@ -601,8 +604,9 @@ public class BtcTurk extends AppCompatActivity {
         });
     }
     public static BtcTurk getInstance() {
-        return instance;
+        return instanceRef != null ? instanceRef.get() : null;
     }
+
 
     private void updateRecyclerViewHeights(int itemCount) {
         // Ekran density'sini al
@@ -656,7 +660,29 @@ public class BtcTurk extends AppCompatActivity {
         }
         if (mediaPlayerManager != null) {
             mediaPlayerManager.releaseAll();
+            mediaPlayerManager = null;
         }
+
+        if (mQueue != null) {
+            mQueue.cancelAll(request -> true);
+            mQueue = null;
+        }
+
+        // RecyclerView adaptörlerini temizle
+        if (btcturkAdapter != null) {
+            btcturkAdapter.updateData(null);
+            btcturkAdapter = null;
+        }
+        if (binanceAdapter != null) {
+            binanceAdapter.updateData(null);
+            binanceAdapter = null;
+        }
+        if (binanceTlAdapter != null) {
+            binanceTlAdapter.updateData(null);
+            binanceTlAdapter = null;
+        }
+
+        instanceRef = null;
         super.onDestroy();
     }
     public void startService(View v) {
@@ -804,7 +830,7 @@ public class BtcTurk extends AppCompatActivity {
                         SpannableString spannableString3 = metinlerBinanceTl[a2];
                         spannableString3.setSpan(this.red, 0, spannableString3.length(), 33);
 
-                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], MainActivity.soundPrefs.getInt("btcturk_sound_" + a2, 15) / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
 
@@ -815,7 +841,7 @@ public class BtcTurk extends AppCompatActivity {
                     SpannableString spannableString6 = metinlerBinanceTl[a2];
                     spannableString6.setSpan(this.red, 0, spannableString6.length(), 33);
 
-                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], MainActivity.soundPrefs.getInt("btcturk_sound_" + a2, 15) / 15.0f);
 
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
@@ -825,7 +851,7 @@ public class BtcTurk extends AppCompatActivity {
                     spannableString8.setSpan(this.yellow, 0, spannableString8.length(), 33);
                     SpannableString spannableString9 = metinlerBinanceTl[a2];
                     spannableString9.setSpan(this.red, 0, spannableString9.length(), 33);
-                    mediaPlayerManager.playSound(seslerBtcTurk[a2], sesSeviyesiBtcTurk[a2] / 15.0f);
+                    mediaPlayerManager.playSound(seslerBtcTurk[a2], MainActivity.soundPrefs.getInt("btcturk_sound_" + a2, 15) / 15.0f);
                     otuyorMu = true;
                 } else {
                       SpannableString spannableString10 = metinlerBtcTurk[a2];

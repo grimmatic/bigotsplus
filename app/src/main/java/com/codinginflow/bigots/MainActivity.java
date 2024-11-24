@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     MenuItem binancecheck;
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
+    public static SharedPreferences soundPrefs;
     float downX;
     FloatingActionButton duzenle;
     private EditText edit;
@@ -168,9 +169,33 @@ public class MainActivity extends AppCompatActivity {
     boolean otuyorMuArama = false;
     String aramaMetni = "";
     DecimalFormat df = new DecimalFormat("#.###");
+    public static void initSoundPrefs(Context context) {
+        if (soundPrefs == null) {
+            soundPrefs = context.getSharedPreferences("SoundSettings", MODE_PRIVATE);
+        }
+    }
 
+    public static void updateAllSoundLevels(int level) {
+        if (soundPrefs != null) {
+            SharedPreferences.Editor editor = soundPrefs.edit();
+
+            // Paribu ses seviyeleri
+            for (int i = 0; i < hizli; i++) {
+                sesSeviyesi[i] = level;
+                editor.putInt("paribu_sound_" + i, level);
+            }
+
+            // BTCTurk ses seviyeleri
+            for (int i = 0; i < btctotal; i++) {
+                sesSeviyesiBtcTurk[i] = level;
+                editor.putInt("btcturk_sound_" + i, level);
+            }
+
+            editor.apply();
+        }
+    }
     static {
-
+        // Önce dizileri initialize et
         indexler = new int[hizli];
         huobi = new float[hizli];
         paribu = new float[hizli];
@@ -189,15 +214,19 @@ public class MainActivity extends AppCompatActivity {
         metinlerBinance = new SpannableString[hizli];
         metinlerBinanceTl = new SpannableString[hizli];
         aramaindexler = new ArrayList<>();
+        btcturk = new float[btctotal];
+        huobibtcturk = new float[btctotal];
+        btcturkisim = new String[btctotal];
+        indexlerbtcturk = new int[btctotal];
+        oranlar = new Double[hizli];
+        oranlarbtcturk = new Double[btctotal];
+
+        // Sonra varsayılan değerleri ayarla
         girdi = false;
         listGeldiMi = false;
         binanceDuyuruText = "";
         binanceGeciciDuyuruText = "";
         p = 0;
-        btcturk = new float[btctotal];
-        huobibtcturk = new float[btctotal];
-        btcturkisim = new String[btctotal];
-        indexlerbtcturk = new int[btctotal];
         MainservisSayac = 0;
         otuyorMu = false;
     }
@@ -583,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
             k++;
         }
     }
-    private static MainActivity instance;
+
     private MediaPlayerManager mediaPlayerManager;
 
     private void setupRecyclerViews() {
@@ -679,8 +708,10 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         Sesler.arti = true;
-        instance = this;
+
         super.onCreate(savedInstanceState);
+        soundPrefs = getSharedPreferences("SoundSettings", MODE_PRIVATE);
+        instanceRef = new WeakReference<>(this);
         setContentView(R.layout.activity_main);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -1411,7 +1442,7 @@ public class MainActivity extends AppCompatActivity {
             strArr3[i] = sb.append(str.substring(0, str.indexOf("_"))).append(":").toString();
             siralama[i] = i;
             oranlar[i] = Double.valueOf(0.0d);
-            sesSeviyesi[i] = 15;
+            sesSeviyesi[i] = soundPrefs.getInt("paribu_sound_" + i, 15);
         }
         for (int i2 = 0; i2 < btctotal; i2++) {
             String[] strArr4 = isimlerBtcTurk;
@@ -1420,7 +1451,7 @@ public class MainActivity extends AppCompatActivity {
             strArr4[i2] = sb2.append(str2.substring(0, str2.indexOf("_"))).append(":").toString();
             siralamaBtcTurk[i2] = i2;
             oranlarbtcturk[i2] = Double.valueOf(0.0d);
-            sesSeviyesiBtcTurk[i2] = 15;
+            sesSeviyesiBtcTurk[i2] = soundPrefs.getInt("btcturk_sound_" + i2, 15);
         }
         ayarlar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1472,8 +1503,7 @@ public class MainActivity extends AppCompatActivity {
                             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                                 for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
                                     if (paribuisim[i3].contains(pop.getText())) {
-                                        sesSeviyesi[i3] = progress;
-                                        mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
+                                        updateSoundLevel(i3, progress, false);
                                         return;
                                     }
                                 }
@@ -1556,9 +1586,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                             for (int i3 = 0; i3 < MainActivity.hizli; i3++) {
-                                if (MainActivity.paribuisim[i3].contains(MainActivity.this.pop.getText())) {
-                                    MainActivity.sesSeviyesi[i3] = progress;
-                                    mediaPlayerManager.updateVolume(sesler[i3], progress / 15.0f);
+                                if (paribuisim[i3].contains(pop.getText())) {
+                                    updateSoundLevel(i3, progress, false);
                                     return;
                                 }
                             }
@@ -1799,7 +1828,20 @@ public class MainActivity extends AppCompatActivity {
         });
         Dot();
     }
-
+    public void updateSoundLevel(int index, int progress, boolean isBtcTurk) {
+        if (isBtcTurk) {
+            sesSeviyesiBtcTurk[index] = progress;
+            soundPrefs.edit().putInt("btcturk_sound_" + index, progress).apply();
+        } else {
+            sesSeviyesi[index] = progress;
+            soundPrefs.edit().putInt("paribu_sound_" + index, progress).apply();
+        }
+        // MediaPlayer ses seviyesini güncelle
+        mediaPlayerManager.updateVolume(
+                isBtcTurk ? seslerBtcTurk[index] : sesler[index],
+                progress / 15.0f
+        );
+    }
     public void scrollToPosition(int position) {
         scrollView.post(new Runnable() {
             @Override
@@ -1862,7 +1904,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public static MainActivity getInstance() {
-        return instance;
+        return instanceRef != null ? instanceRef.get() : null;
     }
     private void updateRecyclerViewHeights(int itemCount) {
         // Ekran density'sini al
@@ -1957,11 +1999,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private WeakReference<MainActivity> mainActivityRef;
+    private static WeakReference<MainActivity> instanceRef;
 
-    public void setMainActivity(MainActivity activity) {
-        mainActivityRef = new WeakReference<>(activity);
-    }
+
     private boolean isVisible = true;
     private void updateUI(boolean show) {
         SharedPreferences prefs = getSharedPreferences("UIState", MODE_PRIVATE);
@@ -2012,15 +2052,60 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // Dialog'u temizle
-        if (dialog != null) {
-            dialog.dismiss();
-            dialog = null;
-        }
-        if (mediaPlayerManager != null) {
-            mediaPlayerManager.releaseAll();
-        }
         super.onDestroy();
+
+        if (isFinishing()) {
+            // Uygulama gerçekten kapatılıyorsa
+            cleanupAndKill();
+        }
+    }
+
+    private void cleanupAndKill() {
+        try {
+            // Dialog'u temizle
+            if (dialog != null) {
+                dialog.dismiss();
+                dialog = null;
+            }
+
+            // MediaPlayer'ı temizle
+            if (mediaPlayerManager != null) {
+                mediaPlayerManager.releaseAll();
+                mediaPlayerManager = null;
+            }
+
+            // Volley isteklerini iptal et
+            if (mQueue != null) {
+                mQueue.cancelAll(request -> true);
+                mQueue = null;
+            }
+
+            // RecyclerView adaptörlerini temizle
+            if (paribuAdapter != null) {
+                paribuAdapter.updateData(null);
+                paribuAdapter = null;
+            }
+            if (binanceAdapter != null) {
+                binanceAdapter.updateData(null);
+                binanceAdapter = null;
+            }
+            if (binanceTlAdapter != null) {
+                binanceTlAdapter.updateData(null);
+                binanceTlAdapter = null;
+            }
+
+            // Service'i durdur
+            Intent serviceIntent = new Intent(this, UnifiedService.class);
+            stopService(serviceIntent);
+
+            // WeakReference'ı temizle
+            instanceRef = null;
+
+            // Tüm aktiviteleri kapat
+            finishAffinity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private void fetchData() {
         executorService.execute(() -> {
@@ -2156,7 +2241,7 @@ public class MainActivity extends AppCompatActivity {
                         SpannableString spannableString3 = metinlerBinanceTl[a];
                         spannableString3.setSpan(red, 0, spannableString3.length(), 33);
 
-                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
+                    mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
 
@@ -2167,7 +2252,7 @@ public class MainActivity extends AppCompatActivity {
                     SpannableString spannableString6 = metinlerBinanceTl[a];
                     spannableString6.setSpan(red, 0, spannableString6.length(), 33);
 
-                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
+                    mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
                 } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
 
@@ -2178,7 +2263,7 @@ public class MainActivity extends AppCompatActivity {
                     SpannableString spannableString9 = metinlerBinanceTl[a];
                     spannableString9.setSpan(red, 0, spannableString9.length(), 33);
 
-                    mediaPlayerManager.playSound(sesler[a], sesSeviyesi[a] / 15.0f);
+                    mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
                 } else {
 
