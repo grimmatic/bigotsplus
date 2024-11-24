@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView BinanceTlAnaText;
 
     FloatingActionButton asagi;
+    FloatingActionButton sag;
     FloatingActionButton ayarlar;
     MenuItem binancecheck;
     private AlertDialog dialog;
@@ -663,28 +664,13 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 }
 
-                @Override
-                public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                    float deltaX = e2.getX() - e1.getX();
-                    if (Math.abs(deltaX) > 100 && Math.abs(velocityX) > 100) {
-                        if (deltaX < 0) { // Sağdan sola kaydırma
-                            Intent openBtcTurk = new Intent(MainActivity.this, BtcTurk.class);
-                            openBtcTurk.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                            startActivityIfNeeded(openBtcTurk, 1);
-                            return true;
-                        }
-                    }
-                    return false;
-                }
+
             });
         }
 
         @Override
         public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-            View childView = rv.findChildViewUnder(e.getX(), e.getY());
-            if (childView != null) {
-                return gestureDetector.onTouchEvent(e);
-            }
+
             return false;
         }
 
@@ -772,6 +758,9 @@ public class MainActivity extends AppCompatActivity {
         ayarlar = findViewById(R.id.ayarlar);
         yukari = findViewById(R.id.yukari);
         asagi = findViewById(R.id.asagi);
+        asagi.setVisibility(View.GONE);
+        yukari.setVisibility(View.GONE);
+        sag = findViewById(R.id.btcturkactivity);
         start = findViewById(R.id.baslat);
         stop = findViewById(R.id.durdur);
         duzenle = findViewById(R.id.duzenle);
@@ -1456,7 +1445,7 @@ public class MainActivity extends AppCompatActivity {
         ayarlar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openMainActivity = new Intent((Context) MainActivity.this, (Class<?>) Sesler.class);
+                Intent openMainActivity = new Intent( MainActivity.this, Sesler.class);
                 openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 MainActivity.this.startActivityIfNeeded(openMainActivity, 2);
             }
@@ -1481,6 +1470,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        sag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openBtcTurk = new Intent(MainActivity.this, BtcTurk.class);
+                openBtcTurk.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openBtcTurk, 1);
+            }
+        });
 
 
 
@@ -1780,52 +1777,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ekran3.setOnTouchListener(new View.OnTouchListener() {
-            private float startX;
-            private float startY;
-            private static final float SWIPE_THRESHOLD = 100;
-            private static final float SWIPE_VELOCITY_THRESHOLD = 100;
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        startX = event.getX();
-                        startY = event.getY();
-                        return false; // false döndürerek scroll'un da çalışmasını sağlıyoruz
-
-                    case MotionEvent.ACTION_UP:
-                        float deltaX = event.getX() - startX;
-                        float deltaY = Math.abs(event.getY() - startY);
-
-                        // Yatay hareket dikey hareketten daha büyükse ve eşik değerini geçiyorsa
-                        if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > deltaY) {
-                            if (deltaX < 0) { // Sağdan sola kaydırma
-                                Intent openBtcTurk = new Intent(MainActivity.this, BtcTurk.class);
-                                openBtcTurk.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                                startActivityIfNeeded(openBtcTurk, 1);
-                                return true;
-                            }
-                        }
-                        return false;
-
-                    case MotionEvent.ACTION_MOVE:
-                        float currentX = event.getX();
-                        float currentY = event.getY();
-
-                        float diffX = Math.abs(currentX - startX);
-                        float diffY = Math.abs(currentY - startY);
-
-                        // Eğer yatay hareket dikey hareketten fazlaysa scroll'u engelle
-                        if (diffX > diffY && diffX > SWIPE_THRESHOLD) {
-                            v.getParent().requestDisallowInterceptTouchEvent(true);
-                            return true;
-                        }
-                        return false;
-                }
-                return false;
-            }
-        });
         Dot();
     }
     public void updateSoundLevel(int index, int progress, boolean isBtcTurk) {
@@ -1958,6 +1910,8 @@ public class MainActivity extends AppCompatActivity {
         paribuRecyclerView.setVisibility(View.VISIBLE);
         binanceRecyclerView.setVisibility(View.VISIBLE);
         binanceTlRecyclerView.setVisibility(View.VISIBLE);
+        asagi.setVisibility(View.VISIBLE);
+        yukari.setVisibility(View.VISIBLE);
      /*   paribucheck.setChecked(true);
         tlcheck.setChecked(true);
         binancecheck.setChecked(true);*/

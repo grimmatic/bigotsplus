@@ -17,6 +17,7 @@
         >
 
         <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/linear_layout_compat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
@@ -168,7 +169,15 @@
 
             />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mainacitivy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#3780f4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ekran6"
+        android:layout_marginBottom="320dp"
+        app:srcCompat="@drawable/sol" />
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/yukaribtcturk"
         android:layout_width="wrap_content"

@@ -15,6 +15,7 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,6 +64,7 @@ public class BtcTurk extends AppCompatActivity {
     public static TextView BinanceAnaText;
     public static TextView BinanceTlAnaText;
     static FloatingActionButton asagi;
+    static FloatingActionButton sol;
     static FloatingActionButton ayarlar;
     static String coinName;
     static float[] btcturk;
@@ -78,6 +80,8 @@ public class BtcTurk extends AppCompatActivity {
     static SpannableString[] metinlerBtcTurkarama;
     public static TextView oran;
     public static TextView pop;
+    private NestedScrollView scrollView;
+    private int currentPosition = 0;
     private Button binancetradebutton;
     private Button binancewalletbutton;
     private Button paributradebutton;
@@ -231,12 +235,16 @@ public class BtcTurk extends AppCompatActivity {
         ayarlar = findViewById(R.id.ayarlarbtcturk);
         yukari=findViewById(R.id.yukaribtcturk);
         asagi=findViewById(R.id.asagibtcturk);
+        asagi.setVisibility(View.GONE);
+        yukari.setVisibility(View.GONE);
+        sol=findViewById(R.id.mainacitivy);
         start=findViewById(R.id.baslatbtcturk);
         stop=findViewById(R.id.durdurbtcturk);
         duzenle=findViewById(R.id.duzenlebtcturk);
         btcturkAnaText=findViewById(R.id.baslikbtcturk);
         BinanceTlAnaText=findViewById(R.id.baslikbinancetlbtcturk);
         BinanceAnaText=findViewById(R.id.baslikbinancebtcturk);
+        scrollView = findViewById(R.id.ekran6);
         dialogBuilder = new AlertDialog.Builder(BtcTurk.this);
         View popupView = getLayoutInflater().inflate(R.layout.popup, (ViewGroup) null);
         pop=popupView.findViewById(R.id.textView665);
@@ -304,7 +312,7 @@ public class BtcTurk extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         start.setX((width - 178) / 2);
         start.setY((height - 800) / 2);
-        ayarlar.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.1
+        ayarlar.setOnClickListener(new View.OnClickListener() {
             @Override // android.view.View.OnClickListener
             public void onClick(View v) {
                 Intent openMainActivity = new Intent((Context) BtcTurk.this, (Class<?>) Sesler.class);
@@ -312,18 +320,36 @@ public class BtcTurk extends AppCompatActivity {
                 BtcTurk.this.startActivityIfNeeded(openMainActivity, 2);
             }
         });
-        yukari.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.2
-            @Override // android.view.View.OnClickListener
+        yukari.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                BtcTurk.this.ekran6.scrollTo(0, 0);
+                if (currentPosition > 0) {
+                    currentPosition--;
+                    scrollToPosition(currentPosition);
+                }
             }
         });
-        asagi.setOnClickListener(new View.OnClickListener() { // from class: com.codinginflow.bigots.BtcTurk.3
-            @Override // android.view.View.OnClickListener
+
+        asagi.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                BtcTurk.this.ekran6.scrollTo(99000, 99000);
+                if (currentPosition < 2) {
+                    currentPosition++;
+                    scrollToPosition(currentPosition);
+                }
             }
         });
+
+
+        sol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openMainActivity = new Intent(BtcTurk.this, MainActivity.class);
+                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivityIfNeeded(openMainActivity, 0);
+            }
+        });
+
         TextWatcher tt = new TextWatcher() { // from class: com.codinginflow.bigots.BtcTurk.4
             @Override // android.text.TextWatcher
             public void afterTextChanged(Editable s) {
@@ -556,57 +582,72 @@ public class BtcTurk extends AppCompatActivity {
 
         });
 
-        ekran6.setOnTouchListener(new View.OnTouchListener() {
-            private float startX;
-            private float startY;
-            private static final float SWIPE_THRESHOLD = 100;
-            private static final float SWIPE_VELOCITY_THRESHOLD = 100;
 
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        startX = event.getX();
-                        startY = event.getY();
-                        return false; // false döndürerek scroll'un da çalışmasını sağlıyoruz
-
-                    case MotionEvent.ACTION_UP:
-                        float deltaX = event.getX() - startX;
-                        float deltaY = Math.abs(event.getY() - startY);
-
-                        // Yatay hareket dikey hareketten daha büyükse ve eşik değerini geçiyorsa
-                        if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > deltaY) {
-                            if (deltaX > 0) { // Soldan sağa kaydırma
-                                Intent openMainActivity = new Intent(BtcTurk.this, MainActivity.class);
-                                openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                                startActivityIfNeeded(openMainActivity, 0);
-                                return true;
-                            }
-                        }
-                        return false;
-
-                    case MotionEvent.ACTION_MOVE:
-                        float currentX = event.getX();
-                        float currentY = event.getY();
-
-                        float diffX = Math.abs(currentX - startX);
-                        float diffY = Math.abs(currentY - startY);
-
-                        // Eğer yatay hareket dikey hareketten fazlaysa scroll'u engelle
-                        if (diffX > diffY && diffX > SWIPE_THRESHOLD) {
-                            v.getParent().requestDisallowInterceptTouchEvent(true);
-                            return true;
-                        }
-                        return false;
-                }
-                return false;
-            }
-        });
     }
     public static BtcTurk getInstance() {
         return instanceRef != null ? instanceRef.get() : null;
     }
+    public void scrollToPosition(int position) {
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                // Scroll yapılacak view'ı seç
+                LinearLayoutCompat layout = scrollView.findViewById(R.id.ekran6)
+                        .findViewById(R.id.linear_layout_compat);
+                View targetView;
 
+                switch (position) {
+                    case 0:
+                        targetView = layout.getChildAt(layout.indexOfChild(btcturkAnaText));
+                        break;
+                    case 1:
+                        targetView = layout.getChildAt(layout.indexOfChild(BinanceTlAnaText));
+                        break;
+                    case 2:
+                        targetView = layout.getChildAt(layout.indexOfChild(BinanceAnaText));
+                        break;
+                    default:
+                        return;
+                }
+
+                if (targetView != null) {
+                    // View'ın üst kenarının scrollview içindeki pozisyonunu hesapla
+                    int targetTop = 0;
+                    View current = targetView;
+
+                    while (current != scrollView) {
+                        targetTop += current.getTop();
+                        if (current.getParent() instanceof View) {
+                            current = (View) current.getParent();
+                        } else {
+                            break;
+                        }
+                    }
+
+                    // Toolbar yüksekliğini hesapla
+                    int toolbarHeight = toolbar != null ? toolbar.getHeight() : 0;
+
+                    // Status bar yüksekliğini al
+                    int statusBarHeight = 0;
+                    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+                    if (resourceId > 0) {
+                        statusBarHeight = getResources().getDimensionPixelSize(resourceId);
+                    }
+
+                    // Son scroll pozisyonunu hesapla
+                    final int scrollTo = targetTop - toolbarHeight - statusBarHeight;
+
+                    // Smooth scroll yap
+                    scrollView.smoothScrollTo(0, scrollTo);
+
+                    // Debug için log
+                    Log.d("ScrollDebug", "Position: " + position +
+                            ", TargetTop: " + targetTop +
+                            ", ScrollTo: " + scrollTo);
+                }
+            }
+        });
+    }
 
     private void updateRecyclerViewHeights(int itemCount) {
         // Ekran density'sini al
@@ -700,6 +741,8 @@ public class BtcTurk extends AppCompatActivity {
         btcturkRecyclerView.setVisibility(View.VISIBLE);
         binanceRecyclerView.setVisibility(View.VISIBLE);
         binanceTlRecyclerView.setVisibility(View.VISIBLE);
+        asagi.setVisibility(View.VISIBLE);
+        yukari.setVisibility(View.VISIBLE);
         /*this.paribucheck.setChecked(true);
         this.tlcheck.setChecked(true);
         this.binancecheck.setChecked(true);*/

@@ -128,6 +128,8 @@
             android:id="@+id/appbar"
             android:layout_height="wrap_content">
 
+
+
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
@@ -145,6 +147,7 @@
             />
 
         <com.google.android.material.bottomappbar.BottomAppBar
+
             android:id="@+id/bottom_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,6 +158,7 @@
             app:fabCradleRoundedCornerRadius="32dp"
             app:fabAlignmentMode="end"
             app:navigationIcon="@drawable/paribu_amblem"
+
 
             />
 
@@ -173,6 +177,20 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+        android:id="@+id/btcturkactivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#3780f4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ekran1"
+        android:layout_marginBottom="320dp"
+        app:srcCompat="@drawable/sag"
+      />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
         android:id="@+id/yukari"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
