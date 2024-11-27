@@ -694,37 +694,60 @@ public class BtcTurk extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // Dialog'u temizle
-        if (dialog != null) {
-            dialog.dismiss();
-            dialog = null;
-        }
-        if (mediaPlayerManager != null) {
-            mediaPlayerManager.releaseAll();
-            mediaPlayerManager = null;
-        }
-
-        if (mQueue != null) {
-            mQueue.cancelAll(request -> true);
-            mQueue = null;
-        }
-
-        // RecyclerView adaptörlerini temizle
-        if (btcturkAdapter != null) {
-            btcturkAdapter.updateData(null);
-            btcturkAdapter = null;
-        }
-        if (binanceAdapter != null) {
-            binanceAdapter.updateData(null);
-            binanceAdapter = null;
-        }
-        if (binanceTlAdapter != null) {
-            binanceTlAdapter.updateData(null);
-            binanceTlAdapter = null;
-        }
-
-        instanceRef = null;
         super.onDestroy();
+
+        if (isFinishing()) {
+            // Uygulama gerçekten kapatılıyorsa
+            cleanupAndKill();
+        }
+    }
+
+    private void cleanupAndKill() {
+        try {
+            // Dialog'u temizle
+            if (dialog != null) {
+                dialog.dismiss();
+                dialog = null;
+            }
+
+            // MediaPlayer'ı temizle
+            if (mediaPlayerManager != null) {
+                mediaPlayerManager.releaseAll();
+                mediaPlayerManager = null;
+            }
+
+            // Volley isteklerini iptal et
+            if (mQueue != null) {
+                mQueue.cancelAll(request -> true);
+                mQueue = null;
+            }
+
+            // RecyclerView adaptörlerini temizle
+            if (btcturkAdapter != null) {
+                btcturkAdapter.updateData(null);
+                btcturkAdapter = null;
+            }
+            if (binanceAdapter != null) {
+                binanceAdapter.updateData(null);
+                binanceAdapter = null;
+            }
+            if (binanceTlAdapter != null) {
+                binanceTlAdapter.updateData(null);
+                binanceTlAdapter = null;
+            }
+
+            // Service'i durdur
+            Intent serviceIntent = new Intent(this, UnifiedService.class);
+            stopService(serviceIntent);
+
+            // WeakReference'ı temizle
+            instanceRef = null;
+
+            // Tüm aktiviteleri kapat
+            finishAffinity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     public void startService(View v) {
         if (!UnifiedService.isMainServiceRunning()) {

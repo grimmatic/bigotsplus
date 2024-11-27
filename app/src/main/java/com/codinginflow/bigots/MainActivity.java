@@ -2006,12 +2006,19 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        // Önce servis durdurulmalı
+        Intent serviceIntent = new Intent(this, UnifiedService.class);
+        stopService(serviceIntent);
 
-        if (isFinishing()) {
-            // Uygulama gerçekten kapatılıyorsa
-            cleanupAndKill();
+        // Diğer kaynakları temizle
+        if (mediaPlayerManager != null) {
+            mediaPlayerManager.releaseAll();
         }
+
+        // En son instanceRef null yapılmalı
+        instanceRef = null;
+
+        super.onDestroy();
     }
 
     private void cleanupAndKill() {

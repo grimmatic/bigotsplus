@@ -23,7 +23,7 @@
             android:name=".UnifiedService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="dataSync|location|camera|microphone|mediaProjection|phoneCall|mediaPlayback"
+            android:foregroundServiceType="dataSync|mediaPlayback"
             tools:ignore="ForegroundServicePermission" />
     </application>
 </manifest>

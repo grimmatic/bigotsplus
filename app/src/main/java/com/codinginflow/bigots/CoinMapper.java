@@ -46,6 +46,7 @@ public class CoinMapper {
         paribuTradeMapping.put("TIA_TL", "tia_tl");
         paribuTradeMapping.put("ALICE_TL", "alice_tl");
         paribuTradeMapping.put("CITY_TL", "city_tl");
+        paribuTradeMapping.put("FIL_TL", "fil_tl");
     }
     static {
         // Wallet mappings - Büyük I olan tüm coinler için

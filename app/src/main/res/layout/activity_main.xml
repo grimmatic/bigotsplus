@@ -262,7 +262,7 @@
         tools:ignore="MissingConstraints"
         app:layout_constraintEnd_toEndOf="@+id/ekran1"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="395dp"
         android:visibility="gone"
 
 

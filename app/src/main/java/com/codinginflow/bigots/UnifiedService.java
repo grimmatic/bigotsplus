@@ -98,36 +98,43 @@ public class UnifiedService extends android.app.Service {
         updateRunnable = new Runnable() {
             @Override
             public void run() {
-                if (!isMainServiceRunning) {
-                    stopService();
-                    return;
-                }
+                try {
+                    if (!isMainServiceRunning) {
+                        stopService();
+                        return;
+                    }
 
-                // Ana aktiviteyi güncelle
-                if (mainActivity == null) {
-                    mainActivity = MainActivity.getInstance();
-                }
-
-                if (mainActivity != null) {
-                    mainActivity.runOnUiThread(() -> {
-                        mainActivity.Dot();
-
-                        // BtcTurk aktivitesini güncelle
-                        if (isBtcTurkServiceRunning) {
-                            if (btcTurkActivity == null) {
-                                btcTurkActivity = BtcTurk.getInstance();
+                    // Ana aktiviteyi güncelle
+                    MainActivity activity = MainActivity.getInstance();
+                    if (activity != null && !activity.isFinishing()) {
+                        activity.runOnUiThread(() -> {
+                            try {
+                                activity.Dot();
+                            } catch (Exception e) {
+                                Log.e("UnifiedService", "Error updating MainActivity: " + e.getMessage());
                             }
+                        });
+                    }
 
-                            if (btcTurkActivity != null && BtcTurk.calistiMi) {
-                                btcTurkActivity.runOnUiThread(() -> {
-                                    btcTurkActivity.Dot();
-                                });
-                            }
+                    // BTCTurk aktivitesini güncelle
+                    if (isBtcTurkServiceRunning) {
+                        BtcTurk btcTurk = BtcTurk.getInstance();
+                        if (btcTurk != null && !btcTurk.isFinishing() && BtcTurk.calistiMi) {
+                            btcTurk.runOnUiThread(() -> {
+                                try {
+                                    btcTurk.Dot();
+                                } catch (Exception e) {
+                                    Log.e("UnifiedService", "Error updating BtcTurk: " + e.getMessage());
+                                }
+                            });
                         }
-                    });
-                }
+                    }
 
-                handler.postDelayed(this, (long)Sesler.saniyed);
+                    handler.postDelayed(this, (long)Sesler.saniyed);
+                } catch (Exception e) {
+                    Log.e("UnifiedService", "Critical error in update loop: " + e.getMessage());
+                    handleError(e);
+                }
             }
         };
         handler.post(updateRunnable);
@@ -178,14 +185,23 @@ public class UnifiedService extends android.app.Service {
 
     private void stopMainService() {
         isMainServiceRunning = false;
-        stopBtcTurkService(); // Main servis durduğunda BTCTurk servisi de durmalı
-        // stopService() çağrısını kaldırdık
+
+        // Cancel both notifications when main service stops
+        if (notificationManager != null) {
+            notificationManager.cancel(NOTIFICATION_ID_PARIBU);
+            notificationManager.cancel(NOTIFICATION_ID_BTCTURK);
+        }
+
+        stopBtcTurkService(); // Stop BTCTurk service
+        stopService(); // Stop the entire service
     }
 
     private void stopBtcTurkService() {
         if (isBtcTurkServiceRunning) {
             isBtcTurkServiceRunning = false;
-            notificationManager.cancel(NOTIFICATION_ID_BTCTURK);
+            if (notificationManager != null) {
+                notificationManager.cancel(NOTIFICATION_ID_BTCTURK);
+            }
         }
     }
 
@@ -209,7 +225,8 @@ public class UnifiedService extends android.app.Service {
             releaseWakeLock();
 
             if (notificationManager != null) {
-                notificationManager.cancelAll();
+                notificationManager.cancel(NOTIFICATION_ID_PARIBU);
+                notificationManager.cancel(NOTIFICATION_ID_BTCTURK);
                 notificationManager = null;
             }
 
@@ -240,10 +257,29 @@ public class UnifiedService extends android.app.Service {
 
     @Override
     public void onDestroy() {
-        stopService();
-        super.onDestroy();
-    }
+        try {
+            isRunning = false;
+            if (handler != null && updateRunnable != null) {
+                handler.removeCallbacks(updateRunnable);
+            }
 
+            if (mediaPlayerManager != null) {
+                mediaPlayerManager.releaseAll();
+            }
+
+            // Cancel both notifications in onDestroy as well
+            if (notificationManager != null) {
+                notificationManager.cancel(NOTIFICATION_ID_PARIBU);
+                notificationManager.cancel(NOTIFICATION_ID_BTCTURK);
+            }
+
+            releaseWakeLock();
+            stopForeground(true);
+        } catch (Exception e) {
+            Log.e("UnifiedService", "Error in onDestroy: " + e.getMessage());
+        } finally {
+            super.onDestroy();
+        }}
     @Override
     public IBinder onBind(Intent intent) {
         return null;
