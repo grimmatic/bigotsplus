@@ -47,6 +47,7 @@ public class CoinMapper {
         paribuTradeMapping.put("ALICE_TL", "alice_tl");
         paribuTradeMapping.put("CITY_TL", "city_tl");
         paribuTradeMapping.put("FIL_TL", "fil_tl");
+        paribuTradeMapping.put("WIF_TL", "wif_tl");
     }
     static {
         // Wallet mappings - Büyük I olan tüm coinler için
@@ -67,6 +68,9 @@ public class CoinMapper {
         paribuWalletMapping.put("TIA", "tia");
         paribuWalletMapping.put("ALICE", "alice");
         paribuWalletMapping.put("CITY", "city");
+        paribuTradeMapping.put("FIL", "fil");
+        paribuTradeMapping.put("WIF", "wif");
+
     }
     public static String getBinanceSymbol(String paribuSymbol) {
         String baseSymbol = paribuSymbol.replace("_TL", "").toUpperCase();

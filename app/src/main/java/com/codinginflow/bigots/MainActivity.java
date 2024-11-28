@@ -1522,7 +1522,7 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" +
                                             binanceSymbol.toLowerCase() + "usdt"));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
                                     Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1535,7 +1535,7 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
                                     Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1548,7 +1548,7 @@ public class MainActivity extends AppCompatActivity {
                                     String paribuPath = CoinMapper.getParibTradeUrl(coinName);
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse("paribu://markets/" + paribuPath));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
                                     Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1563,13 +1563,14 @@ public class MainActivity extends AppCompatActivity {
                                     String paribuPath = CoinMapper.getParibWalletUrl(coinName);
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
                                     intent.setData(Uri.parse("paribu://wallet/" + paribuPath + "/deposit"));
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
                                     Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+
                         return;
                     }
                     MainActivity.tiklanansira = MainActivity.aramaindexler.get(position).intValue();
@@ -1606,7 +1607,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" +
                                         binanceSymbol.toLowerCase() + "usdt"));
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
                                 Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1619,7 +1620,7 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
                                 Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1632,7 +1633,7 @@ public class MainActivity extends AppCompatActivity {
                                 String paribuPath = CoinMapper.getParibTradeUrl(coinName);
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse("paribu://markets/" + paribuPath));
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
                                 Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -1646,7 +1647,7 @@ public class MainActivity extends AppCompatActivity {
                                 String paribuPath = CoinMapper.getParibWalletUrl(coinName);
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.setData(Uri.parse("paribu://wallet/" + paribuPath + "/deposit"));
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK  );
                                 startActivity(intent);
                             } catch (ActivityNotFoundException e) {
                                 Toast.makeText(MainActivity.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
@@ -2204,7 +2205,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
-                } else if (!Sesler.arti && !Sesler.eksi && (farklar[a] < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
+                } else if (!Sesler.arti && !Sesler.eksi && (farklar[a]/4 < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
 
                     SpannableString spannableString4 = metinlerParibu[a];
                     spannableString4.setSpan(fscgreen, 0, spannableString4.length(), 33);
@@ -2215,7 +2216,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
-                } else if (!Sesler.arti && Sesler.eksi && farklar[a] < oranlar[a].doubleValue() * (-1.0d)) {
+                } else if (!Sesler.arti && Sesler.eksi && farklar[a]/4 < oranlar[a].doubleValue() * (-1.0d)) {
 
                     SpannableString spannableString7 = metinlerParibu[a];
                     spannableString7.setSpan(fscgreen, 0, spannableString7.length(), 33);
