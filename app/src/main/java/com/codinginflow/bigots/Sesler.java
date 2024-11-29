@@ -56,7 +56,7 @@ public class Sesler extends AppCompatActivity {
         this.yukari = (FloatingActionButton) findViewById(R.id.floatactionyukari);
         this.asagi = (FloatingActionButton) findViewById(R.id.floatactionasagi);
         this.sesEkran = (NestedScrollView) findViewById(R.id.scrollView2);
-        this.kontrola.setChecked(true);
+        //this.kontrola.setChecked(true);
         this.saniye = (TextView) findViewById(R.id.saniye);
         this.seekveri = (SeekBar) findViewById(R.id.seekBar32);
         this.seektum = (SeekBar) findViewById(R.id.seekBar30);

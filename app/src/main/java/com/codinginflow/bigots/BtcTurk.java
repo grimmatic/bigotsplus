@@ -503,7 +503,7 @@ public class BtcTurk extends AppCompatActivity {
                             public void onClick(View v) {
                                 try {
                                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_tl", "").replace("_", "") + "usdt"));
+                                    intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_try", "").replace("_", "") + "usdt"));
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(intent);
                                 } catch (ActivityNotFoundException e) {
@@ -578,7 +578,57 @@ public class BtcTurk extends AppCompatActivity {
                         }
                     });
                 }
-
+            binancetradebutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("bnc://app.binance.com/trade/trade?at=spot&symbol=" + coinName.toLowerCase().replace("_try", "").replace("_", "") + "usdt"));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            binancewalletbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("bnc://app.binance.com/funds/withdrawChooseCoin"));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }); paributradebutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("btcturkpro://host/trade/" + coinName.toLowerCase()));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+            paribuwalletbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("btcturkpro://host/wallet"));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(BtcTurk.this, "Uygulama bulunamadı", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
         });
 
