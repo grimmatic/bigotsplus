@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -118,11 +117,9 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton asagi;
     FloatingActionButton sag;
     FloatingActionButton ayarlar;
-    MenuItem binancecheck;
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
     public static SharedPreferences soundPrefs;
-    float downX;
     FloatingActionButton duzenle;
     private EditText edit;
     NestedScrollView ekran3;
@@ -138,15 +135,12 @@ public class MainActivity extends AppCompatActivity {
     private BottomAppBar mbottomappbar;
     private TextView oran;
     private TextView paribuAnaText;
-    MenuItem paribucheck;
     private TextView pop;
     private Button popupButon;
     private SeekBar seek;
     private SeekBar seekses;
     FloatingActionButton start;
     FloatingActionButton stop;
-    MenuItem tlcheck;
-    float upX;
     FloatingActionButton yukari;
     static float tsatis = 0.0f;
     static float tsatisb = 0.0f;
@@ -693,7 +687,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void onCreate(Bundle savedInstanceState) {
-        Sesler.arti = true;
+      //  Sesler.arti = true;
 
         super.onCreate(savedInstanceState);
         soundPrefs = getSharedPreferences("SoundSettings", MODE_PRIVATE);

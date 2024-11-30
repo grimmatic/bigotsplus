@@ -23,14 +23,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,20 +52,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.codinginflow.bigots.MainActivity.saniye;
-import static com.codinginflow.bigots.MainActivity.sesSeviyesiBtcTurk;
 import static com.codinginflow.bigots.MainActivity.seslerBtcTurk;
-import static com.codinginflow.bigots.MainActivity.soundPrefs;
 import static com.codinginflow.bigots.R.menu.search;
 
 public class BtcTurk extends AppCompatActivity {
-    public static TextView BinanceAnaText;
-    public static TextView BinanceTlAnaText;
+    public  TextView BinanceAnaText;
+    public  TextView BinanceTlAnaText;
     static FloatingActionButton asagi;
     static FloatingActionButton sol;
     static FloatingActionButton ayarlar;
     static String coinName;
     static float[] btcturk;
-    public static TextView btcturkAnaText;
+    public  TextView btcturkAnaText;
     public static EditText dot;
     static FloatingActionButton duzenle;
     static float[] huobibtcturk;
@@ -98,7 +93,6 @@ public class BtcTurk extends AppCompatActivity {
     MenuItem binancecheck;
     private AlertDialog dialog;
     private AlertDialog.Builder dialogBuilder;
-    float downX;
     private EditText edit;
     NestedScrollView ekran6;
     private Button geributton;
@@ -110,7 +104,6 @@ public class BtcTurk extends AppCompatActivity {
     private SeekBar seekses;
     MenuItem tlcheck;
     Toolbar toolbar;
-    float upX;
     static int btctotal = 82;
     static int btctotal2 = 0;
     static int p = 0;
@@ -171,7 +164,6 @@ public class BtcTurk extends AppCompatActivity {
 
     private class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
         private final GestureDetector gestureDetector;
-        private float downX;
 
         public RecyclerTouchListener(Context context) {
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
@@ -856,10 +848,7 @@ public class BtcTurk extends AppCompatActivity {
         if (!isFinishing() && calistiMi) {
             updateUI(false);
         }
-        // Dialog açıksa kapat
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
+
     }
 
     public static boolean isVisible = true;
@@ -1021,7 +1010,7 @@ public class BtcTurk extends AppCompatActivity {
                         spannableString15.setSpan(this.yellow, 0, spannableString15.length(), 33);
                         SpannableString spannableString16 = metinlerBinanceTlarama[a3];
                         spannableString16.setSpan(this.red, 0, spannableString16.length(), 33);
-                        this.otuyorMuArama = z;
+                        this.otuyorMuArama = true;
                     } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[index] < MainActivity.oranlarbtcturk[index].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[index] > MainActivity.oranlarbtcturk[index].doubleValue())) {
                         SpannableString spannableString17 = metinlerBtcTurkarama[a3];
                         spannableString17.setSpan(this.fscgreen, 0, spannableString17.length(), 33);
@@ -1029,7 +1018,7 @@ public class BtcTurk extends AppCompatActivity {
                         spannableString18.setSpan(this.yellow, 0, spannableString18.length(), 33);
                         SpannableString spannableString19 = metinlerBinanceTlarama[a3];
                         spannableString19.setSpan(this.red, 0, spannableString19.length(), 33);
-                        this.otuyorMuArama = z;
+                        this.otuyorMuArama = true;
                     } else {
                         if (!Sesler.arti && Sesler.eksi) {
                             if (MainActivity.farklarBtcTurk[index] < MainActivity.oranlarbtcturk[index].doubleValue() * (-1.0d)) {
@@ -1039,7 +1028,7 @@ public class BtcTurk extends AppCompatActivity {
                                 spannableString21.setSpan(this.yellow, 0, spannableString21.length(), 33);
                                 SpannableString spannableString22 = metinlerBinanceTlarama[a3];
                                 spannableString22.setSpan(this.red, 0, spannableString22.length(), 33);
-                                this.otuyorMuArama = z;
+                                this.otuyorMuArama = true;
                             }
                         }
                         SpannableString spannableString23 = metinlerBtcTurkarama[a3];
@@ -1064,7 +1053,7 @@ public class BtcTurk extends AppCompatActivity {
                     }
                     a3 = a + 1;
 
-                    z = true;
+
                 }
                 btcturkAdapter.updateData(Arrays.asList(metinlerBtcTurkarama));
                 binanceAdapter.updateData(Arrays.asList(metinlerBinancearama));
