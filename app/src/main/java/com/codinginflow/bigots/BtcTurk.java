@@ -104,7 +104,7 @@ public class BtcTurk extends AppCompatActivity {
     private SeekBar seekses;
     MenuItem tlcheck;
     Toolbar toolbar;
-    static int btctotal = 82;
+    static int btctotal = 106;
     static int btctotal2 = 0;
     static int p = 0;
     static boolean calistiMi = false;
@@ -937,7 +937,7 @@ public class BtcTurk extends AppCompatActivity {
 
                     mediaPlayerManager.playSound(seslerBtcTurk[a2], MainActivity.soundPrefs.getInt("btcturk_sound_" + a2, 15) / 15.0f);
                     otuyorMu = true;
-                } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2]/4 < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
+                } else if (!Sesler.arti && !Sesler.eksi && (MainActivity.farklarBtcTurk[a2]/5 < MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d) || MainActivity.farklarBtcTurk[a2] > MainActivity.oranlarbtcturk[a2].doubleValue())) {
 
                      SpannableString spannableString4 = metinlerBtcTurk[a2];
                     spannableString4.setSpan(this.fscgreen, 0, spannableString4.length(), 33);
@@ -949,7 +949,7 @@ public class BtcTurk extends AppCompatActivity {
                     mediaPlayerManager.playSound(seslerBtcTurk[a2], MainActivity.soundPrefs.getInt("btcturk_sound_" + a2, 15) / 15.0f);
 
                     otuyorMu = true;
-                } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] /4< MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
+                } else if (!Sesler.arti && Sesler.eksi && MainActivity.farklarBtcTurk[a2] /5< MainActivity.oranlarbtcturk[a2].doubleValue() * (-1.0d)) {
                     SpannableString spannableString7 = metinlerBtcTurk[a2];
                     spannableString7.setSpan(this.fscgreen, 0, spannableString7.length(), 33);
                     SpannableString spannableString8 = metinlerBinance[a2];

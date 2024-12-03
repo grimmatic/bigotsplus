@@ -36,7 +36,7 @@ public class Sesler extends AppCompatActivity {
 
     public static boolean arti = false;
     public static boolean eksi = false;
-    static int toplamsesler = 139;
+    static int toplamsesler = 152;
     static int[] tumSesler = new int[toplamsesler];
 
 
@@ -198,6 +198,19 @@ public class Sesler extends AppCompatActivity {
         tumSesler[136] = MainActivity.SOUND_PDA;
         tumSesler[137] = MainActivity.SOUND_ZRO;
         tumSesler[138] = MainActivity.SOUND_SUPER0;
+        tumSesler[139] = MainActivity.SOUND_TON;
+        tumSesler[140] = MainActivity.SOUND_WLD;
+        tumSesler[141] = MainActivity.SOUND_XAI;
+        tumSesler[142] = MainActivity.SOUND_BTC;
+        tumSesler[143] = MainActivity.SOUND_ETH;
+        tumSesler[144] = MainActivity.SOUND_NEAR;
+        tumSesler[145] = MainActivity.SOUND_HBAR;
+        tumSesler[146] = MainActivity.SOUND_KSM;
+        tumSesler[147] = MainActivity.SOUND_RARE;
+        tumSesler[148] = MainActivity.SOUND_GMT;
+        tumSesler[149] = MainActivity.SOUND_GLMR;
+        tumSesler[150] = MainActivity.SOUND_RUNE;
+        tumSesler[151] = MainActivity.SOUND_KAVA;
         this.seektum.setMax(max);
         this.seekveri.setMax(15);
         this.seektum.setProgress(max);

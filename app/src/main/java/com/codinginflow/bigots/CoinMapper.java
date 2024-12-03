@@ -48,6 +48,12 @@ public class CoinMapper {
         paribuTradeMapping.put("CITY_TL", "city_tl");
         paribuTradeMapping.put("FIL_TL", "fil_tl");
         paribuTradeMapping.put("WIF_TL", "wif_tl");
+        paribuTradeMapping.put("XAI_TL", "xai_tl");
+        paribuTradeMapping.put("LINK_TL", "link_tl");
+        paribuTradeMapping.put("SHIB_TL", "shib_tl");
+        paribuTradeMapping.put("ZIL_TL", "zil_tl");
+        paribuTradeMapping.put("AUDIO_TL", "audio_tl");
+        paribuTradeMapping.put("MAGIC_TL", "magic_tl");
     }
     static {
         // Wallet mappings - Büyük I olan tüm coinler için
@@ -68,8 +74,14 @@ public class CoinMapper {
         paribuWalletMapping.put("TIA", "tia");
         paribuWalletMapping.put("ALICE", "alice");
         paribuWalletMapping.put("CITY", "city");
-        paribuTradeMapping.put("FIL", "fil");
-        paribuTradeMapping.put("WIF", "wif");
+        paribuWalletMapping.put("FIL", "fil");
+        paribuWalletMapping.put("WIF", "wif");
+        paribuWalletMapping.put("XAI", "xai");
+        paribuWalletMapping.put("LINK", "link");
+        paribuWalletMapping.put("SHIB", "shib");
+        paribuWalletMapping.put("ZIL", "zil");
+        paribuWalletMapping.put("AUDIO", "audio");
+        paribuWalletMapping.put("MAGIC", "magic");
 
     }
     public static String getBinanceSymbol(String paribuSymbol) {

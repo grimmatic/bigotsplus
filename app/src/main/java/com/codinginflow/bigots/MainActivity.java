@@ -1,5 +1,8 @@
 package com.codinginflow.bigots;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -25,7 +28,9 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -145,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
     static float tsatis = 0.0f;
     static float tsatisb = 0.0f;
     static float btc = 0.0f;
-    static int hizli = 125;
+    static int hizli = 130;
     static int hizli2 = 0;
     static Double[] oranlar = new Double[hizli];
     static Double[] oranlarbtcturk = new Double[btctotal];
@@ -365,6 +370,19 @@ public class MainActivity extends AppCompatActivity {
     public static final int SOUND_ARPA = R.raw.arpa;
     public static final int SOUND_SUSHI = R.raw.sushi;
     public static final int SOUND_JASMY = R.raw.jasmy;
+    public static final int SOUND_TON = R.raw.ton;
+    public static final int SOUND_WLD = R.raw.wld;
+    public static final int SOUND_XAI = R.raw.xai;
+    public static final int SOUND_BTC = R.raw.btc;
+    public static final int SOUND_ETH = R.raw.eth;
+    public static final int SOUND_NEAR = R.raw.near;
+    public static final int SOUND_HBAR = R.raw.hbar;
+    public static final int SOUND_KSM = R.raw.ksm;
+    public static final int SOUND_RARE = R.raw.rare;
+    public static final int SOUND_GMT = R.raw.gmt;
+    public static final int SOUND_GLMR = R.raw.glmr;
+    public static final int SOUND_RUNE = R.raw.rune;
+    public static final int SOUND_KAVA = R.raw.kava;
 
 
     public static void mergeSort(float[] arr, int left, int right, float[] f1, float[] f2, String[] s, String[] s1, int[] i0, int[] i1, int[] i2, Double[] d, int[] soundIds) {
@@ -916,6 +934,11 @@ public class MainActivity extends AppCompatActivity {
         sesler[122] = SOUND_FIL;
         sesler[123] = SOUND_PDA;
         sesler[124] = SOUND_ZRO;
+        sesler[125] = SOUND_TON;
+        sesler[126] = SOUND_WLD;
+        sesler[127] = SOUND_XAI;
+        sesler[128] = SOUND_BTC;
+        sesler[129] = SOUND_ETH;
 
         indexler[0] = 954;
         indexler[1] = 1052;
@@ -1042,6 +1065,11 @@ public class MainActivity extends AppCompatActivity {
         indexler[122] = 2485;
         indexler[123] = 2499;
         indexler[124] = 2673;
+        indexler[125] = 2700;
+        indexler[126] = 2258;
+        indexler[127] = 2430;
+        indexler[128] = 11;
+        indexler[129] = 12;
 
         paribuisim[0] = "DOT_TL";
         paribuisim[1] = "AVAX_TL";
@@ -1168,6 +1196,11 @@ public class MainActivity extends AppCompatActivity {
         paribuisim[122] = "FIL_TL";
         paribuisim[123] = "PDA_TL";
         paribuisim[124] = "ZRO_TL";
+        paribuisim[125] = "TON_TL";
+        paribuisim[126] = "WLD_TL";
+        paribuisim[127] = "XAI_TL";
+        paribuisim[128] = "BTC_TL";
+        paribuisim[129] = "ETH_TL";
 
 
         btcturkisim[0] = "XRP_TRY";
@@ -1252,6 +1285,31 @@ public class MainActivity extends AppCompatActivity {
         btcturkisim[79] = "FLOKI_TRY";
         btcturkisim[80] = "EIGEN_TRY";
         btcturkisim[81] = "W_TRY";
+        btcturkisim[82] = "AXL_TRY";
+        btcturkisim[83] = "BTC_TRY";
+        btcturkisim[84] = "ETH_TRY";
+        btcturkisim[85] = "NEAR_TRY";
+        btcturkisim[86] = "HBAR_TRY";
+        btcturkisim[87] = "ZRO_TRY";
+        btcturkisim[88] = "WLD_TRY";
+        btcturkisim[89] = "BLUR_TRY";
+        btcturkisim[90] = "KSM_TRY";
+        btcturkisim[91] = "TIA_TRY";
+        btcturkisim[92] = "ARKM_TRY";
+        btcturkisim[93] = "JUP_TRY";
+        btcturkisim[94] = "RARE_TRY";
+        btcturkisim[95] = "OP_TRY";
+        btcturkisim[96] = "PYTH_TRY";
+        btcturkisim[97] = "TON_TRY";
+        btcturkisim[98] = "GMT_TRY";
+        btcturkisim[99] = "GLMR_TRY";
+        btcturkisim[100] = "RUNE_TRY";
+        btcturkisim[101] = "JUV_TRY";
+        btcturkisim[102] = "KAVA_TRY";
+        btcturkisim[103] = "CITY_TRY";
+        btcturkisim[104] = "ACM_TRY";
+        btcturkisim[105] = "ATM_TRY";
+
 
         indexlerbtcturk[0] = 306;
         indexlerbtcturk[1] = 190;
@@ -1335,6 +1393,30 @@ public class MainActivity extends AppCompatActivity {
         indexlerbtcturk[79] = 2215;
         indexlerbtcturk[80] = 2755;
         indexlerbtcturk[81] = 2568;
+        indexlerbtcturk[82] = 2501;
+        indexlerbtcturk[83] = 11;
+        indexlerbtcturk[84] = 12;
+        indexlerbtcturk[85] = 1097;
+        indexlerbtcturk[86] = 627;
+        indexlerbtcturk[87] = 2673;
+        indexlerbtcturk[88] = 2258;
+        indexlerbtcturk[89] = 2367;
+        indexlerbtcturk[90] = 998;
+        indexlerbtcturk[91] = 2329;
+        indexlerbtcturk[92] = 2246;
+        indexlerbtcturk[93] = 2456;
+        indexlerbtcturk[94] = 1682;
+        indexlerbtcturk[95] = 2060;
+        indexlerbtcturk[96] = 2463;
+        indexlerbtcturk[97] = 2700;
+        indexlerbtcturk[98] = 1960;
+        indexlerbtcturk[99] = 1881;
+        indexlerbtcturk[100] = 1007;
+        indexlerbtcturk[101] = 1215;
+        indexlerbtcturk[102] = 642;
+        indexlerbtcturk[103] = 1738;
+        indexlerbtcturk[104] = 1298;
+        indexlerbtcturk[105] = 1228;
 
         seslerBtcTurk[0] = SOUND_RIPPLE;
         seslerBtcTurk[1] = SOUND_LITE;
@@ -1418,6 +1500,30 @@ public class MainActivity extends AppCompatActivity {
         seslerBtcTurk[79] = SOUND_FLOKI;
         seslerBtcTurk[80] = SOUND_EIGEN;
         seslerBtcTurk[81] = SOUND_W;
+        seslerBtcTurk[82] = SOUND_AXL;
+        seslerBtcTurk[83] = SOUND_BTC;
+        seslerBtcTurk[84] = SOUND_ETH;
+        seslerBtcTurk[85] = SOUND_NEAR;
+        seslerBtcTurk[86] = SOUND_HBAR;
+        seslerBtcTurk[87] = SOUND_ZRO;
+        seslerBtcTurk[88] = SOUND_WLD;
+        seslerBtcTurk[89] = SOUND_BLUR;
+        seslerBtcTurk[90] = SOUND_KSM;
+        seslerBtcTurk[91] = SOUND_TIA;
+        seslerBtcTurk[92] = SOUND_ARKM;
+        seslerBtcTurk[93] = SOUND_JUP;
+        seslerBtcTurk[94] = SOUND_RARE;
+        seslerBtcTurk[95] = SOUND_OP;
+        seslerBtcTurk[96] = SOUND_PYTH;
+        seslerBtcTurk[97] = SOUND_TON;
+        seslerBtcTurk[98] = SOUND_GMT;
+        seslerBtcTurk[99] = SOUND_GLMR;
+        seslerBtcTurk[100] = SOUND_RUNE;
+        seslerBtcTurk[101] = SOUND_JUV;
+        seslerBtcTurk[102] = SOUND_KAVA;
+        seslerBtcTurk[103] = SOUND_CITY;
+        seslerBtcTurk[104] = SOUND_ACM;
+        seslerBtcTurk[105] = SOUND_ATM;
         for (int i = 0; i < hizli; i++) {
             String[] strArr3 = isimler;
             StringBuilder sb = new StringBuilder();
@@ -1444,6 +1550,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.startActivityIfNeeded(openMainActivity, 2);
             }
         });
+        setupScrollButtons();
         yukari.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1771,7 +1878,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+            // Scroll sırasında butonları güncelle
+            int totalHeight = scrollView.getChildAt(0).getHeight();
+            int scrollViewHeight = scrollView.getHeight();
+            int scrollY = scrollView.getScrollY();
 
+            yukari.setEnabled(scrollY > 0);
+            asagi.setEnabled(scrollY < (totalHeight - scrollViewHeight));
+        });
 
         Dot();
     }
@@ -1789,66 +1904,139 @@ public class MainActivity extends AppCompatActivity {
                 progress / 15.0f
         );
     }
-    public void scrollToPosition(int position) {
-        scrollView.post(new Runnable() {
-            @Override
-            public void run() {
-                // Scroll yapılacak view'ı seç
-                LinearLayoutCompat layout = scrollView.findViewById(R.id.ekran1)
-                        .findViewById(R.id.linear_layout_compat);
-                View targetView;
+    private void scrollToPosition(int position) {
+        scrollView.post(() -> {
+            // Her RecyclerView'ın üstündeki başlık (TextView) kullanılacak
+            View targetView = null;
+            String debugInfo = "";
 
-                switch (position) {
-                    case 0:
-                        targetView = layout.getChildAt(layout.indexOfChild(paribuAnaText));
-                        break;
-                    case 1:
-                        targetView = layout.getChildAt(layout.indexOfChild(BinanceTlAnaText));
-                        break;
-                    case 2:
-                        targetView = layout.getChildAt(layout.indexOfChild(BinanceAnaText));
-                        break;
-                    default:
-                        return;
-                }
+            // Önce scroll view'ın mevcut scroll pozisyonunu al
+            int currentScrollY = scrollView.getScrollY();
 
-                if (targetView != null) {
-                    // View'ın üst kenarının scrollview içindeki pozisyonunu hesapla
-                    int targetTop = 0;
-                    View current = targetView;
+            switch (position) {
+                case 0: // Paribu
+                    targetView = paribuAnaText;
+                    debugInfo = "Scrolling to Paribu";
+                    break;
+                case 1: // Binance TL
+                    targetView = BinanceTlAnaText;
+                    debugInfo = "Scrolling to Binance TL";
+                    break;
+                case 2: // Binance
+                    targetView = BinanceAnaText;
+                    debugInfo = "Scrolling to Binance";
+                    break;
+            }
 
-                    while (current != scrollView) {
-                        targetTop += current.getTop();
-                        if (current.getParent() instanceof View) {
-                            current = (View) current.getParent();
-                        } else {
-                            break;
-                        }
-                    }
+            if (targetView == null || !targetView.isShown()) {
+                Log.e("ScrollDebug", "Target view not found or not visible");
+                return;
+            }
 
-                    // Toolbar yüksekliğini hesapla
-                    int toolbarHeight = toolbar != null ? toolbar.getHeight() : 0;
-
-                    // Status bar yüksekliğini al
-                    int statusBarHeight = 0;
-                    int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-                    if (resourceId > 0) {
-                        statusBarHeight = getResources().getDimensionPixelSize(resourceId);
-                    }
-
-                    // Son scroll pozisyonunu hesapla
-                    final int scrollTo = targetTop - toolbarHeight - statusBarHeight;
-
-                    // Smooth scroll yap
-                    scrollView.smoothScrollTo(0, scrollTo);
-
-                    // Debug için log
-                    Log.d("ScrollDebug", "Position: " + position +
-                            ", TargetTop: " + targetTop +
-                            ", ScrollTo: " + scrollTo);
+            // View'ın ScrollView içindeki mutlak pozisyonunu bul
+            int targetY = 0;
+            View current = targetView;
+            while (current != scrollView) {
+                targetY += current.getTop();
+                if (current.getParent() instanceof View) {
+                    current = (View) current.getParent();
+                } else {
+                    break;
                 }
             }
+
+            // Toolbar offset'ini hesapla
+            int toolbarOffset = toolbar.getHeight();
+
+            // Final scroll pozisyonunu hesapla
+            final int scrollTo = Math.max(0, targetY - toolbarOffset);
+
+            Log.d("ScrollDebug", debugInfo +
+                    "\nCurrent Scroll Y: " + currentScrollY +
+                    "\nTarget Y: " + targetY +
+                    "\nToolbar Offset: " + toolbarOffset +
+                    "\nFinal Scroll Position: " + scrollTo);
+
+            // Smooth scroll yerine programatik scroll kullanalım
+            ObjectAnimator scrollAnimator = ObjectAnimator.ofInt(scrollView, "scrollY",
+                    currentScrollY, scrollTo);
+            scrollAnimator.setDuration(500); // 500ms
+            scrollAnimator.setInterpolator(new DecelerateInterpolator());
+            scrollAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    // Scroll tamamlandığında pozisyonu kontrol et
+                    scrollView.postDelayed(() -> {
+                        int finalY = scrollView.getScrollY();
+                        if (Math.abs(finalY - scrollTo) > 5) {
+                            scrollView.scrollTo(0, scrollTo);
+                        }
+                    }, 50);
+                }
+            });
+            scrollAnimator.start();
         });
+    }
+
+    // Butonların click listener'larını da güncelleyelim
+    private void setupScrollButtons() {
+        yukari.setOnClickListener(v -> {
+            if (currentPosition > 0) {
+                currentPosition--;
+                scrollToPosition(currentPosition);
+                updateScrollButtons(); // Scroll sonrası butonları güncelle
+            }
+        });
+
+        asagi.setOnClickListener(v -> {
+            if (currentPosition < 2) {
+                currentPosition++;
+                scrollToPosition(currentPosition);
+                updateScrollButtons(); // Scroll sonrası butonları güncelle
+            }
+        });
+
+        // ScrollView listener'ı güncelle
+        scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public void onScrollChanged() {
+                updateScrollButtons();
+            }
+        });
+
+        // İlk yüklemede butonları güncelle
+        scrollView.post(() -> updateScrollButtons());
+    }
+
+    private void updateButtonStates() {
+        yukari.setEnabled(currentPosition > 0);
+        asagi.setEnabled(currentPosition < 2);
+    }
+
+
+
+    // Scroll durumuna göre butonları güncelle
+    private void updateScrollButtons() {
+        int scrollY = scrollView.getScrollY();
+        int maxScroll = scrollView.getChildAt(0).getHeight() - scrollView.getHeight();
+
+        // Yukarı buton durumu
+        if (scrollY > 0) {
+            yukari.setEnabled(true);
+            yukari.setAlpha(1f);
+        } else {
+            yukari.setEnabled(false);
+            yukari.setAlpha(0.5f);
+        }
+
+        // Aşağı buton durumu
+        if (scrollY < maxScroll) {
+            asagi.setEnabled(true);
+            asagi.setAlpha(1f);
+        } else {
+            asagi.setEnabled(false);
+            asagi.setAlpha(0.5f);
+        }
     }
     public static MainActivity getInstance() {
         return instanceRef != null ? instanceRef.get() : null;
@@ -1937,6 +2125,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (UnifiedService.isMainServiceRunning()&&calistiMi) {
             updateUI(true);
+            scrollView.post(() -> updateScrollButtons());
         }
     }
     @Override
@@ -2069,15 +2258,15 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         JSONObject jsonArray2 = response.getJSONObject("USDT_TL");
-                        MainActivity.tsatis = (float) jsonArray2.getDouble("lowestAsk");
+                        tsatis = (float) jsonArray2.getDouble("lowestAsk");
                         for (int i = 0; i < MainActivity.hizli; i++) {
-                            MainActivity.paribu[i] = (float) response.getJSONObject(MainActivity.paribuisim[i]).getDouble("highestBid");
+                            paribu[i] = (float) response.getJSONObject(paribuisim[i]).getDouble("highestBid");
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-            }, new Response.ErrorListener() { // from class: com.codinginflow.bigots.MainActivity.18
+            }, new Response.ErrorListener() {
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
                 }
@@ -2157,7 +2346,7 @@ public class MainActivity extends AppCompatActivity {
                 mQueue.add(request2);
             }     });
     }
-    public String Dot() {
+    public void Dot() {
         otuyorMu = false;
         sayac++;
 
@@ -2199,7 +2388,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
-                } else if (!Sesler.arti && !Sesler.eksi && (farklar[a]/4 < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
+                } else if (!Sesler.arti && !Sesler.eksi && (farklar[a]/6 < oranlar[a].doubleValue() * (-1.0d) || farklar[a] > oranlar[a].doubleValue())) {
 
                     SpannableString spannableString4 = metinlerParibu[a];
                     spannableString4.setSpan(fscgreen, 0, spannableString4.length(), 33);
@@ -2210,7 +2399,7 @@ public class MainActivity extends AppCompatActivity {
 
                     mediaPlayerManager.playSound(sesler[a], soundPrefs.getInt("paribu_sound_" + a, 15) / 15.0f);
                     otuyorMu = true;
-                } else if (!Sesler.arti && Sesler.eksi && farklar[a]/4 < oranlar[a].doubleValue() * (-1.0d)) {
+                } else if (!Sesler.arti && Sesler.eksi && farklar[a]/6 < oranlar[a].doubleValue() * (-1.0d)) {
 
                     SpannableString spannableString7 = metinlerParibu[a];
                     spannableString7.setSpan(fscgreen, 0, spannableString7.length(), 33);
@@ -2325,7 +2514,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        return "";
     }
 
   /*  public boolean onOptionsItemSelected(MenuItem item) {
