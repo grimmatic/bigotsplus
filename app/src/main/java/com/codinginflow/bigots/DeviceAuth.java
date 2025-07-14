@@ -13,7 +13,8 @@ public class DeviceAuth {
             "a9bd872eefe5e52c", //BEN
             "57bb7be0dfef4866", //PC
             "4f7a8b0d9a22fce5", //PC2
-            "091d1522b86ae1dc"//ABİM
+            "091d1522b86ae1dc", //ABİM
+            "1c0d42f2c0d41e8a"  // MediumPhone API 36.0
     };
 
     public static boolean isDeviceAuthorized(Context context) {
